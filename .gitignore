@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Angular ###
+/src/main/resources/web/starmony-network/node_modules/
