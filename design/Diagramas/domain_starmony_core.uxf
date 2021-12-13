@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>498</y>
+      <w>156</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Musical Element
+&lt;&lt;Interface&gt;&gt;
+--
+
+--
++ getName(void):String
++ getSimbol(void):String
++ getType(void):String
++ setName(name:String):void
++ setSimbol(name:String):void
++ setType(name:String):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>744</x>
+      <y>636</y>
+      <w>138</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>/Chord/
+--
+- name:String
+- simbol:String
+- type:String
+- intervals:Array&lt;MusicalElement&gt;
+--
++ getIntervals(void):Array&lt;Interval&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>636</y>
+      <w>150</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>/Scale/
+--
+- name:String
+- simbol:String
+- type:String
+- code:Array&lt;Integer&gt;
+--
++ getCode(void):Array&lt;Integer&gt;
++ setCode(code:Array&lt;Integer&gt;):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>966</x>
+      <y>636</y>
+      <w>132</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>/Harmony/
+--
+- name:String
+- simbol:String
+- type:String
+- grades:String
+--
++ getGrades(void):String
++ setGrades(grades:String):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>636</y>
+      <w>156</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>/Interval/
+--
+- semitones:Integer
+- name:String
+- simbol:String
+- type:String
+--
++ getSemitones(void):Integer
++ setSemitone(semitone:Integer):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>816</y>
+      <w>96</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Note
+--
+- name:String
+- simbol:String
+- type:String
+--
++ toString(void):String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>576</y>
+      <w>144</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0;10.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>558</y>
+      <w>324</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>520.0;10.0;10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>576</y>
+      <w>162</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;10.0;250.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>558</y>
+      <w>366</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;590.0;10.0;590.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>594</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>816</y>
+      <w>150</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>ConcreteScale
+--
+- tonic:Note
+- notes:Array&lt;Note&gt;
+--
++ getNotes(void):Array&lt;Note&gt;
++ getTonic(void):Note
++ setNotes(notes:Array&lt;Note&gt;):void
++ setTonic(tonic:Note):void
++ toString(void):String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>744</x>
+      <y>816</y>
+      <w>138</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>ConcreteChord
+--
+- tonic:Note
+- notes:Array&lt;Note&gt;
+--
+- genConcreteInterval(void):void
++ getNotes(void):Array&lt;Note&gt;
++ getTonic(void):Note
++ setNotes(notes:Array&lt;Note&gt;):void
++ setTonic(tonic:Note):void
++ toString(void):String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>966</x>
+      <y>816</y>
+      <w>132</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>ConcreteHarmony
+--
+- chords:List&lt;Chord&gt;
+- tonality:List&lt;String&gt;
+--
++ getChords(void):List&lt;Chord&gt;
++ setChords(chords:List&lt;Chord&gt;)
++ getTonality(void):List&lt;String&gt;
++ setTonality(tonality:List&lt;String&gt;)
++ toString(void):String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>714</y>
+      <w>18</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>804</x>
+      <y>714</y>
+      <w>18</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1008</x>
+      <y>714</y>
+      <w>18</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>666</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>852</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>426</x>
+      <y>864</y>
+      <w>330</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>530.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>876</x>
+      <y>666</y>
+      <w>102</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;310.0;110.0;310.0;30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>750</y>
+      <w>156</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>ConcreteInterval
+--
+- firstNote:Note
+- lastNote:Note
+--
++ getFirstNote(void):Note
++ getLastNote(void):Note
++ setFirstNote(note:Note):void
++ setLastNote(note:Note):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>714</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>426</x>
+      <y>786</y>
+      <w>96</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;100.0;10.0;40.0;110.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>684</y>
+      <w>96</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;280.0;110.0;280.0;30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>228</x>
+      <y>0</y>
+      <w>270</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>RWFile
+--
+--
++ read(route: String):ArrayList&lt;String&gt;
++ read(route: String, lines: int):ArrayList&lt;String&gt;
++ read(route: String, begin: int, end: int): ArrayList&lt;String&gt;
++ write(route: String, content: ArrayList&lt;String&gt;): int
++ write(route: String, content: ArrayList&lt;String&gt;, append: boolean): int
++ write(route: String, content: String, append: boolean): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>126</y>
+      <w>60</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>SQLConexion
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>24</y>
+      <w>222</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Conexion
+&lt;Interface&gt;
+--
+--
++ getType(void): String
++ getConexión(user: String, password: String): conexion</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>96</x>
+      <y>78</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>246</x>
+      <y>384</y>
+      <w>330</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Analizer
+&lt;Interface&gt;
+--
+--
++ analize(elements: ArrayList&lt;MusicalElement&gt;):ArrayList&lt;MusicalElement&gt;
++ analize(MusicalElement):ArrayList&lt;MusicalElement&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>246</x>
+      <y>264</y>
+      <w>60</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ChordAnalizer
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>312</x>
+      <y>264</y>
+      <w>60</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ScaleAnalizer
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>402</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>378</x>
+      <y>264</y>
+      <w>60</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>NoteAnalizer
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>438</y>
+      <w>180</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>280.0;100.0;280.0;70.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>444</x>
+      <y>264</y>
+      <w>60</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>IntervalAnalizer
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>468</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>264</y>
+      <w>66</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>HarmonyAnalizer
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>534</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>384</y>
+      <w>330</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Generator
+&lt;Interface&gt;
+--
+--
++ generate(elements: ArrayList&lt;MusicalElement&gt;):ArrayList&lt;MusicalElement&gt;
++ generate(MusicalElement):ArrayList&lt;MusicalElement&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>438</y>
+      <w>198</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;70.0;310.0;50.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>594</x>
+      <y>264</y>
+      <w>72</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ChordGenerator
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>696</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>264</y>
+      <w>60</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ScaleGenrator
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>264</y>
+      <w>72</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>IntervalGenerator
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>858</x>
+      <y>264</y>
+      <w>78</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>HarmonyGenerator
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>294</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>414</y>
+      <w>42</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
