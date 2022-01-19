@@ -6,7 +6,6 @@ public class SpecificScale extends Scale {
 
     private Note tonic;
     private ArrayList<Note> notes;
-    private ArrayList<Integer> code;
 
     public Note getTonic() {
         return tonic;
@@ -24,14 +23,6 @@ public class SpecificScale extends Scale {
         this.notes = notes;
     }
 
-    public ArrayList<Integer> getCode() {
-        return code;
-    }
-
-    public void setCode(ArrayList<Integer> code) {
-        this.code = code;
-    }
-
     @Override
     public String toString() {
         return "SpecificScale{" +
@@ -39,7 +30,6 @@ public class SpecificScale extends Scale {
                 ", symbol='" + symbol + '\'' +
                 ", tonic=" + tonic +
                 ", notes=" + notes +
-                ", code=" + code +
                 '}';
     }
 }

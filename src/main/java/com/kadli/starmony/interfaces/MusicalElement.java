@@ -1,5 +1,9 @@
 package com.kadli.starmony.interfaces;
 
 public interface MusicalElement {
-    // Pensar en que funcion realizan todos los elementos musicales
+    public String getName();
+    public String getSymbol();
+
+    public void setName(String name);
+    public void setSymbol(String symbol);
 }

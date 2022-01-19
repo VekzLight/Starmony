@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ChordDAO {
 
-    List<Chord> getChords();
+    public List<Chord> getChords();
     public String addChord();
 
 }

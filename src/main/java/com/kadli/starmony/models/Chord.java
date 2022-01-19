@@ -28,4 +28,8 @@ public class Chord implements MusicalElement {
     @Column(name = "symbol")
     @Getter @Setter
     protected String symbol;
+
+    @Column(name = "code")
+    @Getter @Setter
+    protected String code;
 }
