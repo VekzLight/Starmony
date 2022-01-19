@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>104</x>
-      <y>328</y>
+      <x>200</x>
+      <y>312</y>
       <w>592</w>
       <h>184</h>
     </coordinates>
@@ -16,8 +16,8 @@ halign=center</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>152</x>
-      <y>400</y>
+      <x>248</x>
+      <y>384</y>
       <w>32</w>
       <h>32</h>
     </coordinates>
@@ -31,8 +31,8 @@ drawLine(0, 20, 0, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>344</x>
-      <y>400</y>
+      <x>440</x>
+      <y>384</y>
       <w>32</w>
       <h>32</h>
     </coordinates>
@@ -46,8 +46,8 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>8</x>
-      <y>384</y>
+      <x>104</x>
+      <y>368</y>
       <w>96</w>
       <h>88</h>
     </coordinates>
@@ -57,8 +57,8 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>104</x>
-      <y>512</y>
+      <x>200</x>
+      <y>496</y>
       <w>592</w>
       <h>104</h>
     </coordinates>
@@ -77,8 +77,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>72</x>
-      <y>400</y>
+      <x>168</x>
+      <y>384</y>
       <w>96</w>
       <h>32</h>
     </coordinates>
@@ -88,8 +88,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>176</x>
-      <y>400</y>
+      <x>272</x>
+      <y>384</y>
       <w>184</w>
       <h>32</h>
     </coordinates>
@@ -99,8 +99,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>400</y>
+      <x>464</x>
+      <y>384</y>
       <w>128</w>
       <h>32</h>
     </coordinates>
@@ -110,8 +110,8 @@ halign=left</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>152</x>
-      <y>376</y>
+      <x>248</x>
+      <y>360</y>
       <w>64</w>
       <h>24</h>
     </coordinates>
@@ -122,8 +122,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>336</x>
-      <y>376</y>
+      <x>432</x>
+      <y>360</y>
       <w>72</w>
       <h>24</h>
     </coordinates>
@@ -134,8 +134,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>592</x>
-      <y>464</y>
+      <x>688</x>
+      <y>448</y>
       <w>32</w>
       <h>32</h>
     </coordinates>
@@ -148,8 +148,8 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>584</x>
-      <y>440</y>
+      <x>680</x>
+      <y>424</y>
       <w>72</w>
       <h>24</h>
     </coordinates>
@@ -160,8 +160,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>480</x>
-      <y>400</y>
+      <x>576</x>
+      <y>384</y>
       <w>32</w>
       <h>32</h>
     </coordinates>
@@ -174,8 +174,8 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>456</x>
-      <y>376</y>
+      <x>552</x>
+      <y>360</y>
       <w>104</w>
       <h>24</h>
     </coordinates>
@@ -186,8 +186,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>464</y>
+      <x>600</x>
+      <y>448</y>
       <w>104</w>
       <h>32</h>
     </coordinates>
@@ -197,8 +197,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>480</x>
-      <y>464</y>
+      <x>576</x>
+      <y>448</y>
       <w>32</w>
       <h>32</h>
     </coordinates>
@@ -212,8 +212,8 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>456</x>
-      <y>440</y>
+      <x>552</x>
+      <y>424</y>
       <w>88</w>
       <h>24</h>
     </coordinates>
@@ -224,8 +224,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>232</x>
-      <y>464</y>
+      <x>328</x>
+      <y>448</y>
       <w>32</w>
       <h>32</h>
     </coordinates>
@@ -238,8 +238,8 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>184</x>
-      <y>440</y>
+      <x>280</x>
+      <y>424</y>
       <w>152</w>
       <h>24</h>
     </coordinates>
@@ -250,8 +250,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>424</y>
+      <x>456</x>
+      <y>408</y>
       <w>136</w>
       <h>72</h>
     </coordinates>
@@ -261,8 +261,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>256</x>
-      <y>424</y>
+      <x>352</x>
+      <y>408</y>
       <w>112</w>
       <h>72</h>
     </coordinates>
@@ -272,8 +272,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>400</y>
+      <x>600</x>
+      <y>384</y>
       <w>104</w>
       <h>88</h>
     </coordinates>
@@ -283,8 +283,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>152</x>
-      <y>360</y>
+      <x>248</x>
+      <y>344</y>
       <w>24</w>
       <h>24</h>
     </coordinates>
@@ -295,8 +295,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>320</x>
-      <y>360</y>
+      <x>416</x>
+      <y>344</y>
       <w>24</w>
       <h>24</h>
     </coordinates>
@@ -307,8 +307,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>448</x>
-      <y>424</y>
+      <x>544</x>
+      <y>408</y>
       <w>24</w>
       <h>24</h>
     </coordinates>
@@ -319,8 +319,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>344</x>
-      <y>360</y>
+      <x>440</x>
+      <y>344</y>
       <w>32</w>
       <h>24</h>
     </coordinates>
@@ -331,8 +331,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>376</x>
-      <y>360</y>
+      <x>472</x>
+      <y>344</y>
       <w>32</w>
       <h>24</h>
     </coordinates>
@@ -343,8 +343,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>240</x>
-      <y>424</y>
+      <x>336</x>
+      <y>408</y>
       <w>32</w>
       <h>24</h>
     </coordinates>
@@ -355,8 +355,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>408</x>
-      <y>360</y>
+      <x>504</x>
+      <y>344</y>
       <w>24</w>
       <h>24</h>
     </coordinates>
@@ -367,8 +367,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>104</x>
-      <y>616</y>
+      <x>200</x>
+      <y>600</y>
       <w>592</w>
       <h>72</h>
     </coordinates>

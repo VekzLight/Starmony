@@ -1,0 +1,23 @@
+﻿id_scale,name,symbol,code,,arabe
+1,pentatonica mayor,pentatonica M,2-2-3-2-3,,armonico menor
+2,pentatonica menor septima,pentatonica m7,3-2-2-3-2,,aumentada
+3,pentatonica menor sexta,,3-2-2-2-3,,bebop dominante
+4,pentatonica mayor septima,,4-1-2-3-2,,bebop mayor
+5,mayor,,2-2-1-2-2-2-1,,blues
+6,menor,,2-1-2-2-1-2-2,,disminuida
+7,jonico,,2-2-1-2-2-2-1,,dorico
+8,dorico,,2-1-2-2-2-1-2,,enigmatica
+9,frigio,,1-2-2-2-1-2-2,,mayor
+10,lidio,,2-2-2-1-2-2-1,,menor
+11,mixolidio,,2-2-1-2-2-1-2,,frigio
+12,eolico,,2-1-2-2-1-2-2,,japonesa
+13,locrio,,1-2-2-1-2-2-2,,lidio
+14,menor armonica,,2-1-2-2-1-3-1,,locrio
+15,eolico con septima mayor,,2-1-2-2-1-3-1,,magiar
+16,eolico con sexta mayor,,1-2-2-1-3-1-2,,melodica menor
+17,jonico con quinta aumentada,,2-2-1-3-1-2-1,,napolitana
+18,dorico con cuarta aumentada,,2-1-3-1-2-1-2,,napolitana menor
+19,mixolidio con novena y treceava disminuida,,1-3-1-2-1-2-2,,pentafonica
+20,Lidio con novena aumentada,,3-1-2-1-2-2-1,,pentatonica mayor
+21,armonica disminuida,,1-2-1-2-2-1-3,,pentatonica menor
+,,,,,whole

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>30</x>
-      <y>120</y>
-      <w>60</w>
-      <h>110</h>
+      <x>99</x>
+      <y>117</y>
+      <w>54</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>User</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>380</x>
-      <y>100</y>
-      <w>240</w>
-      <h>60</h>
+      <x>414</x>
+      <y>99</y>
+      <w>216</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Recognize Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -26,10 +26,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>170</x>
-      <y>200</y>
-      <w>190</w>
-      <h>40</h>
+      <x>225</x>
+      <y>189</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Analyze Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -37,10 +37,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>150</y>
-      <w>160</w>
-      <h>80</h>
+      <x>378</x>
+      <y>144</y>
+      <w>144</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;includes&gt;&gt;</panel_attributes>
@@ -49,10 +49,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>170</x>
-      <y>300</y>
-      <w>190</w>
-      <h>40</h>
+      <x>225</x>
+      <y>279</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Generate Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -60,10 +60,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
-      <y>130</y>
-      <w>110</w>
-      <h>110</h>
+      <x>144</x>
+      <y>126</y>
+      <w>99</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;10.0;40.0;10.0;80.0;90.0;90.0;90.0</additional_attributes>
@@ -71,10 +71,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>230</y>
-      <w>100</w>
-      <h>90</h>
+      <x>297</x>
+      <y>216</y>
+      <w>90</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;includes&gt;&gt;</panel_attributes>
@@ -83,10 +83,10 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>670</x>
-      <y>120</y>
-      <w>120</w>
-      <h>110</h>
+      <x>675</x>
+      <y>117</y>
+      <w>108</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Extern System</panel_attributes>
     <additional_attributes/>
@@ -94,10 +94,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>110</y>
-      <w>110</w>
-      <h>40</h>
+      <x>621</x>
+      <y>108</y>
+      <w>99</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
@@ -105,10 +105,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>130</y>
-      <w>370</w>
-      <h>110</h>
+      <x>387</x>
+      <y>126</y>
+      <w>333</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;90.0;280.0;90.0;320.0;10.0;350.0;10.0</additional_attributes>
@@ -116,10 +116,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>140</y>
-      <w>370</w>
-      <h>200</h>
+      <x>387</x>
+      <y>135</y>
+      <w>333</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;180.0;280.0;180.0;320.0;10.0;350.0;10.0</additional_attributes>
@@ -127,10 +127,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>170</x>
-      <y>400</y>
-      <w>190</w>
-      <h>40</h>
+      <x>225</x>
+      <y>369</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Create Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -138,10 +138,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
-      <y>140</y>
-      <w>110</w>
-      <h>300</h>
+      <x>144</x>
+      <y>135</y>
+      <w>99</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;10.0;40.0;10.0;80.0;280.0;90.0;280.0</additional_attributes>
@@ -149,10 +149,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>330</y>
-      <w>100</w>
-      <h>90</h>
+      <x>297</x>
+      <y>306</y>
+      <w>90</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;includes&gt;&gt;</panel_attributes>
@@ -161,10 +161,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>150</y>
-      <w>370</w>
-      <h>290</h>
+      <x>387</x>
+      <y>144</y>
+      <w>333</w>
+      <h>261</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;270.0;280.0;270.0;320.0;10.0;350.0;10.0</additional_attributes>
@@ -172,10 +172,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>110</x>
-      <y>520</y>
-      <w>190</w>
-      <h>40</h>
+      <x>171</x>
+      <y>477</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Analyze Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -183,10 +183,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>110</x>
-      <y>600</y>
-      <w>190</w>
-      <h>40</h>
+      <x>171</x>
+      <y>549</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Generate Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -194,10 +194,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>110</x>
-      <y>680</y>
-      <w>190</w>
-      <h>40</h>
+      <x>171</x>
+      <y>621</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Create Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -205,10 +205,10 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>110</x>
-      <y>760</y>
-      <w>240</w>
-      <h>40</h>
+      <x>171</x>
+      <y>693</y>
+      <w>216</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Recognize Musical Elements</panel_attributes>
     <additional_attributes/>
@@ -216,10 +216,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>310</x>
-      <y>510</y>
-      <w>480</w>
-      <h>60</h>
+      <x>351</x>
+      <y>468</y>
+      <w>432</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Input: [String ot Musical Element] [Filter Options]
 Output: [Musical Elements]
@@ -231,10 +231,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>310</x>
-      <y>590</y>
-      <w>480</w>
-      <h>60</h>
+      <x>351</x>
+      <y>540</y>
+      <w>432</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Input: [Musical Element] [Filter Options]
 Output: [Musical Elements]
@@ -246,10 +246,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>310</x>
-      <y>670</y>
-      <w>480</w>
-      <h>60</h>
+      <x>351</x>
+      <y>612</y>
+      <w>432</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Input: [String or Musical Element] [Filter Options]
 Output: [Musical Elements]
@@ -261,10 +261,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>360</x>
-      <y>750</y>
-      <w>430</w>
-      <h>60</h>
+      <x>396</x>
+      <y>684</y>
+      <w>387</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Input: [String or Musical Element] [Filter Options]
 Output: [Musical Elements]
@@ -276,10 +276,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>120</x>
-      <y>70</y>
-      <w>550</w>
-      <h>410</h>
+      <x>180</x>
+      <y>72</y>
+      <w>495</w>
+      <h>369</h>
     </coordinates>
     <panel_attributes>Starmony Core
 halign=center</panel_attributes>
