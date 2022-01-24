@@ -95,11 +95,10 @@ CREATE TABLE IF NOT EXISTS `starmonydb`.`interval` (
   `id_interval` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `symbol` VARCHAR(20) NOT NULL,
-  `code` VARCHAR(50) NOT NULL,
+  `semitones` INT NOT NULL,
   PRIMARY KEY (`id_interval`),
   UNIQUE INDEX `id_interval_UNIQUE` (`id_interval` ASC) VISIBLE,
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE)
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -347,22 +346,23 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `starmonydb`.`scale_has_interval`
+-- Table `starmonydb`.`user_has_status`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `starmonydb`.`scale_has_interval` (
-  `scale_id_scale` INT NOT NULL,
-  `interval_id_interval` INT NOT NULL,
-  PRIMARY KEY (`scale_id_scale`, `interval_id_interval`),
-  INDEX `fk_scale_has_interval_interval1_idx` (`interval_id_interval` ASC) VISIBLE,
-  INDEX `fk_scale_has_interval_scale1_idx` (`scale_id_scale` ASC) VISIBLE,
-  CONSTRAINT `fk_scale_has_interval_scale1`
-    FOREIGN KEY (`scale_id_scale`)
-    REFERENCES `starmonydb`.`scale` (`id_scale`)
+CREATE TABLE IF NOT EXISTS `starmonydb`.`user_has_status` (
+  `user_id_user` INT NOT NULL,
+  `status_id_status` INT NOT NULL,
+  PRIMARY KEY (`user_id_user`, `status_id_status`),
+  INDEX `fk_user_has_status1_status1_idx` (`status_id_status` ASC) VISIBLE,
+  INDEX `fk_user_has_status1_user1_idx` (`user_id_user` ASC) VISIBLE,
+  UNIQUE INDEX `user_id_user_UNIQUE` (`user_id_user` ASC) VISIBLE,
+  CONSTRAINT `fk_user_has_status1_user1`
+    FOREIGN KEY (`user_id_user`)
+    REFERENCES `starmonydb`.`user` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_scale_has_interval_interval1`
-    FOREIGN KEY (`interval_id_interval`)
-    REFERENCES `starmonydb`.`interval` (`id_interval`)
+  CONSTRAINT `fk_user_has_status1_status1`
+    FOREIGN KEY (`status_id_status`)
+    REFERENCES `starmonydb`.`status` (`id_status`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -391,12 +391,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `starmonydb`.`chord_has_scale`
+-- Table `starmonydb`.`scale_grades`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `starmonydb`.`chord_has_scale` (
+CREATE TABLE IF NOT EXISTS `starmonydb`.`scale_grades` (
   `chord_id_chord` INT NOT NULL,
   `scale_id_scale` INT NOT NULL,
-  PRIMARY KEY (`chord_id_chord`, `scale_id_scale`),
+  `grade` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`chord_id_chord`, `scale_id_scale`, `grade`),
   INDEX `fk_chord_has_scale_scale1_idx` (`scale_id_scale` ASC) VISIBLE,
   INDEX `fk_chord_has_scale_chord1_idx` (`chord_id_chord` ASC) VISIBLE,
   CONSTRAINT `fk_chord_has_scale_chord1`
@@ -509,6 +510,51 @@ CREATE TABLE IF NOT EXISTS `starmonydb`.`user_has_status` (
   CONSTRAINT `fk_user_has_status1_status1`
     FOREIGN KEY (`status_id_status`)
     REFERENCES `starmonydb`.`status` (`id_status`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `starmonydb`.`concrete_progression`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `starmonydb`.`concrete_progression` (
+  `chord_id_chord` INT NOT NULL,
+  `progression_id_progression` INT NOT NULL,
+  `grade` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`chord_id_chord`, `progression_id_progression`, `grade`),
+  INDEX `fk_chord_has_progression_progression1_idx` (`progression_id_progression` ASC) VISIBLE,
+  INDEX `fk_chord_has_progression_chord1_idx` (`chord_id_chord` ASC) VISIBLE,
+  CONSTRAINT `fk_chord_has_progression_chord1`
+    FOREIGN KEY (`chord_id_chord`)
+    REFERENCES `starmonydb`.`chord` (`id_chord`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_chord_has_progression_progression1`
+    FOREIGN KEY (`progression_id_progression`)
+    REFERENCES `starmonydb`.`progression` (`id_progression`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `starmonydb`.`concrete_scale`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `starmonydb`.`concrete_scale` (
+  `note_id_note` INT NOT NULL,
+  `scale_id_scale` INT NOT NULL,
+  PRIMARY KEY (`note_id_note`, `scale_id_scale`),
+  INDEX `fk_note_has_scale_scale1_idx` (`scale_id_scale` ASC) VISIBLE,
+  INDEX `fk_note_has_scale_note1_idx` (`note_id_note` ASC) VISIBLE,
+  CONSTRAINT `fk_note_has_scale_note1`
+    FOREIGN KEY (`note_id_note`)
+    REFERENCES `starmonydb`.`note` (`id_note`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_note_has_scale_scale1`
+    FOREIGN KEY (`scale_id_scale`)
+    REFERENCES `starmonydb`.`scale` (`id_scale`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
