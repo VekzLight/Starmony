@@ -15,7 +15,7 @@
 	<name>starmony</name>
 	<description>Sistema analizador y generador de armonia tonal.</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
