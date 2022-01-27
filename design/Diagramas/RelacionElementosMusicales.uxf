@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
+<diagram program="umlet" version="13.3">
   <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -83,7 +83,7 @@
     <coordinates>
       <x>287</x>
       <y>980</y>
-      <w>35</w>
+      <w>42</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -807,7 +807,7 @@ Musicales</panel_attributes>
       <x>455</x>
       <y>553</y>
       <w>77</w>
-      <h>77</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Extern System</panel_attributes>
     <additional_attributes/>
@@ -908,7 +908,7 @@ halign=center</panel_attributes>
       <x>0</x>
       <y>553</y>
       <w>49</w>
-      <h>77</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>User</panel_attributes>
     <additional_attributes/>
@@ -930,7 +930,7 @@ halign=center</panel_attributes>
     <coordinates>
       <x>616</x>
       <y>882</y>
-      <w>714</w>
+      <w>826</w>
       <h>273</h>
     </coordinates>
     <panel_attributes>1 El Sistema lee la Entrada.
@@ -942,7 +942,7 @@ halign=center</panel_attributes>
 3 El Sistema aplica el analisis a los elementos musicales para encontrar elementos musicales del tipo que se piden
 
 3.a  Aplica analisis Tonal.
-3.a.1    Si se buscan Acordes y se obtienen los elementos descritos en el anexo _Descripcion de Analisis de Elementos Musicales_ - Acordes - Starmonydb.
+3.a.1    Si se bu|scan Acordes y se obtienen los elementos descritos en el anexo _Descripcion de Analisis de Elementos Musicales_ - Acordes - Starmonydb.
 3.a.1.1      Si no se encuentran Acordes
 3.a.2    Si se buscan Escalas se obtienen los elementos descritos en el anexo Descripcion de Analisis de Elementos Musicales - Escalas - Starmonydb.
 3.a.3    Si se buscan Armonias se obtienen los elementos descritos en el anexo Descripcion de Analisis de Elementos Musicales - Armonias - Starmonydb.
@@ -972,36 +972,6 @@ halign=left</panel_attributes>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>658</x>
-      <y>574</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 0, 0, 20)
-drawLine(0, 20, 0, 40)
-	</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>952</x>
-      <y>574</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(24, 0, 34, 0)
-drawLine(24, 0, 30, 10)
-	</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
@@ -1041,20 +1011,6 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1225</x>
-      <y>833</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
       <x>1211</x>
       <y>812</y>
       <w>63</w>
@@ -1062,20 +1018,6 @@ drawLine(0, 40, 40, 40)
     </coordinates>
     <panel_attributes>Database
 style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>1225</x>
-      <y>574</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -1104,21 +1046,6 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1127</x>
-      <y>833</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(24, 0, 34, 0)
-drawLine(24, 0, 30, 10)
-	</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
       <x>1106</x>
       <y>812</y>
       <w>77</w>
@@ -1131,20 +1058,6 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>742</x>
-      <y>630</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
       <x>721</x>
       <y>609</y>
       <w>77</w>
@@ -1152,20 +1065,6 @@ drawLine(0, 40, 40, 40)
     </coordinates>
     <panel_attributes>Array Intervals
 style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>1225</x>
-      <y>679</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -1194,20 +1093,6 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1225</x>
-      <y>735</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
       <x>1218</x>
       <y>714</y>
       <w>56</w>
@@ -1215,21 +1100,6 @@ drawLine(0, 40, 40, 40)
     </coordinates>
     <panel_attributes>Harmony
 style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>1120</x>
-      <y>630</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(24, 0, 34, 0)
-drawLine(24, 0, 30, 10)
-	</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -1280,17 +1150,6 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1134</x>
-      <y>651</y>
-      <w>105</w>
-      <h>112</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>10.0;10.0;110.0;140.0;130.0;140.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>1246</x>
       <y>581</y>
       <w>56</w>
@@ -1309,20 +1168,6 @@ style=wordwrap</panel_attributes>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>240.0;360.0;190.0;360.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>742</x>
-      <y>735</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>Text</id>
@@ -1447,20 +1292,6 @@ style=wordwrap</panel_attributes>
     <id>Text</id>
     <coordinates>
       <x>1225</x>
-      <y>784</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>1225</x>
       <y>763</y>
       <w>42</w>
       <h>21</h>
@@ -1479,20 +1310,6 @@ style=wordwrap</panel_attributes>
     </coordinates>
     <panel_attributes>Interval
 style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>1225</x>
-      <y>630</y>
-      <w>28</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>customelement=
-drawCircle(20, 20, 20)
-drawLine(0, 40, 40, 40)
-	</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -1571,7 +1388,7 @@ style=wordwrap</panel_attributes>
       <x>553</x>
       <y>553</y>
       <w>49</w>
-      <h>77</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>User</panel_attributes>
     <additional_attributes/>
@@ -1614,7 +1431,7 @@ style=wordwrap</panel_attributes>
     <coordinates>
       <x>616</x>
       <y>1155</y>
-      <w>714</w>
+      <w>826</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>* en todos los sub puntos del punto 3.a se verifica si algun filtro se aplica, en caso de que sea correcto se evita hacer busquedas incecesarias
@@ -1657,5 +1474,215 @@ Musical nulo
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>160.0;80.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>952</x>
+      <y>574</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(24, 0, 34, 0);
+drawLine(24, 0, 30, 10);
+</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1120</x>
+      <y>630</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(24, 0, 34, 0);
+drawLine(24, 0, 30, 10);
+</custom_code>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1134</x>
+      <y>651</y>
+      <w>105</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;110.0;140.0;130.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1127</x>
+      <y>833</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(24, 0, 34, 0);
+drawLine(24, 0, 30, 10);
+</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>658</x>
+      <y>574</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 0, 0, 20);
+drawLine(0, 20, 0, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>742</x>
+      <y>630</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>742</x>
+      <y>735</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1225</x>
+      <y>630</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1225</x>
+      <y>679</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1225</x>
+      <y>833</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1225</x>
+      <y>574</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1225</x>
+      <y>735</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>1225</x>
+      <y>784</y>
+      <w>29</w>
+      <h>29</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>drawCircle(20, 20, 20);
+drawLine(0, 40, 40, 40);</custom_code>
   </element>
 </diagram>

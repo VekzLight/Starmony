@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
+<diagram program="umlet" version="13.3">
   <zoom_level>7</zoom_level>
   <element>
     <id>UMLGeneric</id>
@@ -19,7 +19,7 @@ halign=center</panel_attributes>
       <x>140</x>
       <y>245</y>
       <w>84</w>
-      <h>77</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Extern System</panel_attributes>
     <additional_attributes/>
