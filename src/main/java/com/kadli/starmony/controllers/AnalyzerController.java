@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class AnalyzerController {
@@ -25,6 +26,9 @@ public class AnalyzerController {
     @Autowired
     private ScaleRepository scaleRepository;
 
+
+
+    // Principales
     @PostMapping(path = "/getIntervals/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,7 +46,6 @@ public class AnalyzerController {
         if(musicalElements.containsKey("scale")) scalesId.addAll(musicalElements.get("scale"));
         if(musicalElements.containsKey("note")) notesId.addAll(musicalElements.get("note"));
 
-
         if(chordsId.size() == 1) out.addAll(intervalRepository.getIntervalsOfChordId(chordsId.get(0)));
         if(scalesId.size() == 1) out.addAll(intervalRepository.getIntervalsOfScaleId(scalesId.get(0)));
 
@@ -52,7 +55,7 @@ public class AnalyzerController {
         if(notesId.size() == 2) out.add(intervalRepository.getIntervalOfNotesId(notesId));
         if(notesId.size() > 2) out.addAll(intervalRepository.getIntervalsOfNotesId(notesId));
 
-        return out;
+        return out.stream().distinct().collect(Collectors.toList());
     };
 
     @PostMapping(path = "/getChords/",
@@ -79,7 +82,7 @@ public class AnalyzerController {
         if(intervalsId.size() > 1) out.addAll(chordRepository.getChordsWithIntervalsId(intervalsId));
         if(scalesId.size() > 1) out.addAll(chordRepository.getChordsOfScalesId(scalesId));
 
-        return out;
+        return out.stream().distinct().collect(Collectors.toList());
     };
 
     @PostMapping(path = "/getScales/",
@@ -106,9 +109,13 @@ public class AnalyzerController {
         if(intervalsId.size() > 1) out.addAll(scaleRepository.getScalesWithIntervalsId(intervalsId));
         if(chordsId.size() > 1) out.addAll(scaleRepository.getScalesWithChordsId(chordsId));
 
-        return out;
+        return out.stream().distinct().collect(Collectors.toList());
     };
 
+
+
+    // Intervals
+    // POST - Single Element
     @PostMapping(path = "/getIntervalsOfChord/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -116,6 +123,23 @@ public class AnalyzerController {
         return intervalRepository.getIntervalsOfChord(chord);
     };
 
+    @PostMapping(path = "/getIntervalsOfScale/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Interval> getIntervalsOfScale(@RequestBody Scale scale){
+        return intervalRepository.getIntervalsOfScale(scale);
+    };
+
+    @PostMapping(path = "/getAllIntervalsOfScale/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Interval> getAllIntervalsOfScale(@RequestBody Scale scale){
+        return intervalRepository.getAllIntervalsOfScale(scale);
+    };
+
+
+
+    // POST - Multiple Elements
     @PostMapping(path = "/getIntervalsOfChords/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -126,7 +150,7 @@ public class AnalyzerController {
     @PostMapping(path = "/getIntervalOfNotes/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Interval getIntervalsOfChord(@RequestBody List<Note> notes){
+    public Interval getIntervalOfNotes(@RequestBody List<Note> notes){
         return intervalRepository.getIntervalOfNotes(notes);
     };
 
@@ -137,23 +161,11 @@ public class AnalyzerController {
         return intervalRepository.getIntervalsOfNotes(notes);
     };
 
-    @GetMapping("/getIntervalWithSemitone/{semitone}")
-    public Interval getIntervalWithSemitone(@PathVariable int semitone){
-        return intervalRepository.getIntervalWithSemitone(semitone);
-    };
-
     @PostMapping(path = "/getIntervalsWithSemitones/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsWithSemitones(@RequestBody List<Integer> semitones){
         return intervalRepository.getIntervalsWithSemitones(semitones);
-    };
-
-    @PostMapping(path = "/getIntervalsOfScale/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfScale(@RequestBody Scale scale){
-        return intervalRepository.getIntervalsOfScale(scale);
     };
 
     @PostMapping(path = "/getIntervalsOfScales/",
@@ -163,14 +175,6 @@ public class AnalyzerController {
         return intervalRepository.getIntervalsOfScales(scales);
     };
 
-
-    @PostMapping(path = "/getIAllntervalsOfScale/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getAllIntervalsOfScale(@RequestBody Scale scale){
-        return intervalRepository.getAllIntervalsOfScale(scale);
-    };
-
     @PostMapping(path = "/getAllIntervalsOfScales/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -178,6 +182,68 @@ public class AnalyzerController {
         return intervalRepository.getAllIntervalsOfScales(scales);
     };
 
+    @PostMapping(path = "/getIntervalsOfChordsId/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Interval> getIntervalsOfChordsId(@RequestBody List<Long> ids){
+        return intervalRepository.getIntervalsOfChordsId(ids);
+    };
+
+    @PostMapping(path = "/getIntervalOfNotesId/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Interval getIntervalOfNotesId(@RequestBody List<Long> ids){
+        return intervalRepository.getIntervalOfNotesId(ids);
+    };
+
+    @PostMapping(path = "/getIntervalsOfNotesId/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Interval> getIntervalsOfNotesId(@RequestBody List<Long> ids){
+        return intervalRepository.getIntervalsOfNotesId(ids);
+    };
+
+    @PostMapping(path = "/getIntervalsOfScalesId/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Interval> getIntervalsOfScalesId(@RequestBody List<Long> ids){
+        return intervalRepository.getIntervalsOfScalesId(ids);
+    };
+
+    @PostMapping(path = "/getAllIntervalsOfScalesId/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Interval> getAllIntervalsOfScalesId(@RequestBody List<Long> ids){
+        return intervalRepository.getAllIntervalsOfScalesId(ids);
+    };
+
+
+
+    // GET
+    @GetMapping("/getIntervalWithSemitone/{semitone}")
+    public Interval getIntervalWithSemitone(@PathVariable int semitone){
+        return intervalRepository.getIntervalWithSemitone(semitone);
+    };
+
+    @GetMapping("/getIntervalsOfChordId/{id}")
+    public List<Interval> getIntervalsOfChordId(@PathVariable Long id){
+        return intervalRepository.getIntervalsOfChordId(id);
+    };
+
+    @GetMapping("/getIntervalsOfScaleId/{id}")
+    public List<Interval> getIntervalsOfScaleId(@PathVariable Long id){
+        return intervalRepository.getIntervalsOfScaleId(id);
+    };
+
+    @GetMapping("/getAllIntervalsOfScaleId/{id}")
+    public List<Interval> getAllIntervalsOfScaleId(@PathVariable Long id){
+        return intervalRepository.getAllIntervalsOfScaleId(id);
+    };
+
+
+
+    // Chords
+    // POST - Single Element
     @PostMapping(path = "/getChordsWithInterval/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -192,13 +258,16 @@ public class AnalyzerController {
         return chordRepository.getChordsWithIntervals(intervals);
     };
 
-    @PostMapping(path = "/getChordsOfScaleId/",
+    @PostMapping(path = "/getChordsOfScale/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsOfScaleId(@RequestBody Long scale){
-        return chordRepository.getChordsOfScaleId(scale);
+    public List<Chord> getChordsOfScale(@RequestBody Scale scale){
+        return chordRepository.getChordsOfScale(scale);
     };
 
+
+
+    // POST - Multiple Elements
     @PostMapping(path = "/getChordsOfScalesId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -206,11 +275,11 @@ public class AnalyzerController {
         return chordRepository.getChordsOfScalesId(ids);
     };
 
-    @PostMapping(path = "/getChordsOfScale/",
+    @PostMapping(path = "/getChordsWithIntervalsId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsOfScale(@RequestBody Scale scale){
-        return chordRepository.getChordsOfScale(scale);
+    public List<Chord> getChordsWithIntervalsId(List<Long> ids){
+        return chordRepository.getChordsWithIntervalsId(ids);
     };
 
     @PostMapping(path = "/getChordsOfScales/",
@@ -220,8 +289,86 @@ public class AnalyzerController {
         return chordRepository.getChordsOfScales(scales);
     };
 
+
+
+    // GET
+    @GetMapping("/getChordsWithIntervalId/{id}")
+    public List<Chord> getChordsWithIntervalId(Long id){
+        return chordRepository.getChordsWithIntervalId(id);
+    };
+
+    @GetMapping("/getChordsOfScaleId/{id}")
+    public List<Chord> getChordsOfScaleId(@RequestBody Long id){
+        return chordRepository.getChordsOfScaleId(id);
+    };
+
+
+
+    // Scales
+    // POST - Single Element
+    @PostMapping(path = "/getScalesWithInterval/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Scale> getScalesWithInterval(Interval interval){
+        return scaleRepository.getScalesWithInterval(interval);
+    };
+
+    @PostMapping(path = "/getScalesWithChord/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Scale> getScalesWithChord(Chord chord){
+        return scaleRepository.getScalesWithChord(chord);
+    };
+
+    @PostMapping(path = "/getScaleWithCode/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Scale getScaleWithCode(String code){
+        return scaleRepository.getScaleWithCode(code);
+    };
+
+    // POST - Multiple Elements
+    @PostMapping(path = "/getScalesWithIntervals/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Scale> getScalesWithIntervals(List<Interval> intervals){
+        return scaleRepository.getScalesWithIntervals(intervals);
+    };
+
+    @PostMapping(path = "/getScalesWithChords/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Scale> getScalesWithChords(List<Chord> chords){
+        return scaleRepository.getScalesWithChords(chords);
+    };
+
+    @PostMapping(path = "/getScalesWithIntervalsId/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Scale> getScalesWithIntervalsId(List<Long> ids){
+        return scaleRepository.getScalesWithIntervalsId(ids);
+    };
+
+    @PostMapping(path = "/getScalesWithChordsId/",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Scale> getScalesWithChordsId(List<Long> ids){
+        return scaleRepository.getScalesWithChordsId(ids);
+    };
+
+
+
+    // GET
     @GetMapping("/getScalesWithIntervalId/{id}")
     public List<Scale> getScalesWithIntervalId(@PathVariable Long id){
         return scaleRepository.getScalesWithIntervalId(id);
     }
+
+    @GetMapping("/getScalesWithChordId/{id}")
+    public List<Scale> getScalesWithChordId(Long id){
+        return scaleRepository.getScalesWithChordId(id);
+    };
+
+
+
 }
