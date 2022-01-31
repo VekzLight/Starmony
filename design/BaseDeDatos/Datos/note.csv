@@ -1,0 +1,22 @@
+id_note,name,symbol
+1,do,C
+2,do sostenido,C#
+3,re,D
+4,re sostenido,D#
+5,mi,E
+6,fa,F
+7,fa sostenido,F#
+8,sol,G
+9,sol sostenido,G#
+10,la,A
+11,la sostenido,A#
+12,si,B
+13,do bemol,Cb
+14,re bemol,Db
+15,mi bemol,Eb
+16,mi sostenido,E#
+17,fa bemol,Fb
+18,sol bemol,Gb
+19,la bemol,Ab
+20,si bemol,Bb
+21,si sostenido,B#

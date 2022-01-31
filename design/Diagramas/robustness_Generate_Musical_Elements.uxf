@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>108</x>
+      <y>54</y>
+      <w>666</w>
+      <h>306</h>
+    </coordinates>
+    <panel_attributes>Generate Musical Elements
+halign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>108</x>
+      <y>360</y>
+      <w>666</w>
+      <h>387</h>
+    </coordinates>
+    <panel_attributes>1 El Sistema lee la Entrada.
+2 El Sistema lee el tipo de elemento musical a generar.
+3 El Sistema separa los Elementos Musicales por tipo.
+4 El Sistema genera los elementos musicales dependiendo del tipo de elementos que se requieren generar.
+
+4.a Si se piden variaciones del mismo elemento musical se crearan las variaciones conocidas en la base de datos que falten.
+4.a.1    Para la Escala de Do mayor, obtener Do lidio, Do mixolidio, Do pentatónico, Do dórico, etc.
+4.a.2    Para el Acorde de Do mayor, obtener Do mayor 7ma, Do menor, Do disminuido, etc. (ver tabla anexo)
+4.a.3    Para la Armonía con grados I - IV - V – I, obtener I – IVb – V7 – I. Se propondrán nombres para las armonías
+         generadas por la inteligencia artificial, los usuarios podrán nombrar sus armonías propias. 
+
+4.b Si se pide generar Escalas se usara el anexo &lt;Generar Elementos Musicales - Escalas&gt;
+4.c Si se pide generar Acordes se usara el anexo &lt;Generar Elementos Musicales - Acordes&gt;
+4.d Si se pide generar Intervalos se usara el anexo &lt;Generar Elementos Musicales - Intervalos&gt;
+4.e Si se pide generar Armonias se usara el anexo &lt;Generar Elementos Musicales - Armonias&gt;
+
+5  El Sistema usa el caso de uso Crear Elementos Musicales para añadir loe Elementos Musicales generados a la base de datos Starmonydb.
+6  El Sistema genera información sobre la relación de los Elementos Musicales creados.
+6.1   Se añade la descripción de la variación y el intervalo que ha cambiado con relación al original.
+7  El Sistema añade a una lista los Elementos Musicales creados.
+8  Si se han añadido filtros se aplican.
+8.1    Para las Escalas se puede elegir: Modos griegos, Pentatónicos, Armónicos, Menores, etc.
+8.2    Para los Acordes se pueden elegir: Menores, Séptima, Aumentados, Disminuidos, etc.
+8.3    Para las Armonías se pueden elegir: Tensión, Alegre, Numero de Grados, Numero de Acordes.
+9  El Sistema regresa la lista con los Elementos Musicales.
+
+
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>72</x>
+      <y>144</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>0</x>
+      <y>126</y>
+      <w>108</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Extern System</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>162</x>
+      <y>144</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 0, 0, 20)
+drawLine(0, 20, 0, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>378</x>
+      <y>144</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(24, 0, 34, 0)
+drawLine(24, 0, 30, 10)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>144</y>
+      <w>207</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>144</y>
+      <w>144</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>162</x>
+      <y>117</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Interface
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>369</x>
+      <y>117</y>
+      <w>81</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Generator
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>657</x>
+      <y>225</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 40, 40, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>531</x>
+      <y>144</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 40, 40, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>504</x>
+      <y>117</y>
+      <w>117</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Musical Element
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>225</y>
+      <w>117</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>531</x>
+      <y>225</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(24, 0, 34, 0)
+drawLine(24, 0, 30, 10)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>504</x>
+      <y>198</y>
+      <w>99</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>DBConecction
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>252</x>
+      <y>225</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 40, 40, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>198</x>
+      <y>198</y>
+      <w>171</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Array of Musical Elements
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>171</y>
+      <w>153</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;50.0;80.0;150.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>279</x>
+      <y>171</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>120.0;10.0;80.0;80.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>144</y>
+      <w>117</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;40.0;20.0;110.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>648</x>
+      <y>198</y>
+      <w>81</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Database
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>531</x>
+      <y>306</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(24, 0, 34, 0)
+drawLine(24, 0, 30, 10)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>387</x>
+      <y>171</y>
+      <w>162</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>160.0;170.0;70.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>522</x>
+      <y>279</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Creator
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>162</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>495</x>
+      <y>99</y>
+      <w>18</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>2
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>369</x>
+      <y>81</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>495</x>
+      <y>180</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3.a
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>531</x>
+      <y>180</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3.b
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>567</x>
+      <y>180</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3.c
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>540</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>540</x>
+      <y>261</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>5
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>396</x>
+      <y>81</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.a
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>261</x>
+      <y>180</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>7
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>216</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>9
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>108</x>
+      <y>747</y>
+      <w>666</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>4.1 El Sistema no encuentra la información correspondiente a la relación entre los Elementos Musicales en la base 
+          de datos Starmomydb.
+4.2  El Sistema genera la información sobre la relación entre los Elementos Musicales
+4.3  El Sistema guarda la información sobre la relación entre los Elementos Musicales en la base de datos Starmonydb.
+
+ * El usuario puede cancelar la operación en cualquier momento.  
+
+
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>189</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>2
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
+      <y>81</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.b
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
+      <y>99</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.c
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
+      <y>117</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.d
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
+      <y>135</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.e
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>369</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>6
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>279</x>
+      <y>180</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>8
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>396</x>
+      <y>99</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
