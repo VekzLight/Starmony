@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>2</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>50</x>
-      <y>32</y>
-      <w>148</w>
-      <h>54</h>
+      <x>230</x>
+      <y>130</y>
+      <w>740</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>Create Musical Elements
 halign=center</panel_attributes>
@@ -16,10 +16,10 @@ halign=center</panel_attributes>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>26</x>
-      <y>46</y>
-      <w>24</w>
-      <h>22</h>
+      <x>110</x>
+      <y>200</y>
+      <w>120</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Extern System</panel_attributes>
     <additional_attributes/>
@@ -27,15 +27,15 @@ halign=center</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>50</x>
-      <y>86</y>
-      <w>148</w>
-      <h>24</h>
+      <x>230</x>
+      <y>400</y>
+      <w>740</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>1  El Sistema lee la Entrada.
 2  El Sistema obtiene el tipo de Elemento Musical a crear (Acorde, Armonía, Acorde, etc).
 3  El Sistema añade la información al Elemento Musical.
-3.1    La información varía dependiendo del Elemento Musical, pero todos tienen nombre y símbolo.
+3.1    La información varía dependiendo del Elemento Musical, pero todos tienen nombre y tipo de elemento musical.
 4  El Sistema revisa si en la base de datos existe un elemento musical con la misma estructura.
 5  El Sistema regresa el Elemento Musical creado.
 
@@ -47,10 +47,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>42</x>
-      <y>50</y>
-      <w>24</w>
-      <h>8</h>
+      <x>190</x>
+      <y>220</y>
+      <w>120</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
@@ -58,10 +58,10 @@ halign=left</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>62</x>
-      <y>50</y>
-      <w>8</w>
-      <h>8</h>
+      <x>290</x>
+      <y>220</y>
+      <w>40</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -73,10 +73,10 @@ drawLine(0, 20, 0, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>110</x>
-      <y>50</y>
-      <w>8</w>
-      <h>8</h>
+      <x>530</x>
+      <y>220</y>
+      <w>40</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -88,10 +88,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>68</x>
-      <y>50</y>
-      <w>46</w>
-      <h>8</h>
+      <x>320</x>
+      <y>220</y>
+      <w>230</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
@@ -99,10 +99,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>116</x>
-      <y>50</y>
-      <w>32</w>
-      <h>8</h>
+      <x>560</x>
+      <y>220</y>
+      <w>160</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
@@ -110,10 +110,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>60</x>
-      <y>44</y>
-      <w>16</w>
-      <h>6</h>
+      <x>280</x>
+      <y>190</y>
+      <w>80</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Interface
 style=wordwrap</panel_attributes>
@@ -122,10 +122,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>108</x>
-      <y>44</y>
-      <w>18</w>
-      <h>6</h>
+      <x>520</x>
+      <y>190</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Creator
 style=wordwrap</panel_attributes>
@@ -134,10 +134,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>172</x>
-      <y>72</y>
-      <w>8</w>
-      <h>8</h>
+      <x>840</x>
+      <y>330</y>
+      <w>40</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -148,10 +148,10 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>170</x>
-      <y>66</y>
-      <w>18</w>
-      <h>6</h>
+      <x>830</x>
+      <y>300</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Database
 style=wordwrap</panel_attributes>
@@ -160,10 +160,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>144</x>
-      <y>50</y>
-      <w>8</w>
-      <h>8</h>
+      <x>700</x>
+      <y>220</y>
+      <w>40</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -174,10 +174,10 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>138</x>
-      <y>44</y>
-      <w>26</w>
-      <h>6</h>
+      <x>670</x>
+      <y>190</y>
+      <w>130</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Musical Element
 style=wordwrap</panel_attributes>
@@ -186,10 +186,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>72</y>
-      <w>26</w>
-      <h>8</h>
+      <x>730</x>
+      <y>330</y>
+      <w>130</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
@@ -197,10 +197,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>144</x>
-      <y>72</y>
-      <w>8</w>
-      <h>8</h>
+      <x>700</x>
+      <y>330</y>
+      <w>40</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -212,10 +212,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>138</x>
-      <y>66</y>
-      <w>22</w>
-      <h>6</h>
+      <x>670</x>
+      <y>300</y>
+      <w>110</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>DBConecction
 style=wordwrap</panel_attributes>
@@ -224,10 +224,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>114</x>
-      <y>56</y>
-      <w>34</w>
-      <h>24</h>
+      <x>550</x>
+      <y>250</y>
+      <w>170</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;10.0;50.0;100.0;150.0;100.0</additional_attributes>
@@ -235,10 +235,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>50</y>
-      <w>26</w>
-      <h>28</h>
+      <x>730</x>
+      <y>220</y>
+      <w>130</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;40.0;20.0;110.0;120.0</additional_attributes>
@@ -246,10 +246,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>140</x>
-      <y>62</y>
-      <w>8</w>
-      <h>6</h>
+      <x>680</x>
+      <y>280</y>
+      <w>40</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>4.a
 style=wordwrap</panel_attributes>
@@ -258,10 +258,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>62</x>
-      <y>40</y>
-      <w>6</w>
-      <h>6</h>
+      <x>290</x>
+      <y>170</y>
+      <w>30</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>1
 style=wordwrap</panel_attributes>
@@ -270,10 +270,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>110</x>
-      <y>40</y>
-      <w>6</w>
-      <h>6</h>
+      <x>530</x>
+      <y>170</y>
+      <w>30</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>2
 style=wordwrap</panel_attributes>
@@ -282,10 +282,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>146</x>
-      <y>40</y>
-      <w>6</w>
-      <h>6</h>
+      <x>710</x>
+      <y>170</y>
+      <w>30</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>3
 style=wordwrap</panel_attributes>
@@ -294,10 +294,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>116</x>
-      <y>40</y>
-      <w>6</w>
-      <h>6</h>
+      <x>560</x>
+      <y>170</y>
+      <w>30</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>4
 style=wordwrap</panel_attributes>
@@ -306,10 +306,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>148</x>
-      <y>62</y>
-      <w>8</w>
-      <h>6</h>
+      <x>720</x>
+      <y>280</y>
+      <w>40</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>4.b
 style=wordwrap</panel_attributes>
@@ -318,10 +318,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>68</x>
-      <y>40</y>
-      <w>6</w>
-      <h>6</h>
+      <x>320</x>
+      <y>170</y>
+      <w>30</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>5
 style=wordwrap</panel_attributes>
@@ -330,10 +330,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>50</x>
-      <y>110</y>
-      <w>148</w>
-      <h>18</h>
+      <x>230</x>
+      <y>520</y>
+      <w>740</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>4.a    Si ya existe el Elemento Musical en la base de datos Starmonydb se obtiene la información faltante.
 4.b    Si no existe, se añade el Elemento Musical creado a la base de datos Starmonydb.

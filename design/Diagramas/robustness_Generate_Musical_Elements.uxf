@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>5</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>60</x>
-      <y>45</y>
-      <w>370</w>
-      <h>165</h>
+      <x>108</x>
+      <y>54</y>
+      <w>666</w>
+      <h>306</h>
     </coordinates>
     <panel_attributes>Generate Musical Elements
 halign=center</panel_attributes>
@@ -16,28 +16,36 @@ halign=center</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>60</x>
-      <y>210</y>
-      <w>370</w>
-      <h>145</h>
+      <x>108</x>
+      <y>360</y>
+      <w>666</w>
+      <h>387</h>
     </coordinates>
     <panel_attributes>1 El Sistema lee la Entrada.
-2 El Sistema separa los Elementos Musicales por tipo.
-3 El Sistema obtiene para cada Elemento Musical sus variaciones.
-3.1    Para la Escala de Do mayor, obtener Do lidio, Do mixolidio, Do pentatónico, Do dórico, etc.
-3.2    Para el Acorde de Do mayor, obtener Do mayor 7ma, Do menor, Do disminuido, etc. (ver tabla anexo)
-3.3    Para la Armonía con grados I - IV - V – I, obtener I – IVb – V7 – I. Se propondrán nombres para las armonías
+2 El Sistema lee el tipo de elemento musical a generar.
+3 El Sistema separa los Elementos Musicales por tipo.
+4 El Sistema genera los elementos musicales dependiendo del tipo de elementos que se requieren generar.
+
+4.a Si se piden variaciones del mismo elemento musical se crearan las variaciones conocidas en la base de datos que falten.
+4.a.1    Para la Escala de Do mayor, obtener Do lidio, Do mixolidio, Do pentatónico, Do dórico, etc.
+4.a.2    Para el Acorde de Do mayor, obtener Do mayor 7ma, Do menor, Do disminuido, etc. (ver tabla anexo)
+4.a.3    Para la Armonía con grados I - IV - V – I, obtener I – IVb – V7 – I. Se propondrán nombres para las armonías
          generadas por la inteligencia artificial, los usuarios podrán nombrar sus armonías propias. 
 
-4  El Sistema usa el caso de uso Crear Elementos Musicales para obtener Elementos Musicales Concretos.
-5  El Sistema genera información sobre la relación de los Elementos Musicales creados.
-5.1   Se añade la descripción de la variación y el intervalo que ha cambiado con relación al original.
-6  El Sistema añade a una lista los Elementos Musicales creados.
-7  Si se han añadido filtros se aplican.
-7.1    Para las Escalas se puede elegir: Modos griegos, Pentatónicos, Armónicos, Menores, etc.
-7.2    Para los Acordes se pueden elegir: Menores, Séptima, Aumentados, Disminuidos, etc.
-7.3    Para las Armonías se pueden elegir: Tensión, Alegre, Numero de Grados, Numero de Acordes.
-8  El Sistema regresa la lista con los Elementos Musicales.
+4.b Si se pide generar Escalas se usara el anexo &lt;Generar Elementos Musicales - Escalas&gt;
+4.c Si se pide generar Acordes se usara el anexo &lt;Generar Elementos Musicales - Acordes&gt;
+4.d Si se pide generar Intervalos se usara el anexo &lt;Generar Elementos Musicales - Intervalos&gt;
+4.e Si se pide generar Armonias se usara el anexo &lt;Generar Elementos Musicales - Armonias&gt;
+
+5  El Sistema usa el caso de uso Crear Elementos Musicales para añadir loe Elementos Musicales generados a la base de datos Starmonydb.
+6  El Sistema genera información sobre la relación de los Elementos Musicales creados.
+6.1   Se añade la descripción de la variación y el intervalo que ha cambiado con relación al original.
+7  El Sistema añade a una lista los Elementos Musicales creados.
+8  Si se han añadido filtros se aplican.
+8.1    Para las Escalas se puede elegir: Modos griegos, Pentatónicos, Armónicos, Menores, etc.
+8.2    Para los Acordes se pueden elegir: Menores, Séptima, Aumentados, Disminuidos, etc.
+8.3    Para las Armonías se pueden elegir: Tensión, Alegre, Numero de Grados, Numero de Acordes.
+9  El Sistema regresa la lista con los Elementos Musicales.
 
 
 halign=left</panel_attributes>
@@ -46,10 +54,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>40</x>
-      <y>90</y>
-      <w>60</w>
-      <h>20</h>
+      <x>72</x>
+      <y>144</y>
+      <w>108</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
@@ -58,9 +66,9 @@ halign=left</panel_attributes>
     <id>UMLActor</id>
     <coordinates>
       <x>0</x>
-      <y>80</y>
-      <w>60</w>
-      <h>55</h>
+      <y>126</y>
+      <w>108</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Extern System</panel_attributes>
     <additional_attributes/>
@@ -68,10 +76,10 @@ halign=left</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>90</x>
-      <y>90</y>
-      <w>20</w>
-      <h>20</h>
+      <x>162</x>
+      <y>144</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -83,10 +91,10 @@ drawLine(0, 20, 0, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>210</x>
-      <y>90</y>
-      <w>20</w>
-      <h>20</h>
+      <x>378</x>
+      <y>144</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -98,10 +106,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>105</x>
-      <y>90</y>
-      <w>115</w>
-      <h>20</h>
+      <x>189</x>
+      <y>144</y>
+      <w>207</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
@@ -109,10 +117,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>225</x>
-      <y>90</y>
-      <w>80</w>
-      <h>20</h>
+      <x>405</x>
+      <y>144</y>
+      <w>144</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
@@ -120,10 +128,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>90</x>
-      <y>75</y>
-      <w>40</w>
-      <h>15</h>
+      <x>162</x>
+      <y>117</y>
+      <w>72</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Interface
 style=wordwrap</panel_attributes>
@@ -132,10 +140,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>205</x>
-      <y>75</y>
-      <w>45</w>
-      <h>15</h>
+      <x>369</x>
+      <y>117</y>
+      <w>81</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Generator
 style=wordwrap</panel_attributes>
@@ -144,10 +152,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>365</x>
-      <y>135</y>
-      <w>20</w>
-      <h>20</h>
+      <x>657</x>
+      <y>225</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -158,10 +166,10 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>295</x>
-      <y>90</y>
-      <w>20</w>
-      <h>20</h>
+      <x>531</x>
+      <y>144</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -172,10 +180,10 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>280</x>
-      <y>75</y>
-      <w>65</w>
-      <h>15</h>
+      <x>504</x>
+      <y>117</y>
+      <w>117</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Musical Element
 style=wordwrap</panel_attributes>
@@ -184,10 +192,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>135</y>
-      <w>65</w>
-      <h>20</h>
+      <x>558</x>
+      <y>225</y>
+      <w>117</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
@@ -195,10 +203,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>295</x>
-      <y>135</y>
-      <w>20</w>
-      <h>20</h>
+      <x>531</x>
+      <y>225</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -210,10 +218,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>280</x>
-      <y>120</y>
-      <w>55</w>
-      <h>15</h>
+      <x>504</x>
+      <y>198</y>
+      <w>99</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>DBConecction
 style=wordwrap</panel_attributes>
@@ -222,10 +230,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>140</x>
-      <y>135</y>
-      <w>20</w>
-      <h>20</h>
+      <x>252</x>
+      <y>225</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -236,10 +244,10 @@ drawLine(0, 40, 40, 40)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>110</x>
-      <y>120</y>
-      <w>95</w>
-      <h>15</h>
+      <x>198</x>
+      <y>198</y>
+      <w>171</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Array of Musical Elements
 style=wordwrap</panel_attributes>
@@ -248,10 +256,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
-      <y>105</y>
-      <w>85</w>
-      <h>50</h>
+      <x>396</x>
+      <y>171</y>
+      <w>153</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;10.0;50.0;80.0;150.0;80.0</additional_attributes>
@@ -259,10 +267,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>155</x>
-      <y>105</y>
-      <w>70</w>
-      <h>50</h>
+      <x>279</x>
+      <y>171</y>
+      <w>126</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>120.0;10.0;80.0;80.0;10.0;80.0</additional_attributes>
@@ -270,10 +278,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>90</y>
-      <w>65</w>
-      <h>60</h>
+      <x>558</x>
+      <y>144</y>
+      <w>117</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;20.0;40.0;20.0;110.0;100.0</additional_attributes>
@@ -281,10 +289,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>360</x>
-      <y>120</y>
-      <w>45</w>
-      <h>15</h>
+      <x>648</x>
+      <y>198</y>
+      <w>81</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Database
 style=wordwrap</panel_attributes>
@@ -293,10 +301,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>295</x>
-      <y>180</y>
-      <w>20</w>
-      <h>20</h>
+      <x>531</x>
+      <y>306</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>customelement=
 drawCircle(20, 20, 20)
@@ -308,10 +316,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>215</x>
-      <y>105</y>
-      <w>90</w>
-      <h>95</h>
+      <x>387</x>
+      <y>171</y>
+      <w>162</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>160.0;170.0;70.0;170.0;10.0;10.0</additional_attributes>
@@ -319,10 +327,10 @@ drawLine(24, 0, 30, 10)
   <element>
     <id>Text</id>
     <coordinates>
-      <x>290</x>
-      <y>165</y>
-      <w>35</w>
-      <h>15</h>
+      <x>522</x>
+      <y>279</y>
+      <w>63</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Creator
 style=wordwrap</panel_attributes>
@@ -331,10 +339,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>90</x>
-      <y>65</y>
-      <w>15</w>
-      <h>15</h>
+      <x>162</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>1
 style=wordwrap</panel_attributes>
@@ -343,10 +351,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>275</x>
-      <y>65</y>
-      <w>10</w>
-      <h>75</h>
+      <x>495</x>
+      <y>99</y>
+      <w>18</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>2
 style=wordwrap</panel_attributes>
@@ -355,70 +363,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>200</x>
-      <y>65</y>
-      <w>15</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>3
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>275</x>
-      <y>110</y>
-      <w>20</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>3.a
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>295</x>
-      <y>110</y>
-      <w>20</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>3.b
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>315</x>
-      <y>110</y>
-      <w>20</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>3.c
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>300</x>
-      <y>65</y>
-      <w>15</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>2
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>300</x>
-      <y>155</y>
-      <w>15</w>
-      <h>15</h>
+      <x>369</x>
+      <y>81</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>4
 style=wordwrap</panel_attributes>
@@ -427,10 +375,58 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>215</x>
-      <y>65</y>
-      <w>15</w>
-      <h>15</h>
+      <x>495</x>
+      <y>180</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3.a
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>531</x>
+      <y>180</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3.b
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>567</x>
+      <y>180</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3.c
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>540</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>3
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>540</x>
+      <y>261</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>5
 style=wordwrap</panel_attributes>
@@ -439,22 +435,22 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>145</x>
-      <y>110</y>
-      <w>15</w>
-      <h>15</h>
+      <x>396</x>
+      <y>81</y>
+      <w>36</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>6
+    <panel_attributes>4.a
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>230</x>
-      <y>65</y>
-      <w>15</w>
-      <h>15</h>
+      <x>261</x>
+      <y>180</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>7
 style=wordwrap</panel_attributes>
@@ -463,27 +459,27 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>105</x>
-      <y>65</y>
-      <w>15</w>
-      <h>15</h>
+      <x>216</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>8
+    <panel_attributes>9
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>60</x>
-      <y>355</y>
-      <w>370</w>
-      <h>60</h>
+      <x>108</x>
+      <y>747</y>
+      <w>666</w>
+      <h>108</h>
     </coordinates>
-    <panel_attributes>5.a.1  El Sistema no encuentra la información correspondiente a la relación entre los Elementos Musicales en la base 
+    <panel_attributes>4.1 El Sistema no encuentra la información correspondiente a la relación entre los Elementos Musicales en la base 
           de datos Starmomydb.
-5.a.2  El Sistema genera la información sobre la relación entre los Elementos Musicales
-5.a.3  El Sistema guarda la información sobre la relación entre los Elementos Musicales en la base de datos Starmonydb.
+4.2  El Sistema genera la información sobre la relación entre los Elementos Musicales
+4.3  El Sistema guarda la información sobre la relación entre los Elementos Musicales en la base de datos Starmonydb.
 
  * El usuario puede cancelar la operación en cualquier momento.  
 
@@ -492,752 +488,99 @@ halign=left</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLGeneric</id>
+    <id>Text</id>
     <coordinates>
-      <x>750</x>
+      <x>189</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>2
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
+      <y>81</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.b
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
+      <y>99</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.c
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
+      <y>117</y>
+      <w>36</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>4.d
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>441</x>
       <y>135</y>
-      <w>50</w>
-      <h>15</h>
+      <w>36</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>_:Interface_</panel_attributes>
+    <panel_attributes>4.e
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>Text</id>
     <coordinates>
-      <x>770</x>
-      <y>145</y>
-      <w>15</w>
-      <h>35</h>
+      <x>369</x>
+      <y>99</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>770</x>
-      <y>170</y>
-      <w>10</w>
-      <h>435</h>
-    </coordinates>
-    <panel_attributes/>
+    <panel_attributes>6
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>Text</id>
     <coordinates>
-      <x>640</x>
-      <y>165</y>
-      <w>140</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-Array&lt;String&gt;</panel_attributes>
-    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>970</x>
-      <y>130</y>
-      <w>50</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>_:Generator_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>990</x>
-      <y>140</y>
-      <w>15</w>
-      <h>55</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>990</x>
-      <y>185</y>
-      <w>10</w>
-      <h>230</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>775</x>
+      <x>279</x>
       <y>180</y>
-      <w>225</w>
-      <h>20</h>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-generateChords(Array&lt;Scale&gt;)</panel_attributes>
-    <additional_attributes>430.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1065</x>
-      <y>130</y>
-      <w>50</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>_:Array&lt;Chord&gt;_</panel_attributes>
+    <panel_attributes>8
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>Text</id>
     <coordinates>
-      <x>995</x>
-      <y>285</y>
-      <w>105</w>
-      <h>25</h>
+      <x>396</x>
+      <y>99</y>
+      <w>36</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-GenerateChords(Scale)</panel_attributes>
-    <additional_attributes>20.0;30.0;40.0;30.0;40.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1155</x>
-      <y>205</y>
-      <w>10</w>
-      <h>55</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>895</x>
-      <y>165</y>
-      <w>465</w>
-      <h>265</h>
-    </coordinates>
-    <panel_attributes>id(MusicalElements are Scales)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>905</x>
-      <y>195</y>
-      <w>450</w>
-      <h>205</h>
-    </coordinates>
-    <panel_attributes>ForEach</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>775</x>
-      <y>400</y>
-      <w>225</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-Array&lt;Chord&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;430.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1135</x>
-      <y>130</y>
-      <w>50</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>_:DBConnection_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1155</x>
-      <y>140</y>
-      <w>15</w>
-      <h>75</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>910</x>
-      <y>265</y>
-      <w>440</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>If( Array Is Empty )
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1090</x>
-      <y>215</y>
-      <w>75</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-add(Chord)</panel_attributes>
-    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>995</x>
-      <y>200</y>
-      <w>170</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-selectChordsOfScale(Scale)</panel_attributes>
-    <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1085</x>
-      <y>220</y>
-      <w>10</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1085</x>
-      <y>140</y>
-      <w>15</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>995</x>
-      <y>245</y>
-      <w>170</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-Array&lt;Chord&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1310</x>
-      <y>130</y>
-      <w>50</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>_:Creator_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1330</x>
-      <y>140</y>
-      <w>15</w>
-      <h>175</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1085</x>
-      <y>230</y>
-      <w>15</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>995</x>
-      <y>295</y>
-      <w>10</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1000</x>
-      <y>300</y>
-      <w>340</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-CreateChordsOfScale(Array&lt;Chord&gt;)</panel_attributes>
-    <additional_attributes>660.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1330</x>
-      <y>305</y>
-      <w>10</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1155</x>
-      <y>255</y>
-      <w>15</w>
-      <h>85</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1155</x>
-      <y>330</y>
-      <w>10</w>
-      <h>10</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1160</x>
-      <y>325</y>
-      <w>180</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-insertChordOfScale(Chord, Scale)</panel_attributes>
-    <additional_attributes>10.0;20.0;340.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1090</x>
-      <y>345</y>
-      <w>250</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-add(Chord)</panel_attributes>
-    <additional_attributes>10.0;20.0;480.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1155</x>
-      <y>335</y>
-      <w>15</w>
-      <h>145</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;270.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1330</x>
-      <y>380</y>
-      <w>15</w>
-      <h>200</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>1050</x>
-      <y>320</y>
-      <w>295</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>ForEach</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1085</x>
-      <y>350</y>
-      <w>10</w>
-      <h>10</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>995</x>
-      <y>370</y>
-      <w>345</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-Array&lt;Chord&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;670.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1085</x>
-      <y>355</y>
-      <w>15</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;300.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>990</x>
-      <y>410</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLActor</id>
-    <coordinates>
-      <x>595</x>
-      <y>155</y>
-      <w>55</w>
-      <h>55</h>
-    </coordinates>
-    <panel_attributes>Extern System</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>990</x>
-      <y>470</y>
-      <w>10</w>
-      <h>230</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>775</x>
-      <y>465</y>
-      <w>225</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-generateChords(Array&lt;Harmonies&gt;)</panel_attributes>
-    <additional_attributes>430.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>995</x>
-      <y>570</y>
-      <w>120</w>
-      <h>25</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-GenerateChords(Harmonies)</panel_attributes>
-    <additional_attributes>20.0;30.0;40.0;30.0;40.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1155</x>
-      <y>490</y>
-      <w>10</w>
-      <h>55</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>650</x>
-      <y>460</y>
-      <w>710</w>
-      <h>265</h>
-    </coordinates>
-    <panel_attributes>id(MusicalElements are Harmonies)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>905</x>
-      <y>480</y>
-      <w>450</w>
-      <h>205</h>
-    </coordinates>
-    <panel_attributes>ForEach</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>775</x>
-      <y>685</y>
-      <w>225</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-Array&lt;Chord&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;430.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>910</x>
-      <y>550</y>
-      <w>440</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>If( Array Is Empty )
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1090</x>
-      <y>500</y>
-      <w>75</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-add(Chord)</panel_attributes>
-    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>995</x>
-      <y>485</y>
-      <w>170</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-selectChordsOfHarmonies(Scale)</panel_attributes>
-    <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1085</x>
-      <y>505</y>
-      <w>10</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>995</x>
-      <y>530</y>
-      <w>170</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-Array&lt;Chord&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1085</x>
-      <y>515</y>
-      <w>15</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>995</x>
-      <y>580</y>
-      <w>10</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1000</x>
-      <y>585</y>
-      <w>340</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-CreateHarmoniesOfScale(Array&lt;Chord&gt;)</panel_attributes>
-    <additional_attributes>660.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1330</x>
-      <y>590</y>
-      <w>10</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1155</x>
-      <y>540</y>
-      <w>15</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1155</x>
-      <y>615</y>
-      <w>10</w>
-      <h>10</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1160</x>
-      <y>610</y>
-      <w>180</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-insertChordOfHarmony(Chord, Harmony)</panel_attributes>
-    <additional_attributes>10.0;20.0;340.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1090</x>
-      <y>630</y>
-      <w>250</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-add(Chord)</panel_attributes>
-    <additional_attributes>10.0;20.0;480.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>1050</x>
-      <y>605</y>
-      <w>295</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>ForEach</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1085</x>
-      <y>635</y>
-      <w>10</w>
-      <h>10</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>995</x>
-      <y>655</y>
-      <w>345</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-Array&lt;Chord&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;670.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1085</x>
-      <y>640</y>
-      <w>15</w>
-      <h>75</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>1085</x>
-      <y>700</y>
-      <w>10</w>
-      <h>10</h>
-    </coordinates>
-    <panel_attributes>type=termination</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1065</x>
-      <y>735</y>
-      <w>50</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>_:Array&lt;Interval&gt;_</panel_attributes>
+    <panel_attributes>4.1
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

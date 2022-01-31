@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>7</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>273</x>
-      <y>0</y>
-      <w>70</w>
-      <h>21</h>
+      <x>365</x>
+      <y>60</y>
+      <w>50</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>_:Interface_</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>301</x>
-      <y>14</y>
-      <w>21</w>
-      <h>42</h>
+      <x>385</x>
+      <y>70</y>
+      <w>15</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -26,10 +26,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>483</x>
-      <y>0</y>
-      <w>70</w>
-      <h>21</h>
+      <x>515</x>
+      <y>60</y>
+      <w>50</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>_:Analyzer_</panel_attributes>
     <additional_attributes/>
@@ -37,10 +37,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>511</x>
-      <y>14</y>
-      <w>21</w>
-      <h>42</h>
+      <x>535</x>
+      <y>70</y>
+      <w>15</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -48,10 +48,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>301</x>
-      <y>42</y>
-      <w>14</w>
-      <h>1134</h>
+      <x>385</x>
+      <y>90</y>
+      <w>10</w>
+      <h>715</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -59,22 +59,22 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>119</x>
-      <y>42</y>
-      <w>196</w>
-      <h>28</h>
+      <x>210</x>
+      <y>90</y>
+      <w>185</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-Array&lt;String&gt;</panel_attributes>
-    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+getIntervalsOf(ArrayList&lt;MusicalElements&gt;)</panel_attributes>
+    <additional_attributes>350.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>511</x>
-      <y>42</y>
-      <w>14</w>
-      <h>1085</h>
+      <x>535</x>
+      <y>90</y>
+      <w>10</w>
+      <h>700</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -82,22 +82,22 @@ Array&lt;String&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>308</x>
-      <y>49</y>
-      <w>217</w>
-      <h>28</h>
+      <x>390</x>
+      <y>95</y>
+      <w>155</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-analyze(Array&lt;MusicalElements&gt;)</panel_attributes>
+analyzeIntervals(Array&lt;MusicalElements&gt;)</panel_attributes>
     <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>518</x>
-      <y>84</y>
-      <w>14</w>
-      <h>21</h>
+      <x>540</x>
+      <y>120</y>
+      <w>10</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -105,10 +105,10 @@ analyze(Array&lt;MusicalElements&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>63</y>
-      <w>168</w>
-      <h>42</h>
+      <x>540</x>
+      <y>105</y>
+      <w>120</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 separateMusicalElements()</panel_attributes>
@@ -117,10 +117,10 @@ separateMusicalElements()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>616</x>
-      <y>112</y>
-      <w>84</w>
-      <h>21</h>
+      <x>610</x>
+      <y>140</y>
+      <w>60</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>_:Array&lt;Chord&gt;_</panel_attributes>
     <additional_attributes/>
@@ -128,10 +128,10 @@ separateMusicalElements()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>651</x>
-      <y>126</y>
-      <w>21</w>
-      <h>287</h>
+      <x>635</x>
+      <y>150</y>
+      <w>15</w>
+      <h>205</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;390.0</additional_attributes>
@@ -139,10 +139,10 @@ separateMusicalElements()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>105</y>
-      <w>112</w>
-      <h>28</h>
+      <x>540</x>
+      <y>135</y>
+      <w>80</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 create()</panel_attributes>
@@ -151,10 +151,10 @@ create()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>651</x>
-      <y>371</y>
-      <w>14</w>
-      <h>14</h>
+      <x>635</x>
+      <y>325</y>
+      <w>10</w>
+      <h>10</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -162,10 +162,10 @@ create()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>364</y>
-      <w>147</w>
-      <h>28</h>
+      <x>540</x>
+      <y>320</y>
+      <w>105</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 addAll(Array&lt;Chord&gt;)</panel_attributes>
@@ -174,10 +174,10 @@ addAll(Array&lt;Chord&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>406</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>350</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 recognizeChordsOfHarmony(Array&lt;Harmonies&gt;)</panel_attributes>
@@ -186,10 +186,10 @@ recognizeChordsOfHarmony(Array&lt;Harmonies&gt;)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>343</x>
-      <y>399</y>
-      <w>826</w>
-      <h>154</h>
+      <x>415</x>
+      <y>345</y>
+      <w>590</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>if(MusicalElements are Harmonies)</panel_attributes>
     <additional_attributes/>
@@ -197,10 +197,10 @@ recognizeChordsOfHarmony(Array&lt;Harmonies&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>427</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>365</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Chord&gt;</panel_attributes>
@@ -209,10 +209,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>651</x>
-      <y>532</y>
-      <w>14</w>
-      <h>14</h>
+      <x>635</x>
+      <y>440</y>
+      <w>10</w>
+      <h>10</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -220,10 +220,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>525</y>
-      <w>147</w>
-      <h>28</h>
+      <x>540</x>
+      <y>435</y>
+      <w>105</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 addAll(Array&lt;Chord&gt;)</panel_attributes>
@@ -232,10 +232,10 @@ addAll(Array&lt;Chord&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>651</x>
-      <y>378</y>
-      <w>21</w>
-      <h>168</h>
+      <x>635</x>
+      <y>330</y>
+      <w>15</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
@@ -243,10 +243,10 @@ addAll(Array&lt;Chord&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>567</y>
-      <w>168</w>
-      <h>42</h>
+      <x>540</x>
+      <y>465</y>
+      <w>120</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 getIntervals(Array&lt;Chord&gt;)</panel_attributes>
@@ -255,10 +255,10 @@ getIntervals(Array&lt;Chord&gt;)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>343</x>
-      <y>567</y>
-      <w>826</w>
-      <h>210</h>
+      <x>415</x>
+      <y>465</y>
+      <w>590</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>if(MusicalElements are Chords)</panel_attributes>
     <additional_attributes/>
@@ -266,10 +266,10 @@ getIntervals(Array&lt;Chord&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>742</y>
-      <w>252</w>
-      <h>28</h>
+      <x>540</x>
+      <y>590</y>
+      <w>180</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 addAll(Array&lt;Interval&gt;)</panel_attributes>
@@ -278,10 +278,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1015</x>
-      <y>413</y>
-      <w>14</w>
-      <h>35</h>
+      <x>895</x>
+      <y>355</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -289,10 +289,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
-      <y>441</y>
-      <w>21</w>
-      <h>196</h>
+      <x>895</x>
+      <y>375</y>
+      <w>15</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
@@ -300,10 +300,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1106</x>
-      <y>98</y>
-      <w>70</w>
-      <h>21</h>
+      <x>960</x>
+      <y>130</y>
+      <w>50</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>_:Generator_</panel_attributes>
     <additional_attributes/>
@@ -311,10 +311,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1134</x>
-      <y>112</y>
-      <w>21</w>
-      <h>210</h>
+      <x>980</x>
+      <y>140</y>
+      <w>15</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
@@ -322,10 +322,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1134</x>
-      <y>308</y>
-      <w>14</w>
-      <h>35</h>
+      <x>980</x>
+      <y>280</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -333,10 +333,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1134</x>
-      <y>336</y>
-      <w>21</w>
-      <h>147</h>
+      <x>980</x>
+      <y>300</y>
+      <w>15</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
@@ -344,10 +344,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>987</x>
-      <y>98</y>
-      <w>70</w>
-      <h>21</h>
+      <x>875</x>
+      <y>130</y>
+      <w>50</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>_:Recognize_</panel_attributes>
     <additional_attributes/>
@@ -355,10 +355,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
-      <y>112</y>
-      <w>21</w>
-      <h>154</h>
+      <x>895</x>
+      <y>140</y>
+      <w>15</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
@@ -366,10 +366,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>245</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>235</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 recognizeChordsOfScale(Array&lt;Scale&gt;)</panel_attributes>
@@ -378,10 +378,10 @@ recognizeChordsOfScale(Array&lt;Scale&gt;)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1015</x>
-      <y>252</y>
-      <w>14</w>
-      <h>35</h>
+      <x>895</x>
+      <y>240</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -389,10 +389,10 @@ recognizeChordsOfScale(Array&lt;Scale&gt;)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>378</x>
-      <y>294</y>
-      <w>784</w>
-      <h>63</h>
+      <x>440</x>
+      <y>270</y>
+      <w>560</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Array&lt;Chord&gt; is Empty</panel_attributes>
     <additional_attributes/>
@@ -400,10 +400,10 @@ recognizeChordsOfScale(Array&lt;Scale&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>301</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>275</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 generateChordsOfScale(Array&lt;Scale&gt;)</panel_attributes>
@@ -412,10 +412,10 @@ generateChordsOfScale(Array&lt;Scale&gt;)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>343</x>
-      <y>238</y>
-      <w>826</w>
-      <h>154</h>
+      <x>415</x>
+      <y>230</y>
+      <w>590</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>if(MusicalElements are Scales)</panel_attributes>
     <additional_attributes/>
@@ -423,10 +423,10 @@ generateChordsOfScale(Array&lt;Scale&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>322</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>290</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Chord&gt;</panel_attributes>
@@ -435,10 +435,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
-      <y>280</y>
-      <w>21</w>
-      <h>147</h>
+      <x>895</x>
+      <y>260</y>
+      <w>15</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
@@ -446,10 +446,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1134</x>
-      <y>469</y>
-      <w>14</w>
-      <h>35</h>
+      <x>980</x>
+      <y>395</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -457,10 +457,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>378</x>
-      <y>455</y>
-      <w>784</w>
-      <h>63</h>
+      <x>440</x>
+      <y>385</y>
+      <w>560</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Array&lt;Chord&gt; is Empty</panel_attributes>
     <additional_attributes/>
@@ -468,10 +468,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>462</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>390</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 generateChordsOfHarmony(Array&lt;Harmonies&gt;)</panel_attributes>
@@ -480,10 +480,10 @@ generateChordsOfHarmony(Array&lt;Harmonies&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>483</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>405</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Chord&gt;</panel_attributes>
@@ -492,10 +492,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>518</x>
-      <y>581</y>
-      <w>14</w>
-      <h>28</h>
+      <x>540</x>
+      <y>475</y>
+      <w>10</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -503,10 +503,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1134</x>
-      <y>679</y>
-      <w>14</w>
-      <h>35</h>
+      <x>980</x>
+      <y>545</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -514,10 +514,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>378</x>
-      <y>616</y>
-      <w>784</w>
-      <h>119</h>
+      <x>440</x>
+      <y>500</y>
+      <w>560</w>
+      <h>85</h>
     </coordinates>
     <panel_attributes>Array&lt;Chord&gt; is Empty</panel_attributes>
     <additional_attributes/>
@@ -525,10 +525,10 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>672</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>540</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 generateIntervalOfChord(Array&lt;Chord&gt;)</panel_attributes>
@@ -537,10 +537,10 @@ generateIntervalOfChord(Array&lt;Chord&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>693</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>555</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Interval&gt;</panel_attributes>
@@ -549,10 +549,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1134</x>
-      <y>497</y>
-      <w>21</w>
-      <h>196</h>
+      <x>980</x>
+      <y>415</y>
+      <w>15</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
@@ -560,10 +560,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1015</x>
-      <y>623</y>
-      <w>14</w>
-      <h>35</h>
+      <x>895</x>
+      <y>505</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -571,10 +571,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
-      <y>658</y>
-      <w>21</w>
-      <h>154</h>
+      <x>895</x>
+      <y>530</y>
+      <w>15</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
@@ -582,10 +582,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>616</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>500</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 recognizeIntervalsOfChord(Array&lt;Chord&gt;)</panel_attributes>
@@ -594,10 +594,10 @@ recognizeIntervalsOfChord(Array&lt;Chord&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>637</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>515</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Interval&gt;</panel_attributes>
@@ -606,10 +606,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>392</x>
-      <y>665</y>
-      <w>763</w>
-      <h>63</h>
+      <x>450</x>
+      <y>535</y>
+      <w>545</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Array&lt;Chord&gt; is Empty</panel_attributes>
     <additional_attributes/>
@@ -617,10 +617,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1134</x>
-      <y>707</y>
-      <w>21</w>
-      <h>161</h>
+      <x>980</x>
+      <y>565</y>
+      <w>15</w>
+      <h>115</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
@@ -628,10 +628,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>791</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>625</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 recognizeIntervalsOfNotes(Array&lt;Notes&gt;)</panel_attributes>
@@ -640,10 +640,10 @@ recognizeIntervalsOfNotes(Array&lt;Notes&gt;)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>343</x>
-      <y>784</y>
-      <w>826</w>
-      <h>154</h>
+      <x>415</x>
+      <y>620</y>
+      <w>590</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>if(MusicalElements are Notes)</panel_attributes>
     <additional_attributes/>
@@ -651,10 +651,10 @@ recognizeIntervalsOfNotes(Array&lt;Notes&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>812</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>640</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Interval&gt;</panel_attributes>
@@ -663,10 +663,10 @@ Array&lt;Interval&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>910</y>
-      <w>252</w>
-      <h>28</h>
+      <x>540</x>
+      <y>710</y>
+      <w>180</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 addAll(Array&lt;Interval&gt;)</panel_attributes>
@@ -675,10 +675,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1015</x>
-      <y>798</y>
-      <w>14</w>
-      <h>35</h>
+      <x>895</x>
+      <y>630</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -686,10 +686,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1134</x>
-      <y>854</y>
-      <w>14</w>
-      <h>35</h>
+      <x>980</x>
+      <y>670</y>
+      <w>10</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -697,10 +697,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>378</x>
-      <y>840</y>
-      <w>784</w>
-      <h>63</h>
+      <x>440</x>
+      <y>660</y>
+      <w>560</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Array&lt;Intervals&gt; is Empty</panel_attributes>
     <additional_attributes/>
@@ -708,10 +708,10 @@ addAll(Array&lt;Interval&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>847</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>665</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 generateIntervalsForNotes(Array&lt;Notes&gt;)</panel_attributes>
@@ -720,10 +720,10 @@ generateIntervalsForNotes(Array&lt;Notes&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>868</y>
-      <w>630</w>
-      <h>28</h>
+      <x>540</x>
+      <y>680</y>
+      <w>450</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Intervals&gt;</panel_attributes>
@@ -732,10 +732,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>721</x>
-      <y>147</y>
-      <w>84</w>
-      <h>21</h>
+      <x>685</x>
+      <y>165</y>
+      <w>60</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>_:Array&lt;Interval&gt;_</panel_attributes>
     <additional_attributes/>
@@ -743,10 +743,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>161</y>
-      <w>21</w>
-      <h>602</h>
+      <x>710</x>
+      <y>175</y>
+      <w>15</w>
+      <h>430</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
@@ -754,10 +754,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>756</x>
-      <y>749</y>
-      <w>14</w>
-      <h>14</h>
+      <x>710</x>
+      <y>595</y>
+      <w>10</w>
+      <h>10</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -765,10 +765,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>756</y>
-      <w>21</w>
-      <h>175</h>
+      <x>710</x>
+      <y>600</y>
+      <w>15</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
@@ -776,10 +776,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>756</x>
-      <y>917</y>
-      <w>14</w>
-      <h>14</h>
+      <x>710</x>
+      <y>715</y>
+      <w>10</w>
+      <h>10</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -787,10 +787,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>651</x>
-      <y>539</y>
-      <w>21</w>
-      <h>469</h>
+      <x>635</x>
+      <y>445</y>
+      <w>15</w>
+      <h>335</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;650.0</additional_attributes>
@@ -798,10 +798,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>924</y>
-      <w>21</w>
-      <h>84</h>
+      <x>710</x>
+      <y>720</y>
+      <w>15</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -809,10 +809,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
-      <y>826</y>
-      <w>21</w>
-      <h>182</h>
+      <x>895</x>
+      <y>650</y>
+      <w>15</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
@@ -820,10 +820,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1134</x>
-      <y>882</y>
-      <w>21</w>
-      <h>119</h>
+      <x>980</x>
+      <y>690</y>
+      <w>15</w>
+      <h>85</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
@@ -831,10 +831,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>861</x>
-      <y>175</y>
-      <w>133</w>
-      <h>21</h>
+      <x>785</x>
+      <y>185</y>
+      <w>95</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>_:Array&lt;MusicalElements&gt;_</panel_attributes>
     <additional_attributes/>
@@ -842,10 +842,10 @@ Array&lt;Intervals&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>140</y>
-      <w>217</w>
-      <h>28</h>
+      <x>540</x>
+      <y>160</y>
+      <w>155</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 create()</panel_attributes>
@@ -854,10 +854,10 @@ create()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>168</y>
-      <w>357</w>
-      <h>28</h>
+      <x>540</x>
+      <y>180</y>
+      <w>255</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 create()</panel_attributes>
@@ -866,10 +866,10 @@ create()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>917</x>
-      <y>189</y>
-      <w>21</w>
-      <h>819</h>
+      <x>825</x>
+      <y>195</y>
+      <w>15</w>
+      <h>585</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;1150.0</additional_attributes>
@@ -877,10 +877,10 @@ create()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>266</y>
-      <w>511</w>
-      <h>28</h>
+      <x>540</x>
+      <y>250</y>
+      <w>365</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Array&lt;Chord&gt;</panel_attributes>
@@ -889,12 +889,59 @@ Array&lt;Chord&gt;</panel_attributes>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>63</x>
-      <y>35</y>
-      <w>84</w>
-      <h>77</h>
+      <x>170</x>
+      <y>85</y>
+      <w>60</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>Extern System</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>770</y>
+      <w>155</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Array&lt;Interval&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>740</y>
+      <w>125</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+applyFilters(Array&lt;Interval&gt;)</panel_attributes>
+    <additional_attributes>20.0;40.0;50.0;40.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>540</x>
+      <y>750</y>
+      <w>10</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>785</y>
+      <w>155</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Array&lt;Interval&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
   </element>
 </diagram>
