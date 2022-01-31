@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>132</x>
+      <y>165</y>
+      <w>814</w>
+      <h>253</h>
+    </coordinates>
+    <panel_attributes>Recognize Musical Elements
+halign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>198</x>
+      <y>264</y>
+      <w>44</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 0, 0, 20)
+drawLine(0, 20, 0, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>462</x>
+      <y>264</y>
+      <w>44</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(24, 0, 34, 0)
+drawLine(24, 0, 30, 10)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>0</x>
+      <y>242</y>
+      <w>132</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>Extern System</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>132</x>
+      <y>418</y>
+      <w>814</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>1  El Sistema lee la Entrada.
+2  El Sistema genera una lista de Elementos Musicales a encontrar.
+3  El Sistema busca cada Elemento Musical en la base de datos Starmonydb.
+3.a    Si el Sistema no encuentra resultados genera un Elemento Musical Nulo
+3.b    Si el sistema encuentra resultados genera un Elemento Musical con la información obtenida.
+4  El Sistema añade los Elementos Musicales encontrados a una lista.
+5  El Sistema regresa la lista con los Elementos Musicales generados.
+
+
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>88</x>
+      <y>264</y>
+      <w>132</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>231</x>
+      <y>264</y>
+      <w>253</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>264</y>
+      <w>176</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>198</x>
+      <y>231</y>
+      <w>88</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Interface
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>451</x>
+      <y>231</y>
+      <w>99</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Reconizer
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>803</x>
+      <y>352</y>
+      <w>44</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 40, 40, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>792</x>
+      <y>319</y>
+      <w>99</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Database
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>649</x>
+      <y>264</y>
+      <w>44</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 40, 40, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>616</x>
+      <y>231</y>
+      <w>143</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Musical Element
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>682</x>
+      <y>352</y>
+      <w>143</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>649</x>
+      <y>352</y>
+      <w>44</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(24, 0, 34, 0)
+drawLine(24, 0, 30, 10)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>616</x>
+      <y>319</y>
+      <w>121</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>DBConecction
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>308</x>
+      <y>352</y>
+      <w>44</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawCircle(20, 20, 20)
+drawLine(0, 40, 40, 40)
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>242</x>
+      <y>319</y>
+      <w>209</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Array of Musical Elements
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>484</x>
+      <y>297</y>
+      <w>187</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;50.0;70.0;150.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>341</x>
+      <y>297</y>
+      <w>154</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>120.0;10.0;80.0;70.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>682</x>
+      <y>264</y>
+      <w>143</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;40.0;20.0;110.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>198</x>
+      <y>209</y>
+      <w>33</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>429</x>
+      <y>209</y>
+      <w>33</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>2
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>605</x>
+      <y>297</y>
+      <w>33</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>3
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>462</x>
+      <y>209</y>
+      <w>44</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>3.a
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>506</x>
+      <y>209</y>
+      <w>44</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>3.b
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>319</x>
+      <y>297</y>
+      <w>44</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>4.a
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>550</x>
+      <y>209</y>
+      <w>33</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>5
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>132</x>
+      <y>561</y>
+      <w>814</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>3.    El Sistema no puede conectar con la base de datos Starmonydb.
+3.1     El Sistema informa que no se puede establecer la conexión con la base de datos Starmonydb.
+
+ * El usuario puede cancelar la operación en cualquier momento. 
+
+
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
