@@ -1,7 +1,6 @@
 package com.kadli.starmony.controllers;
 
 import com.kadli.starmony.entity.*;
-import com.kadli.starmony.interfaces.MusicalElement;
 import com.kadli.starmony.repository.ChordRepository;
 import com.kadli.starmony.repository.IntervalRepository;
 import com.kadli.starmony.repository.ScaleRepository;
@@ -15,6 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class AnalyzerController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class AnalyzerController {
 
 
     // Principales
-    @PostMapping(path = "/getIntervals/",
+    @PostMapping(path = "/api/getIntervals/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOf(@RequestBody Map<String, List<Long>> musicalElements){
@@ -58,7 +58,7 @@ public class AnalyzerController {
         return out.stream().distinct().collect(Collectors.toList());
     };
 
-    @PostMapping(path = "/getChords/",
+    @PostMapping(path = "/api/getChords/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Chord> getChordsOf(@RequestBody Map<String, List<Long>> musicalElements){
@@ -85,7 +85,7 @@ public class AnalyzerController {
         return out.stream().distinct().collect(Collectors.toList());
     };
 
-    @PostMapping(path = "/getScales/",
+    @PostMapping(path = "/api/getScales/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Scale> getScalesOf(@RequestBody Map<String, List<Long>> musicalElements){
@@ -116,21 +116,21 @@ public class AnalyzerController {
 
     // Intervals
     // POST - Single Element
-    @PostMapping(path = "/getIntervalsOfChord/",
+    @PostMapping(path = "/api/getIntervalsOfChord/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfChord(@RequestBody Chord chord){
         return intervalRepository.getIntervalsOfChord(chord);
     };
 
-    @PostMapping(path = "/getIntervalsOfScale/",
+    @PostMapping(path = "/api/getIntervalsOfScale/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfScale(@RequestBody Scale scale){
         return intervalRepository.getIntervalsOfScale(scale);
     };
 
-    @PostMapping(path = "/getAllIntervalsOfScale/",
+    @PostMapping(path = "/api/getAllIntervalsOfScale/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getAllIntervalsOfScale(@RequestBody Scale scale){
@@ -140,77 +140,77 @@ public class AnalyzerController {
 
 
     // POST - Multiple Elements
-    @PostMapping(path = "/getIntervalsOfChords/",
+    @PostMapping(path = "/api/getIntervalsOfChords/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfChords(@RequestBody List<Chord> chords){
         return intervalRepository.getIntervalsOfChords(chords);
     };
 
-    @PostMapping(path = "/getIntervalOfNotes/",
+    @PostMapping(path = "/api/getIntervalOfNotes/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Interval getIntervalOfNotes(@RequestBody List<Note> notes){
         return intervalRepository.getIntervalOfNotes(notes);
     };
 
-    @PostMapping(path = "/getIntervalsOfNotes/",
+    @PostMapping(path = "/api/getIntervalsOfNotes/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfNotes(@RequestBody List<Note> notes){
         return intervalRepository.getIntervalsOfNotes(notes);
     };
 
-    @PostMapping(path = "/getIntervalsWithSemitones/",
+    @PostMapping(path = "/api/getIntervalsWithSemitones/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsWithSemitones(@RequestBody List<Integer> semitones){
         return intervalRepository.getIntervalsWithSemitones(semitones);
     };
 
-    @PostMapping(path = "/getIntervalsOfScales/",
+    @PostMapping(path = "/api/getIntervalsOfScales/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfScales(@RequestBody List<Scale> scales){
         return intervalRepository.getIntervalsOfScales(scales);
     };
 
-    @PostMapping(path = "/getAllIntervalsOfScales/",
+    @PostMapping(path = "/api/getAllIntervalsOfScales/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getAllIntervalsOfScales(@RequestBody List<Scale> scales){
         return intervalRepository.getAllIntervalsOfScales(scales);
     };
 
-    @PostMapping(path = "/getIntervalsOfChordsId/",
+    @PostMapping(path = "/api/getIntervalsOfChordsId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfChordsId(@RequestBody List<Long> ids){
         return intervalRepository.getIntervalsOfChordsId(ids);
     };
 
-    @PostMapping(path = "/getIntervalOfNotesId/",
+    @PostMapping(path = "/api/getIntervalOfNotesId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Interval getIntervalOfNotesId(@RequestBody List<Long> ids){
         return intervalRepository.getIntervalOfNotesId(ids);
     };
 
-    @PostMapping(path = "/getIntervalsOfNotesId/",
+    @PostMapping(path = "/api/getIntervalsOfNotesId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfNotesId(@RequestBody List<Long> ids){
         return intervalRepository.getIntervalsOfNotesId(ids);
     };
 
-    @PostMapping(path = "/getIntervalsOfScalesId/",
+    @PostMapping(path = "/api/getIntervalsOfScalesId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfScalesId(@RequestBody List<Long> ids){
         return intervalRepository.getIntervalsOfScalesId(ids);
     };
 
-    @PostMapping(path = "/getAllIntervalsOfScalesId/",
+    @PostMapping(path = "/api/getAllIntervalsOfScalesId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getAllIntervalsOfScalesId(@RequestBody List<Long> ids){
@@ -220,22 +220,22 @@ public class AnalyzerController {
 
 
     // GET
-    @GetMapping("/getIntervalWithSemitone/{semitone}")
+    @GetMapping("/api/getIntervalWithSemitone/{semitone}")
     public Interval getIntervalWithSemitone(@PathVariable int semitone){
         return intervalRepository.getIntervalWithSemitone(semitone);
     };
 
-    @GetMapping("/getIntervalsOfChordId/{id}")
+    @GetMapping("/api/getIntervalsOfChordId/{id}")
     public List<Interval> getIntervalsOfChordId(@PathVariable Long id){
         return intervalRepository.getIntervalsOfChordId(id);
     };
 
-    @GetMapping("/getIntervalsOfScaleId/{id}")
+    @GetMapping("/api/getIntervalsOfScaleId/{id}")
     public List<Interval> getIntervalsOfScaleId(@PathVariable Long id){
         return intervalRepository.getIntervalsOfScaleId(id);
     };
 
-    @GetMapping("/getAllIntervalsOfScaleId/{id}")
+    @GetMapping("/api/getAllIntervalsOfScaleId/{id}")
     public List<Interval> getAllIntervalsOfScaleId(@PathVariable Long id){
         return intervalRepository.getAllIntervalsOfScaleId(id);
     };
@@ -244,21 +244,21 @@ public class AnalyzerController {
 
     // Chords
     // POST - Single Element
-    @PostMapping(path = "/getChordsWithInterval/",
+    @PostMapping(path = "/api/getChordsWithInterval/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Chord> getChordsWithInterval(@RequestBody Interval interval){
         return chordRepository.getChordsWithInterval(interval);
     };
 
-    @PostMapping(path = "/getChordsWithIntervals/",
+    @PostMapping(path = "/api/getChordsWithIntervals/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Chord> getChordsWithIntervals(@RequestBody List<Interval> intervals){
         return chordRepository.getChordsWithIntervals(intervals);
     };
 
-    @PostMapping(path = "/getChordsOfScale/",
+    @PostMapping(path = "/api/getChordsOfScale/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Chord> getChordsOfScale(@RequestBody Scale scale){
@@ -268,21 +268,21 @@ public class AnalyzerController {
 
 
     // POST - Multiple Elements
-    @PostMapping(path = "/getChordsOfScalesId/",
+    @PostMapping(path = "/api/getChordsOfScalesId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Chord> getChordsOfScalesId(@RequestBody List<Long> ids){
         return chordRepository.getChordsOfScalesId(ids);
     };
 
-    @PostMapping(path = "/getChordsWithIntervalsId/",
+    @PostMapping(path = "/api/getChordsWithIntervalsId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Chord> getChordsWithIntervalsId(List<Long> ids){
         return chordRepository.getChordsWithIntervalsId(ids);
     };
 
-    @PostMapping(path = "/getChordsOfScales/",
+    @PostMapping(path = "/api/getChordsOfScales/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Chord> getChordsOfScales(@RequestBody List<Scale> scales){
@@ -292,12 +292,12 @@ public class AnalyzerController {
 
 
     // GET
-    @GetMapping("/getChordsWithIntervalId/{id}")
+    @GetMapping("/api/getChordsWithIntervalId/{id}")
     public List<Chord> getChordsWithIntervalId(Long id){
         return chordRepository.getChordsWithIntervalId(id);
     };
 
-    @GetMapping("/getChordsOfScaleId/{id}")
+    @GetMapping("/api/getChordsOfScaleId/{id}")
     public List<Chord> getChordsOfScaleId(@RequestBody Long id){
         return chordRepository.getChordsOfScaleId(id);
     };
@@ -306,21 +306,21 @@ public class AnalyzerController {
 
     // Scales
     // POST - Single Element
-    @PostMapping(path = "/getScalesWithInterval/",
+    @PostMapping(path = "/api/getScalesWithInterval/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Scale> getScalesWithInterval(Interval interval){
         return scaleRepository.getScalesWithInterval(interval);
     };
 
-    @PostMapping(path = "/getScalesWithChord/",
+    @PostMapping(path = "/api/getScalesWithChord/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Scale> getScalesWithChord(Chord chord){
         return scaleRepository.getScalesWithChord(chord);
     };
 
-    @PostMapping(path = "/getScaleWithCode/",
+    @PostMapping(path = "/api/getScaleWithCode/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Scale getScaleWithCode(String code){
@@ -328,28 +328,28 @@ public class AnalyzerController {
     };
 
     // POST - Multiple Elements
-    @PostMapping(path = "/getScalesWithIntervals/",
+    @PostMapping(path = "/api/getScalesWithIntervals/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Scale> getScalesWithIntervals(List<Interval> intervals){
         return scaleRepository.getScalesWithIntervals(intervals);
     };
 
-    @PostMapping(path = "/getScalesWithChords/",
+    @PostMapping(path = "/api/getScalesWithChords/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Scale> getScalesWithChords(List<Chord> chords){
         return scaleRepository.getScalesWithChords(chords);
     };
 
-    @PostMapping(path = "/getScalesWithIntervalsId/",
+    @PostMapping(path = "/api/getScalesWithIntervalsId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Scale> getScalesWithIntervalsId(List<Long> ids){
         return scaleRepository.getScalesWithIntervalsId(ids);
     };
 
-    @PostMapping(path = "/getScalesWithChordsId/",
+    @PostMapping(path = "/api/getScalesWithChordsId/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Scale> getScalesWithChordsId(List<Long> ids){
@@ -359,12 +359,12 @@ public class AnalyzerController {
 
 
     // GET
-    @GetMapping("/getScalesWithIntervalId/{id}")
+    @GetMapping("/api/getScalesWithIntervalId/{id}")
     public List<Scale> getScalesWithIntervalId(@PathVariable Long id){
         return scaleRepository.getScalesWithIntervalId(id);
     }
 
-    @GetMapping("/getScalesWithChordId/{id}")
+    @GetMapping("/api/getScalesWithChordId/{id}")
     public List<Scale> getScalesWithChordId(Long id){
         return scaleRepository.getScalesWithChordId(id);
     };
