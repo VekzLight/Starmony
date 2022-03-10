@@ -3,7 +3,6 @@ package com.kadli.starmony.repository;
 import com.kadli.starmony.entity.Chord;
 import com.kadli.starmony.entity.Interval;
 import com.kadli.starmony.entity.Scale;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,9 +10,8 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
 @Transactional
-public class ScaleRepositoryImp implements ScaleRepository{
+public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
 
     @PersistenceContext
     private EntityManager entityManager;

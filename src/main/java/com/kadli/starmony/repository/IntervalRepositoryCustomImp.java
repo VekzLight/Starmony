@@ -2,7 +2,6 @@ package com.kadli.starmony.repository;
 
 
 import com.kadli.starmony.entity.*;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Repository
 @Transactional
-public class IntervalRepositoryImp implements IntervalRepository{
+public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom{
 
     @PersistenceContext
     private EntityManager entityManager;

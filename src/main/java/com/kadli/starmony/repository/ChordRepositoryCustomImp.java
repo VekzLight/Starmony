@@ -4,7 +4,6 @@ import com.kadli.starmony.entity.Chord;
 import com.kadli.starmony.entity.Interval;
 import com.kadli.starmony.entity.Note;
 import com.kadli.starmony.entity.Scale;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,13 +11,11 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
 @Transactional
-public class ChordRepositoryImp implements ChordRepository{
+public class ChordRepositoryCustomImp implements ChordRepositoryCustom{
 
     @PersistenceContext
     private EntityManager entityManager;
-
 
     @Override
     public List<Chord> getChordsWithInterval(Interval interval) {
