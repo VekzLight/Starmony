@@ -27,5 +27,4 @@ public class ChordController {
     public ResponseEntity<Optional<Chord>> getChords(@PathVariable Long id){
         return new ResponseEntity<>(chordService.getChord(id), HttpStatus.OK);
     }
-
 }

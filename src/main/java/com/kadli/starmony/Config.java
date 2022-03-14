@@ -6,4 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EnableJpaRepositories(basePackages = "com.kadli.starmony.repository", repositoryImplementationPostfix = "CustomImp")
 public class Config {
+
+
+
 }

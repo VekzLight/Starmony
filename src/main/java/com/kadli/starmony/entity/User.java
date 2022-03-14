@@ -1,4 +1,4 @@
-package com.kadli.starmony.models;
+package com.kadli.starmony.entity;
 
 public class User {
     private String username;
