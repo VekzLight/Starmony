@@ -8,28 +8,28 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "notes_has_interval")
+@Table(name = "concrete_interval")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Notes_Has_Intervals {
+public class ConcreteInterval {
 
     @EmbeddedId
-    private Notes_Has_Intervals_Id nhi_id = new Notes_Has_Intervals_Id();
+    private ConcreteIntervalId concreteIntervalId = new ConcreteIntervalId();
 
     @MapsId("id_note1")
     @ManyToOne
     @JoinColumn(name = "note_id_note1")
-    private Note note1;
+    private Note note1_interval;
 
     @MapsId("id_note2")
     @ManyToOne
     @JoinColumn(name = "note_id_note2")
-    private Note note2;
+    private Note note2_interval;
 
     @MapsId("id_interval")
     @ManyToOne
     @JoinColumn(name = "interval_id_interval")
-    private Interval interval;
+    private Interval interval_notes;
 }

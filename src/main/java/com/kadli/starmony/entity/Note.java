@@ -32,8 +32,12 @@ public class Note implements MusicalElement {
     protected final String type = "note";
 
     @JsonIgnore
-    @OneToMany(mappedBy = "note1")
-    protected List<Notes_Has_Intervals> notes_has_intervals;
+    @OneToMany(mappedBy = "interval_notes")
+    protected List<ConcreteInterval> concreteIntervals;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "scale_note")
+    protected List<ConcreteScale> concreteScales;
 
     @Override
     public String getType() { return type; }

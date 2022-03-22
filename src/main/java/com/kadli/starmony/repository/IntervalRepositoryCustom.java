@@ -8,30 +8,30 @@ import com.kadli.starmony.entity.Scale;
 import java.util.List;
 
 public interface IntervalRepositoryCustom {
-    public List<Interval> getIntervalsOfChord(Chord chord);
-    public List<Interval> getIntervalsOfChords(List<Chord> chords);
+    List<Interval> getIntervalsOfChord(Chord chord);
+    List<Interval> getIntervalsOfChords(List<Chord> chords);
 
-    public Interval getIntervalOfNotes(List<Note> notes);
-    public List<Interval> getIntervalsOfNotes(List<Note> notes);
+    Interval getIntervalOfNotes(List<Note> notes);
+    List<Interval> getIntervalsOfNotes(List<Note> notes);
 
-    public Interval getIntervalWithSemitone(Integer semitone);
-    public List<Interval> getIntervalsWithSemitones(List<Integer> semitones);
+    Interval getIntervalWithSemitone(Integer semitone);
+    List<Interval> getIntervalsWithSemitones(List<Integer> semitones);
 
-    public List<Interval> getIntervalsOfScale(Scale scale);
-    public List<Interval> getIntervalsOfScales(List<Scale> scales);
+    List<Interval> getIntervalsOfScale(Scale scale);
+    List<Interval> getIntervalsOfScales(List<Scale> scales);
 
-    public List<Interval> getAllIntervalsOfScale(Scale scale);
-    public List<Interval> getAllIntervalsOfScales(List<Scale> scales);
+    List<Interval> getAllIntervalsOfScale(Scale scale);
+    List<Interval> getAllIntervalsOfScales(List<Scale> scales);
 
-    public List<Interval> getIntervalsOfChordId(Long id);
-    public List<Interval> getIntervalsOfChordsId(List<Long> ids);
+    List<Interval> getIntervalsOfChordId(Long id);
+    List<Interval> getIntervalsOfChordsId(List<Long> ids);
 
-    public Interval getIntervalOfNotesId(List<Long> ids);
-    public List<Interval> getIntervalsOfNotesId(List<Long> ids);
+    Interval getIntervalOfNotesId(List<Long> ids);
+    List<Interval> getIntervalsOfNotesId(List<Long> ids);
 
-    public List<Interval> getIntervalsOfScaleId(Long id);
-    public List<Interval> getIntervalsOfScalesId(List<Long> ids);
+    List<Interval> getIntervalsOfScaleId(Long id);
+    List<Interval> getIntervalsOfScalesId(List<Long> ids);
 
-    public List<Interval> getAllIntervalsOfScaleId(Long id);
-    public List<Interval> getAllIntervalsOfScalesId(List<Long> ids);
+    List<Interval> getAllIntervalsOfScaleId(Long id);
+    List<Interval> getAllIntervalsOfScalesId(List<Long> ids);
 }

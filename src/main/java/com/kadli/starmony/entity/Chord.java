@@ -2,11 +2,13 @@ package com.kadli.starmony.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kadli.starmony.interfaces.MusicalElement;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "chord")
@@ -30,12 +32,12 @@ public class Chord implements MusicalElement {
     protected String code;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "chords")
-    protected List<Interval> intervals;
+    @OneToMany(mappedBy = "chord_interval")
+    protected List<ConcreteChord> concreteChords;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "scale")
-    protected List<Scale_Grades> scale_grades;
+    @OneToMany(mappedBy = "scale_chord")
+    protected List<ScaleGrades> scaleGrades;
 
     @Transient
     protected final String type = "chord";

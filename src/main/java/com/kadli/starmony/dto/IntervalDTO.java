@@ -1,5 +1,6 @@
 package com.kadli.starmony.dto;
 
+import com.kadli.starmony.entity.Note;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,4 +15,6 @@ public class IntervalDTO {
     private String name;
     private String symbol;
     private int semitones;
+    private Note firstNote;
+    private Note lastNote;
 }

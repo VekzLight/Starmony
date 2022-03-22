@@ -14,12 +14,12 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Scale_Grades_Id implements Serializable {
+public class ConcreteScaleId implements Serializable {
 
     @Column(name = "scale_id_scale")
     private Long id_scale;
 
-    @Column(name = "chord_id_chord")
-    private Long id_chord;
+    @Column(name = "note_id_note")
+    private Long id_note;
 
 }

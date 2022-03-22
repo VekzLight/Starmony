@@ -1,7 +1,10 @@
 package com.kadli.starmony.repository;
 
 
-import com.kadli.starmony.entity.*;
+import com.kadli.starmony.entity.Chord;
+import com.kadli.starmony.entity.Interval;
+import com.kadli.starmony.entity.Note;
+import com.kadli.starmony.entity.Scale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

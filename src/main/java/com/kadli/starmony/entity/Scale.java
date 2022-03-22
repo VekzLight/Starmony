@@ -32,8 +32,12 @@ public class Scale implements MusicalElement {
     protected final String type = "scale";
 
     @JsonIgnore
-    @OneToMany(mappedBy = "chord")
-    protected List<Scale_Grades> scale_grades;
+    @OneToMany(mappedBy = "scale_chord")
+    protected List<ScaleGrades> scaleGrades;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "scale_note")
+    protected List<ConcreteScale> concreteScales;
 
     @Override
     public String getType() { return type; }

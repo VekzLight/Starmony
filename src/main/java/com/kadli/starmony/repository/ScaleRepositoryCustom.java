@@ -7,17 +7,17 @@ import com.kadli.starmony.entity.Scale;
 import java.util.List;
 
 public interface ScaleRepositoryCustom {
-    public List<Scale> getScalesWithInterval(Interval interval);
-    public List<Scale> getScalesWithIntervals(List<Interval> intervals);
+    List<Scale> getScalesWithInterval(Interval interval);
+    List<Scale> getScalesWithIntervals(List<Interval> intervals);
 
-    public List<Scale> getScalesWithChord(Chord chord);
-    public List<Scale> getScalesWithChords(List<Chord> chords);
+    List<Scale> getScalesWithChord(Chord chord);
+    List<Scale> getScalesWithChords(List<Chord> chords);
 
-    public List<Scale> getScalesWithIntervalId(Long id);
-    public List<Scale> getScalesWithIntervalsId(List<Long> ids);
+    List<Scale> getScalesWithIntervalId(Long id);
+    List<Scale> getScalesWithIntervalsId(List<Long> ids);
 
-    public List<Scale> getScalesWithChordId(Long id);
-    public List<Scale> getScalesWithChordsId(List<Long> ids);
+    List<Scale> getScalesWithChordId(Long id);
+    List<Scale> getScalesWithChordsId(List<Long> ids);
 
-    public Scale getScaleWithCode(String code);
+    Scale getScaleWithCode(String code);
 }

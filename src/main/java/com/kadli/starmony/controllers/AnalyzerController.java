@@ -1,13 +1,27 @@
 package com.kadli.starmony.controllers;
 
+import com.kadli.starmony.entity.Chord;
+import com.kadli.starmony.entity.Interval;
+import com.kadli.starmony.entity.Note;
+import com.kadli.starmony.entity.Scale;
+import com.kadli.starmony.repository.ChordRepository;
+import com.kadli.starmony.repository.IntervalRepository;
+import com.kadli.starmony.repository.ScaleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/analyzer")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AnalyzerController {
 
-    /*
+
     @Autowired
     private IntervalRepository intervalRepository;
 
@@ -359,7 +373,7 @@ public class AnalyzerController {
     public List<Scale> getScalesWithChordId(Long id){
         return scaleRepository.getScalesWithChordId(id);
     };
-*/
+
 
 
 }

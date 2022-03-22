@@ -14,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Notes_Has_Intervals_Id implements Serializable {
+public class ConcreteIntervalId implements Serializable {
 
     @Column(name = "interval_id_interval")
     private Long id_interval;
