@@ -3,11 +3,9 @@ package com.kadli.starmony.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kadli.starmony.interfaces.MusicalElement;
 import lombok.*;
-import org.springframework.data.jpa.repository.Temporal;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "intervals")
@@ -35,17 +33,12 @@ public class Interval implements MusicalElement {
     protected final String type = "interval";
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "interval_has_chord",
-            joinColumns = @JoinColumn(name = "interval_id_interval"),
-            inverseJoinColumns = @JoinColumn(name = "chord_id_chord")
-    )
-    protected List<Chord> chords;
+    @OneToMany(mappedBy = "interval_notes")
+    protected List<ConcreteInterval> concreteIntervals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "note1")
-    protected List<Notes_Has_Intervals> notes_has_intervals;
+    @OneToMany(mappedBy = "chord_interval")
+    protected List<ConcreteChord> concreteChords;
 
     @Override
     public String getType() { return type; }

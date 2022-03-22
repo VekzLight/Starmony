@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>474</x>
-      <y>318</y>
+      <x>894</x>
+      <y>816</y>
       <w>156</w>
       <h>48</h>
     </coordinates>
@@ -19,90 +19,102 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>708</x>
-      <y>396</y>
+      <x>1128</x>
+      <y>894</y>
       <w>138</w>
-      <h>90</h>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>/Chord/
+    <panel_attributes>Chord
 --
-- name:String
-- simbol:String
-- type:String
-- intervals:Array&lt;MusicalElement&gt;
+# id:Long
+# name:String
+# symbol:String
+# code: String
+# type:String
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>396</y>
+      <x>510</x>
+      <y>894</y>
       <w>150</w>
-      <h>90</h>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>/Scale/
+    <panel_attributes>Scale
 --
-- name:String
-- simbol:String
-- type:String
-- code:Array&lt;Integer&gt;
+# id: Long
+# name:String
+# symbol:String
+# code:Array&lt;Integer&gt;
+# type:String
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>930</x>
-      <y>396</y>
+      <x>1350</x>
+      <y>894</y>
       <w>132</w>
-      <h>90</h>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>/Harmony/
+    <panel_attributes>Progression
 --
-- name:String
-- simbol:String
-- type:String
-- grades:String
+# id:Long
+# name:String
+# symbol:String
+# code:String
+# type:String
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>474</x>
-      <y>396</y>
+      <x>894</x>
+      <y>894</y>
       <w>156</w>
-      <h>90</h>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>/Interval/
+    <panel_attributes>Interval
 --
-- semitones:Integer
-- name:String
-- simbol:String
-- type:String
+# id:Long
+# name:String
+# symbol:String
+# semitones:Integer
+# type:String
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>582</y>
+      <x>720</x>
+      <y>1080</y>
       <w>96</w>
-      <h>78</h>
+      <h>102</h>
     </coordinates>
     <panel_attributes>Note
 --
@@ -110,16 +122,18 @@
 - simbol:String
 - type:String
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>342</y>
+      <x>762</x>
+      <y>840</y>
       <w>144</w>
       <h>252</h>
     </coordinates>
@@ -129,8 +143,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>162</x>
-      <y>324</y>
+      <x>582</x>
+      <y>822</y>
       <w>324</w>
       <h>84</h>
     </coordinates>
@@ -140,8 +154,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>342</y>
+      <x>1044</x>
+      <y>840</y>
       <w>162</w>
       <h>66</h>
     </coordinates>
@@ -151,8 +165,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>324</y>
+      <x>1044</x>
+      <y>822</y>
       <w>366</w>
       <h>84</h>
     </coordinates>
@@ -162,8 +176,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>360</y>
+      <x>960</x>
+      <y>858</y>
       <w>18</w>
       <h>48</h>
     </coordinates>
@@ -173,95 +187,101 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>582</y>
+      <x>510</x>
+      <y>1080</y>
       <w>150</w>
-      <h>78</h>
+      <h>102</h>
     </coordinates>
     <panel_attributes>ConcreteScale
 --
 - tonic:Note
 - notes:Array&lt;Note&gt;
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>708</x>
-      <y>582</y>
+      <x>1128</x>
+      <y>1080</y>
       <w>138</w>
-      <h>72</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>ConcreteChord
 --
 - tonic:Note
 - notes:Array&lt;Note&gt;
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>930</x>
-      <y>582</y>
+      <x>1350</x>
+      <y>1080</y>
       <w>132</w>
-      <h>72</h>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>ConcreteHarmony
+    <panel_attributes>ConcreteProgression
 --
 - chords:List&lt;Chord&gt;
 - tonality:List&lt;String&gt;
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>162</x>
-      <y>480</y>
+      <x>582</x>
+      <y>1008</y>
       <w>18</w>
-      <h>114</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
-      <y>480</y>
+      <x>1188</x>
+      <y>1008</y>
       <w>18</w>
-      <h>114</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>972</x>
-      <y>480</y>
+      <x>1392</x>
+      <y>1008</y>
       <w>18</w>
-      <h>114</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>432</y>
+      <x>1044</x>
+      <y>930</y>
       <w>96</w>
       <h>18</h>
     </coordinates>
@@ -271,8 +291,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>234</x>
-      <y>618</y>
+      <x>654</x>
+      <y>1116</y>
       <w>78</w>
       <h>18</h>
     </coordinates>
@@ -282,8 +302,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>630</y>
+      <x>810</x>
+      <y>1140</y>
       <w>330</w>
       <h>18</h>
     </coordinates>
@@ -293,8 +313,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>432</y>
+      <x>1260</x>
+      <y>930</y>
       <w>102</w>
       <h>198</h>
     </coordinates>
@@ -304,26 +324,28 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>474</x>
-      <y>516</y>
+      <x>894</x>
+      <y>1044</y>
       <w>156</w>
-      <h>78</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>ConcreteInterval
 --
 - firstNote:Note
 - lastNote:Note
 --
++ constructors()
 + getters()
 +´setters()
-+ toString()</panel_attributes>
++ toString()
++ builder()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>480</y>
+      <x>960</x>
+      <y>1008</y>
       <w>18</w>
       <h>48</h>
     </coordinates>
@@ -333,19 +355,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>552</y>
+      <x>810</x>
+      <y>1080</y>
       <w>96</w>
-      <h>78</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>140.0;10.0;100.0;10.0;40.0;110.0;10.0;110.0</additional_attributes>
+    <additional_attributes>140.0;10.0;100.0;10.0;40.0;60.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>450</y>
+      <x>1044</x>
+      <y>948</y>
       <w>96</w>
       <h>180</h>
     </coordinates>
@@ -355,66 +377,980 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>150</y>
-      <w>330</w>
-      <h>60</h>
+      <x>1008</x>
+      <y>498</y>
+      <w>96</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>Analizer
-&lt;Interface&gt;
+    <panel_attributes>ChordRepository
+&lt;&lt;interface&gt;&gt;
 --
---
-+ analize(elements: ArrayList&lt;MusicalElement&gt;):ArrayList&lt;MusicalElement&gt;
-+ analize(MusicalElement):ArrayList&lt;MusicalElement&gt;</panel_attributes>
+--</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>372</x>
-      <y>204</y>
-      <w>180</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>280.0;190.0;280.0;70.0;10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>564</x>
-      <y>150</y>
-      <w>330</w>
-      <h>60</h>
+      <x>858</x>
+      <y>312</y>
+      <w>246</w>
+      <h>150</h>
     </coordinates>
-    <panel_attributes>Generator
-&lt;Interface&gt;
+    <panel_attributes>JpaRepository&lt;T,ID&gt;
+&lt;&lt;Interface&gt;&gt;
 --
 --
-+ generate(elements: ArrayList&lt;MusicalElement&gt;):ArrayList&lt;MusicalElement&gt;
-+ generate(MusicalElement):ArrayList&lt;MusicalElement&gt;</panel_attributes>
++ deleteAllByIdInBatch(ids:Iterable&lt;ID&gt;):void
++ deleteInBatch(void):void
++ deleteAllInBatch(entities:Iterable&lt;T&gt;):void
++ findAll():List&lt;T&gt;
++ findAll(example:Example&lt;S&gt;):&lt;S extends T&gt; List&lt;T&gt;
++ findAll(sort:Sort):List&lt;T&gt;
++ findAllById(ids:Iterable&lt;ID&gt;):List&lt;T&gt;
++ flush():void
++ getById(id:ID):T
++ saveAll(entities:Iterable&lt;S&gt;):&lt;S extends T&gt; List&lt;S&gt;
++ saveAllAndFlush(entities:Iterable&lt;S&gt;):&lt;S extends T&gt; List&lt;S&gt;
++ saveAndFlush(entity:S):&lt;S extends T&gt; S</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1212</x>
+      <y>192</y>
+      <w>264</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>ChordRepositoryCustom
+&lt;&lt;interface&gt;&gt;
+--
+--
++ getChordsWithInterval(interval:Interval):List&lt;Chord&gt;
++ getChordsWithIntervals(intervals:List&lt;Interval&gt;):List&lt;Chord&gt;
++ getChordsOfScale(scale:Scale):List&lt;Chord&gt;
++ getChordsOfScales(scales:List&lt;Scale&gt;):List&lt;Chord&gt;
++ getChordsWithIntervalId(id:Long):List&lt;Chord&gt;
++ getChordsWithIntervalsId(ids:List&lt;Long&gt;):List&lt;Chord&gt;
++ getChordsOfScaleId(id:Long):List&lt;Chord&gt;
++ getChordsOfScalesId(ids:List&lt;Long&gt;):List&lt;Chord&gt;
++ getChordWithNotes(note:List&lt;Note&gt;):List&lt;Chord&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1524</x>
+      <y>246</y>
+      <w>150</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ChordRepositoryCustomImp
+--
+- EntityManager:entityManager
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>204</y>
-      <w>198</w>
+      <x>1470</x>
+      <y>258</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1008</x>
+      <y>564</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ScaleRepository
+&lt;&lt;interface&gt;&gt;
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1212</x>
+      <y>330</y>
+      <w>264</w>
       <h>126</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;70.0;310.0;50.0;310.0;10.0</additional_attributes>
+    <panel_attributes>ScaleRepositoryCustom
+&lt;&lt;interface&gt;&gt;
+--
+--
++ getScalesWithInterval(interval:Interval):List&lt;Scale&gt;
++ getScalesWithIntervals(intervals:List&lt;Interval&gt;):List&lt;Scale&gt;
++ getScalesWithChord(chord:Chord):List&lt;Scale&gt;
++ getScalesWithChords(chords:List&lt;Chord&gt;):List&lt;Scale&gt;
++ getScalesWithIntervalId(id:Long):List&lt;Scale&gt;
++ getScalesWithIntervalsId(ids:List&lt;Long&gt;):List&lt;Scale&gt;
++ getScalesWithChordId(id:Long):List&lt;Scale&gt;
++ getScalesWithChordsId(ids:List&lt;Long&gt;):List&lt;Scale&gt;
++ getScaleWithCode(code:String):Scale</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1524</x>
+      <y>366</y>
+      <w>150</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ScaleRepositoryCustomImp
+--
+- EntityManager:entityManager
+--</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>534</x>
-      <y>180</y>
-      <w>42</w>
+      <x>1470</x>
+      <y>378</y>
+      <w>66</w>
       <h>18</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1008</x>
+      <y>624</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>IntervalRepository
+&lt;&lt;interface&gt;&gt;
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1212</x>
+      <y>462</y>
+      <w>264</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>IntervalRepositoryCustom
+&lt;&lt;interface&gt;&gt;
+--
+--
++ getIntervalsOfChord(chord:Chord):List&lt;Interval&gt;
++ getIntervalsOfChords(chords:List&lt;Chord&gt;):List&lt;Interval&gt;
++ getIntervalOfNotes(notes:List&lt;Note&gt;):Interval
++ getIntervalsOfNotes(notes:List&lt;Note&gt;):List&lt;Interval&gt;
++ getIntervalWithSemitone(semitone:Integer):Interval
++ getIntervalsWithSemitones(semitones:List&lt;Integer&gt;):List&lt;Interval&gt;
++ getIntervalsOfScale(scale:Scale):List&lt;Interval&gt;
++ getIntervalsOfScales(scales:List&lt;Scale&gt;):List&lt;Interval&gt;
++ getAllIntervalsOfScale(scale:Scale):List&lt;Interval&gt;
++ getAllIntervalsOfScales(scales:List&lt;Scale&gt;):List&lt;Interval&gt;
++ getIntervalsOfChordId(id:Long):List&lt;Interval&gt;
++ getIntervalsOfChordsId(ids:List&lt;Long&gt;):List&lt;Interval&gt;
++ getIntervalOfNotesId(ids:List&lt;Long&gt;):Interval
++ getIntervalsOfNotesId(ids:List&lt;Long&gt;):List&lt;Interval&gt;
++ getIntervalsOfScaleId(id:Long):List&lt;Interval&gt;
++ getIntervalsOfScalesId(ids:List&lt;Long&gt;):List&lt;Interval&gt;
++ getAllIntervalsOfScaleId(id:Long):List&lt;Interval
++ getAllIntervalsOfScalesId(ids:List&lt;Long&gt;):List&lt;Interval&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1524</x>
+      <y>732</y>
+      <w>150</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>IntervaRepositoryCustomImp
+--
+- EntityManager:entityManager
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1470</x>
+      <y>558</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1008</x>
+      <y>678</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ProgressionRepository
+&lt;&lt;interface&gt;&gt;
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1212</x>
+      <y>678</y>
+      <w>264</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>ProgressionRepositoryCustom
+&lt;&lt;interface&gt;&gt;
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1524</x>
+      <y>546</y>
+      <w>150</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ProgressionRepositoryCustomImp
+--
+- EntityManager:entityManager
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>894</x>
+      <y>456</y>
+      <w>126</w>
+      <h>186</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0;190.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1470</x>
+      <y>744</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>858</x>
+      <y>60</y>
+      <w>246</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>CrudRepository&lt;T,ID&gt;
+&lt;&lt;Interface&gt;&gt;
+--
+--
++ count(void):Long
++ delete(entity:T):void
++ deleteAll(void): void
++ deleteAll(entities:Iterable&lt;? extends T&gt;):void
++ deleteAllById(ids:Iterable&lt;? extends ID&gt;):void
++ deleteById(id:ID):void
++ existsById(id:ID):boolean
++ findAll(void):Iterable&lt;T&gt;
++ findAllById(id:ID):Iterable&lt;T&gt;
++ findById(id:ID):Optional&lt;T&gt;
++ save(entity:S):&lt;S extends T&gt; S
++ saveAll(entities:Iterable&lt;S&gt;):&lt;S extends T&gt; Iterable&lt;S&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>858</x>
+      <y>234</y>
+      <w>246</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>PagingAndSortingRepository&lt;T,ID&gt;
+&lt;&lt;Interface&gt;&gt;
+--
+--
++ findAll(pageable:Pageable):Page&lt;T&gt;
++ findAll(sort:Sort):Iterable&lt;T&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>204</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>282</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>858</x>
+      <y>0</y>
+      <w>246</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Repository&lt;T,ID&gt;
+&lt;&lt;Interface&gt;&gt;
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>30</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>918</x>
+      <y>456</y>
+      <w>102</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;150.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>240</y>
+      <w>126</w>
+      <h>276</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;80.0;10.0;80.0;440.0;10.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>390</y>
+      <w>126</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;120.0;10.0;120.0;300.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>576</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;140.0;10.0;140.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>678</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;120.0;140.0;120.0;140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>906</x>
+      <y>456</y>
+      <w>114</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0;170.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>456</y>
+      <w>138</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;380.0;210.0;380.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>498</y>
+      <w>186</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ChordServiceImp
+--
+- chordRepository:ChordRepository
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>564</y>
+      <w>186</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ScaleServiceImp
+--
+- scaleRepository:ScaleRepository
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>624</y>
+      <w>186</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>IntervalServiceImp
+--
+- intervalRepository:IntervalRepository
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>678</y>
+      <w>186</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ProgressionServiceImp
+--
+- progressionRepository:ProgressionRepository
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>852</x>
+      <y>690</y>
+      <w>168</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>408</y>
+      <w>264</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>ChordService
+&lt;&lt;Interface&gt;&gt;
+--
++ getChords(void):List&lt;Chord&gt;
++ getChordById(id:Long):Optional&lt;Chord&gt;
++ saveChord(chord:Chord):void
++ deleteChord(chord:Chord):void
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>486</y>
+      <w>264</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>ScaleService
+&lt;&lt;Interface&gt;&gt;
+--
++ getScales(void):List&lt;Scale&gt;
++ getScaleById(id:Long):Optional&lt;Scale&gt;
++ saveScale(scale:Scale):void
++ deleteScale(scale:Scale):void
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>564</y>
+      <w>264</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>IntervalService
+&lt;&lt;Interface&gt;&gt;
+--
++ getIntervals(void):List&lt;Interval&gt;
++ getIntervalById(id:Long):Optional&lt;Interval&gt;
++ saveInterval(interval:Interval):void
++ deleteInterval(interval:Interval):void
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>642</y>
+      <w>264</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>ProgressionService
+&lt;&lt;Interface&gt;&gt;
+--
++ getProgressions(void):List&lt;Progression&gt;
++ getProgressionById(id:Long):Optional&lt;Progression&gt;
++ saveProgression(progression:Progression):void
++ deleteProgression(progression:Progression):void
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>678</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>600</y>
+      <w>96</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>522</y>
+      <w>96</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>444</y>
+      <w>96</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>852</x>
+      <y>636</y>
+      <w>168</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>852</x>
+      <y>576</y>
+      <w>168</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>852</x>
+      <y>510</y>
+      <w>168</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>702</y>
+      <w>36</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>972</x>
+      <y>648</y>
+      <w>48</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>588</y>
+      <w>60</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;380.0;10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>948</x>
+      <y>522</y>
+      <w>72</w>
+      <h>306</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;490.0;10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>486</y>
+      <w>162</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>AnalyzerController
+--
+- chordService:ChordService
+- scaleService:ScaleService
+- intervalService:IntervalService
+- progressionService:ProgressionService
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>408</y>
+      <w>162</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>RecognizerController
+--
+- chordService:ChordService
+- scaleService:ScaleService
+- intervalService:IntervalService
+- progressionService:ProgressionService
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>564</y>
+      <w>162</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>GeneratorController
+--
+- chordService:ChordService
+- scaleService:ScaleService
+- intervalService:IntervalService
+- progressionService:ProgressionService
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>642</y>
+      <w>162</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>CreatorController
+--
+- chordService:ChordService
+- scaleService:ScaleService
+- intervalService:IntervalService
+- progressionService:ProgressionService
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>414</y>
+      <w>186</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>504</y>
+      <w>186</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>600</y>
+      <w>186</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>426</y>
+      <w>186</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;130.0;90.0;130.0;90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>438</y>
+      <w>186</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;220.0;80.0;220.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>450</y>
+      <w>186</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;330.0;70.0;330.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>426</y>
+      <w>186</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;100.0;10.0;100.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>516</y>
+      <w>186</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;100.0;60.0;100.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>528</y>
+      <w>186</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;210.0;50.0;210.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>438</y>
+      <w>186</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;110.0;10.0;110.0;240.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>522</y>
+      <w>186</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;120.0;10.0;120.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>612</y>
+      <w>186</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;80.0;80.0;80.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>606</y>
+      <w>186</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;160.0;10.0;160.0;140.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>450</y>
+      <w>186</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;130.0;10.0;130.0;360.0;10.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>528</y>
+      <w>186</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;140.0;10.0;140.0;250.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>696</y>
+      <w>186</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>290.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>726</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>TODO
+abstract factory</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>372</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>TODO
+abstract factory</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
