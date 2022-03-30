@@ -6,14 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ChordDTO implements Serializable {
-    private Long id;
-    private String name;
-    private String symbol;
-    private String code;
+public class ConcreteChordDTO extends ChordDTO implements Serializable {
+    private NoteDTO tonic;
+    private List<NoteDTO> notes;
 }

@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-public interface ScaleService {
+public interface ScaleService extends CustomConcreteService<Scale, Long>{
 
-    List<Scale> getScales();
-    Optional<Scale> getScale(Long id);
 }

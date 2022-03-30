@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
@@ -97,5 +98,20 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
                 " where s.code=:codep")
                 .setParameter("codep",code)
                 .getResultList().get(0);
+    }
+
+    @Override
+    public Optional<Scale> findByName(String name) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Scale> findByCode(String code) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Scale> findBySymbol(String symbol) {
+        return Optional.empty();
     }
 }

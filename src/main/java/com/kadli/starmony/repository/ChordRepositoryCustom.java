@@ -6,8 +6,9 @@ import com.kadli.starmony.entity.Note;
 import com.kadli.starmony.entity.Scale;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface ChordRepositoryCustom {
+public interface ChordRepositoryCustom extends CustomCrudRepository<Chord, Long>{
     List<Chord> getChordsWithInterval(Interval interval);
     List<Chord> getChordsWithIntervals(List<Interval> intervals);
 
@@ -21,4 +22,9 @@ public interface ChordRepositoryCustom {
     List<Chord> getChordsOfScalesId(List<Long> ids);
 
     List<Chord> getChordWithNotes(List<Note> notes);
+
+    List<Chord>  getChordWithIntervals(List<Interval> intervals);
+    List<Chord>  getChordWithIntervalsId(List<Long> ids);
+
+    List<Chord> getConcreteChords();
 }

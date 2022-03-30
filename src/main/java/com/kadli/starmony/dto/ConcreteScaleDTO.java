@@ -1,6 +1,8 @@
 package com.kadli.starmony.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.kadli.starmony.entity.Note;
+import com.kadli.starmony.entity.Scale;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ScaleDTO implements Serializable {
-    private Long id;
-    private String name;
-    private String symbol;
-    private String code;
+public class ConcreteScaleDTO extends ScaleDTO implements Serializable {
+    private NoteDTO tonic;
+    private List<NoteDTO> notes;
 }

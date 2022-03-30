@@ -39,6 +39,10 @@ public class Note implements MusicalElement {
     @OneToMany(mappedBy = "scale_note")
     protected List<ConcreteScale> concreteScales;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "concreteChord")
+    private List<ConcreteChord> concreteChords;
+
     @Override
     public String getType() { return type; }
 }

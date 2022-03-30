@@ -6,7 +6,7 @@ import com.kadli.starmony.entity.Scale;
 
 import java.util.List;
 
-public interface ScaleRepositoryCustom {
+public interface ScaleRepositoryCustom extends CustomCrudRepository<Scale, Long>{
     List<Scale> getScalesWithInterval(Interval interval);
     List<Scale> getScalesWithIntervals(List<Interval> intervals);
 

@@ -1,6 +1,7 @@
 package com.kadli.starmony.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kadli.starmony.interfaces.MusicalElement;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "intervals")
+@Table(name = "_interval")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,7 +39,7 @@ public class Interval implements MusicalElement {
 
     @JsonIgnore
     @OneToMany(mappedBy = "chord_interval")
-    protected List<ConcreteChord> concreteChords;
+    protected List<ChordIntervals> chordIntervals;
 
     @Override
     public String getType() { return type; }

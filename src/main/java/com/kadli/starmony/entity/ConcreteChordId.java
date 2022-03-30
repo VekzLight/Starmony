@@ -16,10 +16,11 @@ import java.io.Serializable;
 @Builder
 public class ConcreteChordId implements Serializable {
 
-    @Column(name = "interval_id_interval")
-    private Long id_interval;
 
     @Column(name = "chord_id_chord")
     private Long id_chord;
+
+    @Column(name = "note_id_note")
+    private Long id_note;
 
 }

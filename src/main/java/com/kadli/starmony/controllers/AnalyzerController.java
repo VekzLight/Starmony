@@ -1,19 +1,21 @@
 package com.kadli.starmony.controllers;
 
+import com.kadli.starmony.dto.ChordDTO;
+import com.kadli.starmony.dto.Message;
 import com.kadli.starmony.entity.Chord;
 import com.kadli.starmony.entity.Interval;
-import com.kadli.starmony.entity.Note;
 import com.kadli.starmony.entity.Scale;
-import com.kadli.starmony.repository.ChordRepository;
-import com.kadli.starmony.repository.IntervalRepository;
-import com.kadli.starmony.repository.ScaleRepository;
+import com.kadli.starmony.service.ChordService;
+import com.kadli.starmony.service.IntervalService;
+import com.kadli.starmony.service.ProgressionService;
+import com.kadli.starmony.service.ScaleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -21,18 +23,31 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:4200")
 public class AnalyzerController {
 
+    @Autowired
+    private ChordService chordService;
 
     @Autowired
-    private IntervalRepository intervalRepository;
+    private IntervalService intervalService;
 
     @Autowired
-    private ChordRepository chordRepository;
+    private ScaleService scaleService;
 
     @Autowired
-    private ScaleRepository scaleRepository;
+    private ProgressionService progressionService;
 
+    /*
+     * TODO:
+     *   + Obtener Acordes de Escalas, Notas
+     * */
 
+    @GetMapping("/chord/getConcreteChords")
+    public ResponseEntity<List<ChordDTO>> getChords(){
+        List<Chord> chords = chordService.getConcrete();
+        if( chords.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(chords.stream().map(chordService::toDTO).collect(Collectors.toList()), HttpStatus.OK);
+    }
 
+    /*
     // Principales
     @PostMapping(path = "/api/getIntervals/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -127,23 +142,23 @@ public class AnalyzerController {
     public List<Interval> getIntervalsOfChord(@RequestBody Chord chord){
         return intervalRepository.getIntervalsOfChord(chord);
     };
-
-    @PostMapping(path = "/api/getIntervalsOfScale/",
+*/
+    @PostMapping(path = "/getIntervalsOfScale",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfScale(@RequestBody Scale scale){
-        return intervalRepository.getIntervalsOfScale(scale);
+        return intervalService.getIntervalsOfScale(scale);
     };
 
-    @PostMapping(path = "/api/getAllIntervalsOfScale/",
+    @PostMapping(path = "/getAllIntervalsOfScale",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getAllIntervalsOfScale(@RequestBody Scale scale){
-        return intervalRepository.getAllIntervalsOfScale(scale);
+        return intervalService.getAllIntervalsOfScale(scale);
     };
 
 
-
+/*
     // POST - Multiple Elements
     @PostMapping(path = "/api/getIntervalsOfChords/",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -373,7 +388,7 @@ public class AnalyzerController {
     public List<Scale> getScalesWithChordId(Long id){
         return scaleRepository.getScalesWithChordId(id);
     };
-
+*/
 
 
 }

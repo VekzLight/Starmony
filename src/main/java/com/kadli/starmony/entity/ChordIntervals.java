@@ -8,26 +8,23 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "scale_grades")
+@Table(name = "chord_interval")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ScaleGrades {
+public class ChordIntervals {
 
     @EmbeddedId
-    private ScaleGradesId sg_id = new ScaleGradesId();
-
-    @MapsId("id_scale")
-    @ManyToOne
-    @JoinColumn(name = "scale_id_scale")
-    private Scale scale_chord;
+    private ChordIntervalsId cc_id = new ChordIntervalsId();
 
     @MapsId("id_chord")
     @ManyToOne
     @JoinColumn(name = "chord_id_chord")
-    private Chord chord_scale;
+    private Chord chord_interval;
 
-    @Column(name = "grade")
-    private String grade;
+    @MapsId("id_interval")
+    @ManyToOne
+    @JoinColumn(name = "interval_id_interval")
+    private Interval interval_chord;
 }

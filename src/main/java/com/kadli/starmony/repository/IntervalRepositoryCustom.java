@@ -7,7 +7,7 @@ import com.kadli.starmony.entity.Scale;
 
 import java.util.List;
 
-public interface IntervalRepositoryCustom {
+public interface IntervalRepositoryCustom extends CustomCrudRepository<Interval, Long>{
     List<Interval> getIntervalsOfChord(Chord chord);
     List<Interval> getIntervalsOfChords(List<Chord> chords);
 

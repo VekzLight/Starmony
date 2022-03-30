@@ -1,6 +1,7 @@
 package com.kadli.starmony.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kadli.starmony.interfaces.MusicalElement;
 import lombok.*;
 
@@ -33,7 +34,7 @@ public class Scale implements MusicalElement {
 
     @JsonIgnore
     @OneToMany(mappedBy = "scale_chord")
-    protected List<ScaleGrades> scaleGrades;
+    protected List<ScaleGrade> scaleGrades;
 
     @JsonIgnore
     @OneToMany(mappedBy = "scale_note")

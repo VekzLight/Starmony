@@ -1,14 +1,12 @@
 package com.kadli.starmony.entity;
 
-import com.kadli.starmony.entity.Chord;
-import com.kadli.starmony.entity.Note;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity
 @Table(name = "concrete_chord")
@@ -24,11 +22,13 @@ public class ConcreteChord {
     @MapsId("id_chord")
     @ManyToOne
     @JoinColumn(name = "chord_id_chord")
-    private Chord chord_interval;
+    private Chord concreteChord;
 
-
-    @MapsId("id_interval")
+    @MapsId("id_note")
     @ManyToOne
-    @JoinColumn(name = "interval_id_interval")
-    private Interval interval_chord;
+    @JoinColumn(name = "note_id_note")
+    private Note note;
+
+    @JoinColumn(name = "position")
+    private int position;
 }

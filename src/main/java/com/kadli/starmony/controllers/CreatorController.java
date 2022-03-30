@@ -8,4 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/creator")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CreatorController {
+
+    /*
+     * TODO:
+     *   + Guardar Elementos musicales completos
+     * */
+
 }

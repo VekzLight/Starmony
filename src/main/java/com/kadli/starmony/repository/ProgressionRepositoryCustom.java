@@ -4,7 +4,7 @@ import com.kadli.starmony.entity.Progression;
 
 import java.util.List;
 
-public interface ProgressionRepositoryCustom {
+public interface ProgressionRepositoryCustom extends CustomCrudRepository<Progression, Long>{
 
 
 }

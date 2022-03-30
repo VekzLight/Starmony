@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -189,5 +190,20 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom{
                 .setParameter("ids", ids)
                 .getResultList();
         return getAllIntervalsOfScales(scales.stream().distinct().collect(Collectors.toList()));
+    }
+
+    @Override
+    public Optional<Interval> findByName(String name) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Interval> findByCode(String code) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Interval> findBySymbol(String symbol) {
+        return Optional.empty();
     }
 }

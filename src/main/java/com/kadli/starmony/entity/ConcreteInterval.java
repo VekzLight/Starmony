@@ -21,12 +21,12 @@ public class ConcreteInterval {
     @MapsId("id_note1")
     @ManyToOne
     @JoinColumn(name = "note_id_note1")
-    private Note note1_interval;
+    private Note firstNote;
 
     @MapsId("id_note2")
     @ManyToOne
     @JoinColumn(name = "note_id_note2")
-    private Note note2_interval;
+    private Note lastNote;
 
     @MapsId("id_interval")
     @ManyToOne
