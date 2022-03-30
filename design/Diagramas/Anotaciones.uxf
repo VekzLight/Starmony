@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>180</y>
+      <w>480</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>BeanFactory
+&lt;&lt;Interface&gt;&gt;
+--
++ FACTORY_BEAN_PREFIX:String
+--
++ containsBean(name:String):boolean
++ getAliases(name:String):String[]
++ getBean(requiredType:Class&lt;T&gt;):&lt;T&gt; T
++ getBean(requiredType:Class&lt;T&gt;, args:Object):&lt;T&gt; T
++ getBean(name:String):Object
++ getBean(name:String, requiredType:Class&lt;T&gt;):&lt;T&gt; T
++ getBean(name:String, args:Object): Object
++ getBeanProvider(requiredType:Class&lt;T&gt;):&lt;T&gt; ObjectProvider&lt;T&gt;
++ getBeanProvider(requiredType:ResolvableType):&lt;T&gt; ObjectProvider&lt;T&gt;
++ getType(name:String):Class&lt;?&gt;
++ getType(name:String, allowFactoryBeanInit:boolean):Class&lt;?&gt;
++ isPrototype(name:String):boolean
++ isSingleton(name:String):boolean
++ isTypeMatch(name:String, typeToMatch:Class&lt;?&gt;):boolean
++ isTypeMatch(name:String, typeToMatch:ResolvableType):boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
