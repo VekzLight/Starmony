@@ -4,8 +4,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>550</x>
-      <y>264</y>
+      <x>715</x>
+      <y>286</y>
       <w>264</w>
       <h>66</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>319</x>
-      <y>374</y>
+      <x>484</x>
+      <y>396</y>
       <w>209</w>
       <h>44</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>506</x>
-      <y>319</y>
+      <x>671</x>
+      <y>341</y>
       <w>176</w>
       <h>88</h>
     </coordinates>
@@ -38,8 +38,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>319</x>
-      <y>484</y>
+      <x>484</x>
+      <y>506</y>
       <w>209</w>
       <h>44</h>
     </coordinates>
@@ -49,8 +49,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
-      <y>297</y>
+      <x>385</x>
+      <y>319</y>
       <w>121</w>
       <h>121</h>
     </coordinates>
@@ -60,8 +60,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>407</x>
-      <y>407</y>
+      <x>572</x>
+      <y>429</y>
       <w>110</w>
       <h>99</h>
     </coordinates>
@@ -72,8 +72,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>891</x>
-      <y>286</y>
+      <x>1056</x>
+      <y>308</y>
       <w>121</w>
       <h>121</h>
     </coordinates>
@@ -83,8 +83,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>803</x>
-      <y>275</y>
+      <x>968</x>
+      <y>297</y>
       <w>143</w>
       <h>44</h>
     </coordinates>
@@ -94,8 +94,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>517</x>
-      <y>297</y>
+      <x>682</x>
+      <y>319</y>
       <w>429</w>
       <h>121</h>
     </coordinates>
@@ -105,8 +105,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>517</x>
-      <y>308</y>
+      <x>682</x>
+      <y>330</y>
       <w>429</w>
       <h>220</h>
     </coordinates>
@@ -116,8 +116,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>319</x>
-      <y>594</y>
+      <x>484</x>
+      <y>616</y>
       <w>209</w>
       <h>44</h>
     </coordinates>
@@ -127,19 +127,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
-      <y>308</y>
+      <x>385</x>
+      <y>341</y>
       <w>121</w>
-      <h>330</h>
+      <h>319</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;40.0;10.0;80.0;280.0;90.0;280.0</additional_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;80.0;270.0;90.0;270.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>407</x>
-      <y>517</y>
+      <x>572</x>
+      <y>539</y>
       <w>110</w>
       <h>99</h>
     </coordinates>
@@ -150,8 +150,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>517</x>
-      <y>319</y>
+      <x>682</x>
+      <y>341</y>
       <w>429</w>
       <h>319</h>
     </coordinates>
@@ -161,8 +161,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>264</x>
-      <y>231</y>
+      <x>429</x>
+      <y>253</y>
       <w>605</w>
       <h>451</h>
     </coordinates>
@@ -173,12 +173,34 @@ halign=center</panel_attributes>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>143</x>
-      <y>286</y>
+      <x>308</x>
+      <y>308</y>
       <w>77</w>
       <h>121</h>
     </coordinates>
     <panel_attributes>User</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>330</y>
+      <w>121</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;40.0;10.0;80.0;180.0;90.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>297</y>
+      <w>352</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
   </element>
 </diagram>
