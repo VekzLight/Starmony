@@ -5,6 +5,6 @@ import com.kadli.starmony.entity.Progression;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProgressionService extends CustomConcreteService<Progression, Long> {
+public interface ProgressionService extends CustomCrudService<Progression, Long> {
 
 }

@@ -34,11 +34,11 @@ public class Interval implements MusicalElement {
     protected final String type = "interval";
 
     @JsonIgnore
-    @OneToMany(mappedBy = "interval_notes")
+    @OneToMany(mappedBy = "intervalOfNotes")
     protected List<ConcreteInterval> concreteIntervals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "chord_interval")
+    @OneToMany(mappedBy = "intervalOfChord")
     protected List<ChordIntervals> chordIntervals;
 
     @Override

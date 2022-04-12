@@ -1,14 +1,19 @@
 package com.kadli.starmony.controllers;
 
+import com.kadli.starmony.dto.ConcreteChordDTO;
+import com.kadli.starmony.dto.Message;
 import com.kadli.starmony.dto.ProgressionDTO;
 import com.kadli.starmony.dto.ScaleGradeDTO;
-import com.kadli.starmony.entity.Chord;
-import com.kadli.starmony.entity.Scale;
+import com.kadli.starmony.entity.*;
 import com.kadli.starmony.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PostRemove;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,47 +31,44 @@ public class GeneratorController {
     private ScaleService scaleService;
 
     @Autowired
-    private ScaleGradesService scaleGradesService;
+    private NoteService noteService;
+
+    @Autowired
+    private ConcreteMusicalElementsService musicalElementsService;
 
     @Autowired
     private ProgressionService progressionService;
 
-    /**
-     * Genera los grado de de una escala
-     * @param scale
-     * @return
-     */
-    @PostMapping("/chord/gradesOfScale")
-    List<ScaleGradeDTO> generateGradesOfScale(@RequestBody Scale scale){
-        System.out.println(scale.toString());
-        return scaleGradesService.generateGradesOfScale(scale).stream().map(scaleGradesService::toDTO).collect(Collectors.toList());
+
+    @GetMapping("/chord/concrete/{idChord}/tonic/{idTonic}")
+    List<ConcreteChord> generateConcreteChordWithTonic(@PathVariable Long idChord, @PathVariable Long idTonic){
+        return musicalElementsService.generateConcreteChords(chordService.getById(idChord).get(), noteService.getById(idTonic).get() );
     }
 
-    /**
-     * Genera los grados de una escala
-     * @param id
-     * @return
-     */
-    List<Chord> generateGradesOfScaleById(Long id){
-        return null;
+    @GetMapping("/intervals/chord/{id}")
+    ResponseEntity<List<Interval>> generateIntervalsOfChord(@PathVariable Long id){
+        Optional<Chord> chord = chordService.getById(id);
+        if( !chord.isPresent() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(intervalService.generateIntervalsOfChord(chord.get()), HttpStatus.OK);
     }
 
-    /**
-     * Genera los grados de una progresion
-     * @param progression
-     * @return
-     */
-    List<Chord> generateGradesOfProgression(ProgressionDTO progression){
-        return null;
+    @GetMapping("/chords/concrete/save")
+    ResponseEntity<List<ConcreteChord>> generateAllConcreteChords(){
+        return new ResponseEntity(musicalElementsService.generateAndSaveAllConcretechords(), HttpStatus.OK);
     }
 
-    /**
-     * Genera los grados de una progresion
-     * @param id
-     * @return
-     */
-    List<Chord> generateGradesOfProgressionById(Long id){
-        return null;
+    @GetMapping("/intervals/concrete/save")
+    ResponseEntity<List<ConcreteInterval>> generateAllConcreteIntervals(){
+        return new ResponseEntity(musicalElementsService.generateAllConcreteIntervalsAndSave(), HttpStatus.OK);
     }
 
+    @GetMapping("/chord/concrete/{idChord}/tonic/{idTonic}/save")
+    void generateAndSaveConcreteChordWithTonic(@PathVariable Long idChord, @PathVariable Long idTonic){
+        musicalElementsService.generateAndSaveConcreteChords(chordService.getById(idChord).get(), noteService.getById(idTonic).get() );
+    }
+
+    @GetMapping("/scale/concrete/save")
+    void generateAndSaveAllConcreteScales(){
+        musicalElementsService.generateAllConcreteScalesAndSave();
+    }
 }

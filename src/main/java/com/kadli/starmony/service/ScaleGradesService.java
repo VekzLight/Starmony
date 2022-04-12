@@ -9,10 +9,5 @@ import java.util.List;
 public interface ScaleGradesService {
 
     List<ScaleGrade> generateGradesOfScale(Scale scale);
-    /**
-     * Convierte todas las entidades en DTO's
-     * @param scaleGrade
-     * @return
-     */
-    ScaleGradeDTO toDTO(ScaleGrade scaleGrade);
+
 }

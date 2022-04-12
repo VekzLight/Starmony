@@ -29,6 +29,4 @@ public class ConcreteChord {
     @JoinColumn(name = "note_id_note")
     private Note note;
 
-    @JoinColumn(name = "position")
-    private int position;
 }

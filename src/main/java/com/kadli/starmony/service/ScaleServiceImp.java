@@ -1,8 +1,14 @@
 package com.kadli.starmony.service;
 
+import com.kadli.starmony.dto.ChordDTO;
+import com.kadli.starmony.dto.ConcreteScaleDTO;
+import com.kadli.starmony.dto.ScaleDTO;
+import com.kadli.starmony.entity.ConcreteScale;
 import com.kadli.starmony.entity.Scale;
 import com.kadli.starmony.repository.ScaleRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,39 +21,17 @@ public class ScaleServiceImp implements ScaleService{
     @Autowired
     private ScaleRepository scaleRepository;
 
-    @Override
-    public List<Scale> getConcrete() {
-        return null;
-    }
-
-    @Override
-    public Optional<Scale> getConcreteById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Scale> getConcreteByName(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Scale> getConcreteByCode(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Scale> getConcreteBySymbol(Long id) {
-        return Optional.empty();
-    }
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public List<Scale> getAll() {
-        return null;
+        return scaleRepository.findAll();
     }
 
     @Override
-    public Optional<Scale> getById(Long aLong) {
-        return Optional.empty();
+    public Optional<Scale> getById(Long id) {
+        return scaleRepository.findById(id);
     }
 
     @Override
@@ -97,7 +81,7 @@ public class ScaleServiceImp implements ScaleService{
 
     @Override
     public boolean exist(Scale entity) {
-        return false;
+        return scaleRepository.exists(Example.of(entity));
     }
 
     @Override
@@ -135,18 +119,15 @@ public class ScaleServiceImp implements ScaleService{
 
     }
 
-    @Override
-    public void updateName(Scale entity, String name) {
 
+    @Override
+    public ScaleDTO entityToDTO(Scale entity) {
+        return modelMapper.map(entity, ScaleDTO.class);
     }
 
     @Override
-    public void updateCode(Scale entity, String code) {
-
+    public Scale dtotoEntity(ScaleDTO dto) {
+        return modelMapper.map(dto, Scale.class);
     }
 
-    @Override
-    public void updateSymbol(Scale entity, String symbol) {
-
-    }
 }

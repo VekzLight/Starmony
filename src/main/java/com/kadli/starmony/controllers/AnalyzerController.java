@@ -42,9 +42,9 @@ public class AnalyzerController {
 
     @GetMapping("/chord/getConcreteChords")
     public ResponseEntity<List<ChordDTO>> getChords(){
-        List<Chord> chords = chordService.getConcrete();
+        List<Chord> chords = chordService.getAll();
         if( chords.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
-        return new ResponseEntity(chords.stream().map(chordService::toDTO).collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity(chords.stream().map(chordService::entityToDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     /*
@@ -147,14 +147,14 @@ public class AnalyzerController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getIntervalsOfScale(@RequestBody Scale scale){
-        return intervalService.getIntervalsOfScale(scale);
+        return intervalService.getIntervalsOfScaleByTonic(scale);
     };
 
     @PostMapping(path = "/getAllIntervalsOfScale",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Interval> getAllIntervalsOfScale(@RequestBody Scale scale){
-        return intervalService.getAllIntervalsOfScale(scale);
+        return intervalService.getIntervalsOfScaleByAll(scale);
     };
 
 

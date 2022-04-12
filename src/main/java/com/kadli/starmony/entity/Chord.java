@@ -32,11 +32,11 @@ public class Chord implements MusicalElement {
     private String code;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "chord_interval")
+    @OneToMany(mappedBy = "chordOfInterval")
     private List<ChordIntervals> chordIntervals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "scale_chord")
+    @OneToMany(mappedBy = "scaleOfChord")
     private List<ScaleGrade> scaleGrades;
 
     @JsonIgnore

@@ -14,32 +14,6 @@ public class ProgressionServiceImp implements ProgressionService{
     @Autowired
     private ProgressionRepository progressionRepository;
 
-
-    @Override
-    public List<Progression> getConcrete() {
-        return null;
-    }
-
-    @Override
-    public Optional<Progression> getConcreteById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Progression> getConcreteByName(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Progression> getConcreteByCode(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Progression> getConcreteBySymbol(Long id) {
-        return Optional.empty();
-    }
-
     @Override
     public List<Progression> getAll() {
         return null;
@@ -135,18 +109,4 @@ public class ProgressionServiceImp implements ProgressionService{
 
     }
 
-    @Override
-    public void updateName(Progression entity, String name) {
-
-    }
-
-    @Override
-    public void updateCode(Progression entity, String code) {
-
-    }
-
-    @Override
-    public void updateSymbol(Progression entity, String symbol) {
-
-    }
 }

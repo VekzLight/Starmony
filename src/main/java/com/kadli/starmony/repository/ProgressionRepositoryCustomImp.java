@@ -15,17 +15,7 @@ public class ProgressionRepositoryCustomImp implements ProgressionRepositoryCust
     private EntityManager entityManager;
 
     @Override
-    public Optional<Progression> findByName(String name) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Progression> findByCode(String code) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Progression> findBySymbol(String symbol) {
+    public Optional<Progression> findByAttribute(String attribute, String value) {
         return Optional.empty();
     }
 }

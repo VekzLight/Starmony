@@ -1,6 +1,5 @@
 package com.kadli.starmony.service;
 
-import com.kadli.starmony.dto.ScaleGradeDTO;
 import com.kadli.starmony.entity.Chord;
 import com.kadli.starmony.entity.Interval;
 import com.kadli.starmony.entity.Scale;
@@ -36,7 +35,7 @@ public class ScaleGradesServiceImp implements ScaleGradesService{
         System.out.println(code.toString());
         for(int i = 0; i < code.size(); i++){
             ScaleGrade scaleGrade = new ScaleGrade();
-            scaleGrade.setScale_chord(scale);
+            scaleGrade.setScaleOfChord(scale);
             List<Integer> semitonesI = new ArrayList<>();
 
             int semitonesCounter = 0;
@@ -52,24 +51,13 @@ public class ScaleGradesServiceImp implements ScaleGradesService{
 
             List<Interval> intervalsI = intervalRepository.getIntervalsWithSemitones(semitonesI);
             Chord gradeI = chordRepository.getChordWithIntervals(intervalsI).get(0);
-            scaleGrade.setChord_scale(gradeI);
+            scaleGrade.setChordOfScale(gradeI);
 
             scaleGrade.setGrade("I");
             scaleGrades.add(scaleGrade);
         }
 
         return scaleGrades;
-    }
-
-    /**
-     * Convierte todas las entidades en DTO's
-     *
-     * @param scaleGrade
-     * @return
-     */
-    @Override
-    public ScaleGradeDTO toDTO(ScaleGrade scaleGrade) {
-        return modelMapper.map(scaleGrade, ScaleGradeDTO.class);
     }
 
 }

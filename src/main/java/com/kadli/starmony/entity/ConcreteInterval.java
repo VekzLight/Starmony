@@ -1,22 +1,18 @@
 package com.kadli.starmony.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "concrete_interval")
-@Data
-@AllArgsConstructor
+@Setter
+@Getter
 @NoArgsConstructor
-@Builder
 public class ConcreteInterval {
 
     @EmbeddedId
-    private ConcreteIntervalId concreteIntervalId = new ConcreteIntervalId();
+    private ConcreteIntervalId id = new ConcreteIntervalId();
 
     @MapsId("id_note1")
     @ManyToOne
@@ -31,5 +27,5 @@ public class ConcreteInterval {
     @MapsId("id_interval")
     @ManyToOne
     @JoinColumn(name = "interval_id_interval")
-    private Interval interval_notes;
+    private Interval intervalOfNotes;
 }

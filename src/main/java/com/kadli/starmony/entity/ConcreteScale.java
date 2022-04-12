@@ -1,6 +1,5 @@
 package com.kadli.starmony.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,17 +16,17 @@ import javax.persistence.*;
 public class ConcreteScale {
 
     @EmbeddedId
-    private ChordIntervalsId cs_id = new ChordIntervalsId();
+    private ConcreteScaleId id = new ConcreteScaleId();
 
     @MapsId("id_scale")
     @ManyToOne
     @JoinColumn(name = "scale_id_scale")
-    private Scale scale_note;
+    private Scale scaleOfNotes;
 
     @MapsId("id_note")
     @ManyToOne
     @JoinColumn(name = "note_id_note")
-    private Note note_scale;
+    private Note notesOfScale;
 
 
 }

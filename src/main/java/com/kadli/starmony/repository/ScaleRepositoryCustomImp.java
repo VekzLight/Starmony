@@ -101,17 +101,7 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     }
 
     @Override
-    public Optional<Scale> findByName(String name) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Scale> findByCode(String code) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Scale> findBySymbol(String symbol) {
+    public Optional<Scale> findByAttribute(String attribute, String value) {
         return Optional.empty();
     }
 }

@@ -41,8 +41,5 @@ public interface CustomCrudService<T, ID extends Serializable>{
     void updateNameById(ID id, String name);
     void updateSymbolById(ID id, String symbol);
     void updateCodeById(ID id, String code);
-    void updateName(T entity, String name);
-    void updateCode(T entity, String code);
-    void updateSymbol(T entity, String symbol);
 
 }

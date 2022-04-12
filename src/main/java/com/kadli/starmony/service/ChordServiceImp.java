@@ -1,28 +1,40 @@
 package com.kadli.starmony.service;
 
 import com.kadli.starmony.dto.ChordDTO;
-import com.kadli.starmony.entity.Chord;
+import com.kadli.starmony.dto.ConcreteChordDTO;
+import com.kadli.starmony.dto.NoteDTO;
+import com.kadli.starmony.entity.*;
+import com.kadli.starmony.repository.ChordIntervalRepository;
 import com.kadli.starmony.repository.ChordRepository;
+import com.kadli.starmony.repository.ConcreteChordRepository;
+import com.kadli.starmony.repository.NoteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service("ChordService")
 public class ChordServiceImp implements ChordService {
 
+    // Repositorios de la clase
     @Autowired
     private ChordRepository chordRepository;
 
+    // Herramientas
     @Autowired
     private ModelMapper modelMapper;
 
 
 
 
+    // Obtener
     @Override
     public List<Chord> getAll() {
         return chordRepository.findAll();
@@ -35,22 +47,24 @@ public class ChordServiceImp implements ChordService {
 
     @Override
     public Optional<Chord> getByName(String name) {
-        return chordRepository.findByAttribute("name",name);
+        return chordRepository.findByAttribute("name", name);
     }
 
     @Override
     public Optional<Chord> getByCode(String code) {
-        return chordRepository.findByAttribute("code",code);
+        return chordRepository.findByAttribute("code", code);
     }
 
     @Override
     public Optional<Chord> getBySymbol(String symbol) {
-        return chordRepository.findByAttribute("symbol",symbol);
+        return chordRepository.findByAttribute("symbol", symbol);
     }
 
 
 
 
+
+    // Guardar
     @Override
     public void save(Chord chord) {
         chordRepository.save(chord);
@@ -59,37 +73,45 @@ public class ChordServiceImp implements ChordService {
 
 
 
+
+    // Eliminar
     @Override
     public void delete(Chord chord) {
         chordRepository.delete(chord);
     }
 
     @Override
-    public void deleteById(Long id) {chordRepository.deleteById(id);}
+    public void deleteById(Long id) {
+        chordRepository.deleteById(id);
+    }
 
     @Override
     public void deleteByName(String name) {
-        this.getByName(name).ifPresent( chord -> {
-            chordRepository.deleteById(chord.getId());
+        this.getByName(name).ifPresent(chord -> {
+            chordRepository.delete(chord);
         });
     }
 
     @Override
     public void deleteBySymbol(String symbol) {
-        this.getBySymbol(symbol).ifPresent( chord -> {
-            chordRepository.deleteById(chord.getId());
+        this.getBySymbol(symbol).ifPresent(chord -> {
+            chordRepository.delete(chord);
         });
     }
 
     @Override
     public void deleteByCode(String code) {
-        this.getByCode(code).ifPresent( chord -> {
-            chordRepository.deleteById(chord.getId());
+        this.getByCode(code).ifPresent(chord -> {
+            chordRepository.delete(chord);
         });
     }
 
 
 
+
+
+
+    // Comprobacion
 
     @Override
     public boolean exist(Chord chord) {
@@ -119,93 +141,49 @@ public class ChordServiceImp implements ChordService {
 
 
 
+
+    // Actializar
+
     @Override
     public void updateNameById(Long id, String name) {
-        chordRepository.findById(id).ifPresent(chord -> {
+        this.getById(id).ifPresent(chord -> {
             chord.setName(name);
-            chordRepository.save(chord);
+            this.save(chord);
         });
     }
 
     @Override
     public void updateSymbolById(Long id, String symbol) {
-        chordRepository.findById(id).ifPresent(chord -> {
+        this.getById(id).ifPresent(chord -> {
             chord.setSymbol(symbol);
-            chordRepository.save(chord);
+            this.save(chord);
         });
     }
 
     @Override
     public void updateCodeById(Long id, String code) {
-        chordRepository.findById(id).ifPresent(chord -> {
+        this.getById(id).ifPresent(chord -> {
             chord.setCode(code);
-            chordRepository.save(chord);
+            this.save(chord);
         });
     }
 
+
+
+
+
+
+
+
+    // Conversiones
     @Override
-    public void updateName(Chord chord, String name) {
-        if (chordRepository.exists(Example.of(chord))){
-            chord.setName(name);
-            chordRepository.save(chord);
-        }
+    public ChordDTO entityToDTO(Chord entity) {
+        return modelMapper.map(entity, ChordDTO.class);
     }
 
     @Override
-    public void updateCode(Chord chord, String code) {
-        if (chordRepository.exists(Example.of(chord))){
-            chord.setName(code);
-            chordRepository.save(chord);
-        }
+    public Chord dtotoEntity(ChordDTO dto) {
+        return modelMapper.map(dto, Chord.class);
     }
-
-    @Override
-    public void updateSymbol(Chord chord, String symbol) {
-        if (chordRepository.exists(Example.of(chord))){
-            chord.setName(symbol);
-            chordRepository.save(chord);
-        }
-    }
-
-
-
-
-    @Override
-    public List<Chord> getConcrete() {
-        return null;
-    }
-
-    @Override
-    public Optional<Chord> getConcreteById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Chord> getConcreteByName(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Chord> getConcreteByCode(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Chord> getConcreteBySymbol(Long id) {
-        return Optional.empty();
-    }
-
-
-
-    @Override
-    public ChordDTO toDTO(Chord chord) {
-        return modelMapper.map(chord, ChordDTO.class);
-    }
-
-    @Override
-    public Chord toEntity(ChordDTO chord) {
-        return null;
-    }
-
 
 }

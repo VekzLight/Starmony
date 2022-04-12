@@ -1,15 +1,8 @@
 package com.kadli.starmony.controllers;
 
-import com.kadli.starmony.dto.ChordDTO;
-import com.kadli.starmony.dto.Message;
-import com.kadli.starmony.entity.Chord;
-import com.kadli.starmony.entity.Interval;
-import com.kadli.starmony.entity.Progression;
-import com.kadli.starmony.entity.Scale;
-import com.kadli.starmony.service.ChordService;
-import com.kadli.starmony.service.IntervalService;
-import com.kadli.starmony.service.ProgressionService;
-import com.kadli.starmony.service.ScaleService;
+import com.kadli.starmony.dto.*;
+import com.kadli.starmony.entity.*;
+import com.kadli.starmony.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,8 +27,13 @@ public class RecognizerController {
     private ScaleService scaleService;
 
     @Autowired
+    private NoteService noteService;
+
+    @Autowired
     private ProgressionService progressionService;
 
+    @Autowired
+    private ConcreteMusicalElementsService musicalElementsService;
     /*
     * TODO:
     *   + Obtener Todos los Elementos Musicales
@@ -43,35 +41,71 @@ public class RecognizerController {
     *   + Comprobar Existencia por sus atributo
     * */
 
+    @GetMapping("/notes")
+    public ResponseEntity<List<Note>> getAllNotes(){
+        List<Note> notes = noteService.getAll();
+        if( notes.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(notes.stream().map(noteService::entityToDTO).collect(Collectors.toList()), HttpStatus.OK);
+    }
 
     @GetMapping("/chords")
-    public ResponseEntity<List<ChordDTO>> getChords(){
+    public ResponseEntity<List<ChordDTO>> getAllChords(){
         List<Chord> chords = chordService.getAll();
         if( chords.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
-        return new ResponseEntity(chords.stream().map(chordService::toDTO).collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity(chords.stream().map(chordService::entityToDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/chord/{id}")
-    public ResponseEntity<ChordDTO> getChords(@PathVariable Long id){
+    public ResponseEntity<ChordDTO> getChordById(@PathVariable Long id){
         Optional<Chord> chord = chordService.getById(id);
         if( !chord.isPresent() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
-        return new ResponseEntity( chordService.toDTO(chord.get()), HttpStatus.OK);
+        return new ResponseEntity( chordService.entityToDTO(chord.get()), HttpStatus.OK);
     }
 
-    @GetMapping("/chord/{id}")
-    public ResponseEntity<ChordDTO> getChords(@PathVariable Long id, @PathVariable String value){
+    @GetMapping("/chord/{id}/{value}")
+    public ResponseEntity<ChordDTO> getChordByAttribute(@PathVariable Long id, @PathVariable String value){
         Optional<Chord> chord = chordService.getById(id);
         if( !chord.isPresent() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
-        return new ResponseEntity( chordService.toDTO(chord.get()), HttpStatus.OK);
+        return new ResponseEntity( chordService.entityToDTO(chord.get()), HttpStatus.OK);
     }
+
+    /*
+    @GetMapping("/chords/concrete")
+    public ResponseEntity<List<ConcreteChordDTO>> getAllConcreteChords(){
+        List<ConcreteChord> chords = concreteChordService.getAll();
+        if( chords.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(chords.stream().map(concreteChordService::toDtoConcrete).collect(Collectors.toList()), HttpStatus.OK);
+    }
+*/
+    @GetMapping("/chord/concrete/{id}")
+    public ResponseEntity<ConcreteChordDTO> getConcreteChordWithTonic(@PathVariable Long id){
+        return new ResponseEntity(null, HttpStatus.OK);
+    }
+
+    @GetMapping("/chord/concrete/{idChord}/tonic/{idTonic}")
+    public ResponseEntity<ConcreteChord> getConcreteChord(@PathVariable Long idChord, @PathVariable Long idTonic){
+        Optional<Chord> chord = chordService.getById(idChord);
+        Optional<Note> note = noteService.getById(idTonic);
+        if( !chord.isPresent() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(musicalElementsService.generateConcreteChords(chord.get(), note.get()), HttpStatus.OK);
+    }
+
 
     @GetMapping("/intervals")
-    public ResponseEntity<List<Interval>> getIntervals(){
+    public ResponseEntity<List<IntervalDTO>> getIntervals(){
         List<Interval> intervals = intervalService.getAll();
-        if( !intervals.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
-        return new ResponseEntity(intervals.stream().map(intervalService::toDTO).collect(Collectors.toList()), HttpStatus.OK);
+        if( intervals.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(intervals.stream().map(intervalService::entityToDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    /*
+    @GetMapping("/intervals/concrete")
+    public ResponseEntity<List<ConcreteIntervalDTO>> getConcreteIntervals(){
+        List<Interval> intervals = intervalService.getAll();
+        if( intervals.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(intervals.stream().map(intervalService::entityToDTOConcrete).collect(Collectors.toList()), HttpStatus.OK);
+    }
+*/
     @GetMapping("/interval/{id}")
     public ResponseEntity<Optional<Interval>> getInterval(@PathVariable Long id){
         return new ResponseEntity<>(intervalService.getById(id), HttpStatus.OK);
@@ -79,13 +113,23 @@ public class RecognizerController {
 
     @GetMapping("/scales")
     public ResponseEntity<List<Scale>> getScales(){
-        return new ResponseEntity<>(scaleService.getAll(), HttpStatus.OK);
+        List<Scale> scales = scaleService.getAll();
+        if( scales.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(scales.stream().map(scaleService::entityToDTO).collect(Collectors.toList()), HttpStatus.OK);
+    }
+/*
+    @GetMapping("/scales/concrete")
+    public ResponseEntity<List<ConcreteScaleDTO>> getConcreteScales(){
+        List<Scale> scales = scaleService.getAll();
+        if( scales.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(scales.stream().map(scaleService::entityToDTOConcrete).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/scale/{id}")
     public ResponseEntity<Optional<Scale>> getScale(@PathVariable Long id){
         return new ResponseEntity<>(scaleService.getById(id), HttpStatus.OK);
     }
+
 
     @GetMapping("/progressions")
     public ResponseEntity<List<Progression>> getProgressions(){
@@ -97,5 +141,5 @@ public class RecognizerController {
         return new ResponseEntity<>(progressionService.getById(id), HttpStatus.OK);
     }
 
-
+*/
 }

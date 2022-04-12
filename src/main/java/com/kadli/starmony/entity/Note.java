@@ -32,11 +32,11 @@ public class Note implements MusicalElement {
     protected final String type = "note";
 
     @JsonIgnore
-    @OneToMany(mappedBy = "interval_notes")
+    @OneToMany(mappedBy = "intervalOfNotes")
     protected List<ConcreteInterval> concreteIntervals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "scale_note")
+    @OneToMany(mappedBy = "scaleOfNotes")
     protected List<ConcreteScale> concreteScales;
 
     @JsonIgnore

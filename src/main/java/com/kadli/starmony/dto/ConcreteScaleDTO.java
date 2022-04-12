@@ -9,12 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConcreteScaleDTO extends ScaleDTO implements Serializable {
     private NoteDTO tonic;
-    private List<NoteDTO> notes;
+    private HashMap<NoteDTO,  Integer> notes;
 }

@@ -27,4 +27,5 @@ public interface ChordRepositoryCustom extends CustomCrudRepository<Chord, Long>
     List<Chord>  getChordWithIntervalsId(List<Long> ids);
 
     List<Chord> getConcreteChords();
+
 }
