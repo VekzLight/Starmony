@@ -33,7 +33,7 @@ public class Chord implements MusicalElement {
 
     @JsonIgnore
     @OneToMany(mappedBy = "chordOfInterval")
-    private List<ChordIntervals> chordIntervals;
+    private List<ChordInterval> chordIntervals;
 
     @JsonIgnore
     @OneToMany(mappedBy = "scaleOfChord")
@@ -42,6 +42,7 @@ public class Chord implements MusicalElement {
     @JsonIgnore
     @OneToMany(mappedBy = "concreteChord")
     private List<ConcreteChord> concreteChords;
+
 
     @Transient
     private final String type = "chord";

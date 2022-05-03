@@ -16,6 +16,7 @@ import java.util.List;
 public class Scale implements MusicalElement {
 
     @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @Column(name = "id_scale")
     protected Long id;
 

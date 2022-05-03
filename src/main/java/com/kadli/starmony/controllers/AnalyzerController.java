@@ -1,27 +1,26 @@
 package com.kadli.starmony.controllers;
 
-import com.kadli.starmony.dto.ChordDTO;
-import com.kadli.starmony.dto.Message;
-import com.kadli.starmony.entity.Chord;
-import com.kadli.starmony.entity.Interval;
-import com.kadli.starmony.entity.Scale;
-import com.kadli.starmony.service.ChordService;
-import com.kadli.starmony.service.IntervalService;
-import com.kadli.starmony.service.ProgressionService;
-import com.kadli.starmony.service.ScaleService;
+import com.kadli.starmony.dto.*;
+import com.kadli.starmony.entity.*;
+import com.kadli.starmony.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/analyzer")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AnalyzerController {
+
+    @Autowired
+    private NoteService noteService;
 
     @Autowired
     private ChordService chordService;
@@ -35,360 +34,182 @@ public class AnalyzerController {
     @Autowired
     private ProgressionService progressionService;
 
-    /*
-     * TODO:
-     *   + Obtener Acordes de Escalas, Notas
-     * */
 
-    @GetMapping("/chord/getConcreteChords")
-    public ResponseEntity<List<ChordDTO>> getChords(){
-        List<Chord> chords = chordService.getAll();
-        if( chords.isEmpty() ) return new ResponseEntity(new Message(-1,"Empty"), HttpStatus.NOT_FOUND);
-        return new ResponseEntity(chords.stream().map(chordService::entityToDTO).collect(Collectors.toList()), HttpStatus.OK);
-    }
+    @Autowired
+    private ConcreteChordService concreteChordService;
 
-    /*
-    // Principales
-    @PostMapping(path = "/api/getIntervals/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOf(@RequestBody Map<String, List<Long>> musicalElements){
-        List<Interval> out = new ArrayList<>();
-        List<Long> progressionsId = new ArrayList<>();
-        List<Long> intervalsId = new ArrayList<>();
-        List<Long> chordsId = new ArrayList<>();
-        List<Long> scalesId = new ArrayList<>();
-        List<Long> notesId = new ArrayList<>();
+    @Autowired
+    private ConcreteIntervalService concreteIntervalService;
 
-        if(musicalElements.containsKey("progression")) progressionsId.addAll(musicalElements.get("progression"));
-        if(musicalElements.containsKey("interval")) intervalsId.addAll(musicalElements.get("interval"));
-        if(musicalElements.containsKey("chord")) chordsId.addAll(musicalElements.get("chord"));
-        if(musicalElements.containsKey("scale")) scalesId.addAll(musicalElements.get("scale"));
-        if(musicalElements.containsKey("note")) notesId.addAll(musicalElements.get("note"));
-
-        if(chordsId.size() == 1) out.addAll(intervalRepository.getIntervalsOfChordId(chordsId.get(0)));
-        if(scalesId.size() == 1) out.addAll(intervalRepository.getIntervalsOfScaleId(scalesId.get(0)));
-
-        if(chordsId.size() > 1) out.addAll(intervalRepository.getIntervalsOfChordsId(chordsId));
-        if(scalesId.size() > 1) out.addAll(intervalRepository.getIntervalsOfScalesId(scalesId));
-
-        if(notesId.size() == 2) out.add(intervalRepository.getIntervalOfNotesId(notesId));
-        if(notesId.size() > 2) out.addAll(intervalRepository.getIntervalsOfNotesId(notesId));
-
-        return out.stream().distinct().collect(Collectors.toList());
-    };
-
-    @PostMapping(path = "/api/getChords/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsOf(@RequestBody Map<String, List<Long>> musicalElements){
-        List<Chord> out = new ArrayList<>();
-        List<Long> progressionsId = new ArrayList<>();
-        List<Long> intervalsId = new ArrayList<>();
-        List<Long> chordsId = new ArrayList<>();
-        List<Long> scalesId = new ArrayList<>();
-        List<Long> notesId = new ArrayList<>();
-
-        if(musicalElements.containsKey("progression")) progressionsId.addAll(musicalElements.get("progression"));
-        if(musicalElements.containsKey("interval")) intervalsId.addAll(musicalElements.get("interval"));
-        if(musicalElements.containsKey("chord")) chordsId.addAll(musicalElements.get("chord"));
-        if(musicalElements.containsKey("scale")) scalesId.addAll(musicalElements.get("scale"));
-        if(musicalElements.containsKey("note")) notesId.addAll(musicalElements.get("note"));
-
-
-        if(intervalsId.size() == 1) out.addAll(chordRepository.getChordsWithIntervalId(intervalsId.get(0)));
-        if(scalesId.size() == 1) out.addAll(chordRepository.getChordsOfScaleId(scalesId.get(0)));
-
-        if(intervalsId.size() > 1) out.addAll(chordRepository.getChordsWithIntervalsId(intervalsId));
-        if(scalesId.size() > 1) out.addAll(chordRepository.getChordsOfScalesId(scalesId));
-
-        return out.stream().distinct().collect(Collectors.toList());
-    };
-
-    @PostMapping(path = "/api/getScales/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Scale> getScalesOf(@RequestBody Map<String, List<Long>> musicalElements){
-        List<Scale> out = new ArrayList<>();
-        List<Long> progressionsId = new ArrayList<>();
-        List<Long> intervalsId = new ArrayList<>();
-        List<Long> chordsId = new ArrayList<>();
-        List<Long> scalesId = new ArrayList<>();
-        List<Long> notesId = new ArrayList<>();
-
-        if(musicalElements.containsKey("progression")) progressionsId.addAll(musicalElements.get("progression"));
-        if(musicalElements.containsKey("interval")) intervalsId.addAll(musicalElements.get("interval"));
-        if(musicalElements.containsKey("chord")) chordsId.addAll(musicalElements.get("chord"));
-        if(musicalElements.containsKey("scale")) scalesId.addAll(musicalElements.get("scale"));
-        if(musicalElements.containsKey("note")) notesId.addAll(musicalElements.get("note"));
-
-
-        if(intervalsId.size() == 1) out.addAll(scaleRepository.getScalesWithIntervalId(intervalsId.get(0)));
-        if(chordsId.size() == 1) out.addAll(scaleRepository.getScalesWithChordId(chordsId.get(0)));
-
-        if(intervalsId.size() > 1) out.addAll(scaleRepository.getScalesWithIntervalsId(intervalsId));
-        if(chordsId.size() > 1) out.addAll(scaleRepository.getScalesWithChordsId(chordsId));
-
-        return out.stream().distinct().collect(Collectors.toList());
-    };
-
+    @Autowired
+    private ConcreteScaleService concreteScaleService;
 
 
     // Intervals
-    // POST - Single Element
-    @PostMapping(path = "/api/getIntervalsOfChord/",
+    @PostMapping(path = "/interval/chord",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfChord(@RequestBody Chord chord){
-        return intervalRepository.getIntervalsOfChord(chord);
+    public ResponseEntity<List<IntervalDTO>> getIntervalsOfChord(@RequestBody ChordDTO chordDto){
+        Chord chord = chordService.dtotoEntity(chordDto);
+        if( !chordService.exist(chord) ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+
+        List<Interval> intervals = intervalService.getIntervalsOfChord(chord);
+        if( intervals.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( intervals.stream().map( intervalService::entityToDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
-*/
-    @PostMapping(path = "/getIntervalsOfScale",
+
+    @PostMapping(path = "/interval/concrete/chord/concrete",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfScale(@RequestBody Scale scale){
-        return intervalService.getIntervalsOfScaleByTonic(scale);
+    public ResponseEntity<List<ConcreteIntervalDTO>> getConcreteIntervalsOfChordConcrete(@RequestBody ConcreteChordDTO concreteChordDTO){
+        Optional<Chord> chord = chordService.get( Chord.builder().code(concreteChordDTO.getCode()).build() );
+        Note tonic = noteService.dtotoEntity(concreteChordDTO.getTonic());
+
+        if( !chord.isPresent() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        List<Interval> intervals = intervalService.getIntervalsOfChord(chord.get());
+
+        List<ConcreteInterval> concreteIntervals = new ArrayList<>();
+        for(Interval interval: intervals)
+            concreteIntervals.add( concreteIntervalService.getConcreteIntervalWithTonic(interval.getId(), tonic.getId()).get() );
+
+
+        if( concreteIntervals.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( concreteIntervals.stream().map( concreteIntervalService::concreteIntervalToConcreteIntervalDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
 
-    @PostMapping(path = "/getAllIntervalsOfScale",
+    @PostMapping(path = "/interval/scale/tonic",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getAllIntervalsOfScale(@RequestBody Scale scale){
-        return intervalService.getIntervalsOfScaleByAll(scale);
+    public ResponseEntity<List<IntervalDTO>> getIntervalsOfScale(@RequestBody ScaleDTO scaleDto){
+        Scale scale = scaleService.dtotoEntity(scaleDto);
+        if( !scaleService.exist(scale) ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+
+        List<Interval> intervals = intervalService.getIntervalsOfScaleByTonic( scale );
+        if( intervals.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( intervals.stream().map( intervalService::entityToDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
 
-
-/*
-    // POST - Multiple Elements
-    @PostMapping(path = "/api/getIntervalsOfChords/",
+    @PostMapping(path = "/interval/scale/all",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfChords(@RequestBody List<Chord> chords){
-        return intervalRepository.getIntervalsOfChords(chords);
+    public ResponseEntity<List<IntervalDTO>> getAllIntervalsOfScale(@RequestBody ScaleDTO scaleDto){
+        Scale scale = scaleService.dtotoEntity(scaleDto);
+        if( !scaleService.exist(scale) ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+
+        List<Interval> intervals = intervalService.getIntervalsOfScaleByAll( scale );
+        if( intervals.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( intervals.stream().map( intervalService::entityToDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
 
-    @PostMapping(path = "/api/getIntervalOfNotes/",
+    @PostMapping(path = "/interval/note",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Interval getIntervalOfNotes(@RequestBody List<Note> notes){
-        return intervalRepository.getIntervalOfNotes(notes);
-    };
+    public ResponseEntity<List<IntervalDTO>> getIntervalsOfNotes(@RequestBody List<NoteDTO> notesDto){
+        List<Note> notes = notesDto.stream().map( noteService::dtotoEntity).collect(Collectors.toList());
+        List<Interval> intervals = intervalService.getIntervalsOfNotes( notes );
 
-    @PostMapping(path = "/api/getIntervalsOfNotes/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfNotes(@RequestBody List<Note> notes){
-        return intervalRepository.getIntervalsOfNotes(notes);
-    };
-
-    @PostMapping(path = "/api/getIntervalsWithSemitones/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsWithSemitones(@RequestBody List<Integer> semitones){
-        return intervalRepository.getIntervalsWithSemitones(semitones);
-    };
-
-    @PostMapping(path = "/api/getIntervalsOfScales/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfScales(@RequestBody List<Scale> scales){
-        return intervalRepository.getIntervalsOfScales(scales);
-    };
-
-    @PostMapping(path = "/api/getAllIntervalsOfScales/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getAllIntervalsOfScales(@RequestBody List<Scale> scales){
-        return intervalRepository.getAllIntervalsOfScales(scales);
-    };
-
-    @PostMapping(path = "/api/getIntervalsOfChordsId/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfChordsId(@RequestBody List<Long> ids){
-        return intervalRepository.getIntervalsOfChordsId(ids);
-    };
-
-    @PostMapping(path = "/api/getIntervalOfNotesId/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Interval getIntervalOfNotesId(@RequestBody List<Long> ids){
-        return intervalRepository.getIntervalOfNotesId(ids);
-    };
-
-    @PostMapping(path = "/api/getIntervalsOfNotesId/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfNotesId(@RequestBody List<Long> ids){
-        return intervalRepository.getIntervalsOfNotesId(ids);
-    };
-
-    @PostMapping(path = "/api/getIntervalsOfScalesId/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getIntervalsOfScalesId(@RequestBody List<Long> ids){
-        return intervalRepository.getIntervalsOfScalesId(ids);
-    };
-
-    @PostMapping(path = "/api/getAllIntervalsOfScalesId/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Interval> getAllIntervalsOfScalesId(@RequestBody List<Long> ids){
-        return intervalRepository.getAllIntervalsOfScalesId(ids);
+        if( intervals.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( intervals.stream().map( intervalService::entityToDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
 
 
-
-    // GET
-    @GetMapping("/api/getIntervalWithSemitone/{semitone}")
-    public Interval getIntervalWithSemitone(@PathVariable int semitone){
-        return intervalRepository.getIntervalWithSemitone(semitone);
-    };
-
-    @GetMapping("/api/getIntervalsOfChordId/{id}")
-    public List<Interval> getIntervalsOfChordId(@PathVariable Long id){
-        return intervalRepository.getIntervalsOfChordId(id);
-    };
-
-    @GetMapping("/api/getIntervalsOfScaleId/{id}")
-    public List<Interval> getIntervalsOfScaleId(@PathVariable Long id){
-        return intervalRepository.getIntervalsOfScaleId(id);
-    };
-
-    @GetMapping("/api/getAllIntervalsOfScaleId/{id}")
-    public List<Interval> getAllIntervalsOfScaleId(@PathVariable Long id){
-        return intervalRepository.getAllIntervalsOfScaleId(id);
-    };
 
 
 
     // Chords
-    // POST - Single Element
-    @PostMapping(path = "/api/getChordsWithInterval/",
+    @PostMapping(path = "/chord/interval",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsWithInterval(@RequestBody Interval interval){
-        return chordRepository.getChordsWithInterval(interval);
+    public ResponseEntity<List<ChordDTO>> getChordsWithIntervals(@RequestBody List<IntervalDTO> intervalsDto){
+        List<Interval> intervals = intervalsDto.stream().map( intervalService::dtotoEntity ).collect(Collectors.toList());
+        List<Chord> chords = chordService.getChordsWithIntervals(intervals);
+        if( chords.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( chords.stream().map( chordService::entityToDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
 
-    @PostMapping(path = "/api/getChordsWithIntervals/",
+    @PostMapping(path = "/chord/scale",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsWithIntervals(@RequestBody List<Interval> intervals){
-        return chordRepository.getChordsWithIntervals(intervals);
+    public ResponseEntity<ScaleGradesDTO> getGradesOfScale(@RequestBody ScaleDTO scaleDto){
+        Scale scale = scaleService.dtotoEntity(scaleDto);
+        List<ScaleGrade> grades = chordService.getGradesOfScale(scale);
+        if( grades.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>( chordService.scaleGradesToScaleGradeDTO(grades), HttpStatus.OK );
     };
 
-    @PostMapping(path = "/api/getChordsOfScale/",
+    @PostMapping(path = "/chord/concrete/scale/concrete",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsOfScale(@RequestBody Scale scale){
-        return chordRepository.getChordsOfScale(scale);
+    public ResponseEntity<Optional<ConcreteScaleGradesDTO>> getConcreteGradesOfScale(@RequestBody ConcreteScaleDTO concreteScaleDTO){
+        List<ConcreteScaleGrade> concreteScaleGrades = concreteChordService.getCompleteConcreteScaleGradesByConcreteScaleId( concreteScaleDTO.getIdConcrete() );
+        if( concreteScaleGrades.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+
+        Optional<ConcreteScaleGradesDTO> concreteScaleGradeDTO = concreteChordService.concreteScaleGradesToConcreteScaleGradesDTO(concreteScaleGrades);
+        if( !concreteScaleGradeDTO.isPresent() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>( concreteScaleGradeDTO, HttpStatus.OK );
     };
 
 
 
-    // POST - Multiple Elements
-    @PostMapping(path = "/api/getChordsOfScalesId/",
+
+
+
+    // Scale
+    @PostMapping(path = "/scale/interval",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsOfScalesId(@RequestBody List<Long> ids){
-        return chordRepository.getChordsOfScalesId(ids);
+    public ResponseEntity<List<ScaleDTO>> getScalesWithIntervals(@RequestBody List<IntervalDTO> intervalDTOS){
+        List<Interval> intervals = intervalDTOS.stream().map( intervalService::dtotoEntity ).collect(Collectors.toList());
+        List<Scale> scales = scaleService.getScalesWithIntervals(intervals);
+        if( scales.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( scales.stream().map( scaleService::entityToDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
 
-    @PostMapping(path = "/api/getChordsWithIntervalsId/",
+    @PostMapping(path = "/scale/chord",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsWithIntervalsId(List<Long> ids){
-        return chordRepository.getChordsWithIntervalsId(ids);
+    public ResponseEntity<List<ScaleDTO>> getScalesWithChord(@RequestBody List<ChordDTO> chordsDTO){
+        List<Chord> chords = chordsDTO.stream().map(chordService::dtotoEntity).collect(Collectors.toList());
+        List<Scale> scales = scaleService.getScalesWithChords(chords);
+        if( scales.isEmpty() ) return new ResponseEntity( new Message(-1, "No encontrados") , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>( scales.stream().map( scaleService::entityToDTO ).collect(Collectors.toList()), HttpStatus.OK );
     };
 
-    @PostMapping(path = "/api/getChordsOfScales/",
+
+    // Progression Grades
+    @PostMapping(path = "/progression/scale",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Chord> getChordsOfScales(@RequestBody List<Scale> scales){
-        return chordRepository.getChordsOfScales(scales);
+    public ResponseEntity<Optional<ProgressionGradeDTO>> getProgressionGradesOfScale(@RequestBody ProgressionScaleDTO progressionScaleDTO){
+        Scale scale = scaleService.dtotoEntity(progressionScaleDTO.getScaleDTO());
+        Progression progression = progressionService.dtotoEntity(progressionScaleDTO.getProgressionDTO());
+
+        if( !scaleService.exist(scale) ) return new ResponseEntity( new Message(-1, "Escala no encotrada") , HttpStatus.NOT_FOUND);
+        if( !progressionService.exist(progression) ) return new ResponseEntity( new Message(-1, "Progression encontrada") , HttpStatus.NOT_FOUND);
+
+        Long idScaleGrade = chordService.getIdScaleGrade(scale);
+
+        List<ProgressionGrade> progressionGrades = progressionService.getCompleteProgressionGradeByScaleGrade( progression.getId(), idScaleGrade );
+        if( progressionGrades.isEmpty() ) return new ResponseEntity( new Message(-1, "No existen los grados de la progression") , HttpStatus.NOT_FOUND);
+
+        Optional<ProgressionGradeDTO> progressionGradeDTO = progressionService.progressionGradeToProgressionGradeDTO(progressionGrades);
+
+
+        return new ResponseEntity<>( progressionGradeDTO, HttpStatus.OK );
     };
 
+    @GetMapping("/progression/scale/probe")
+    public ResponseEntity<Optional<ProgressionScaleDTO>> probeProgressionScale(){
+        Optional<Progression> progression = progressionService.getById(1L);
+        Optional<Scale> scale = scaleService.getById(1L);
 
+        ProgressionDTO progressionDTO = progressionService.entityToDTO(progression.get());
+        ScaleDTO scaleDTO = scaleService.entityToDTO(scale.get());
 
-    // GET
-    @GetMapping("/api/getChordsWithIntervalId/{id}")
-    public List<Chord> getChordsWithIntervalId(Long id){
-        return chordRepository.getChordsWithIntervalId(id);
+        ProgressionScaleDTO progressionScaleDTO = new ProgressionScaleDTO( progressionDTO, scaleDTO );
+
+        return new ResponseEntity<>( Optional.of(progressionScaleDTO), HttpStatus.OK );
     };
-
-    @GetMapping("/api/getChordsOfScaleId/{id}")
-    public List<Chord> getChordsOfScaleId(@RequestBody Long id){
-        return chordRepository.getChordsOfScaleId(id);
-    };
-
-
-
-    // Scales
-    // POST - Single Element
-    @PostMapping(path = "/api/getScalesWithInterval/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Scale> getScalesWithInterval(Interval interval){
-        return scaleRepository.getScalesWithInterval(interval);
-    };
-
-    @PostMapping(path = "/api/getScalesWithChord/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Scale> getScalesWithChord(Chord chord){
-        return scaleRepository.getScalesWithChord(chord);
-    };
-
-    @PostMapping(path = "/api/getScaleWithCode/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Scale getScaleWithCode(String code){
-        return scaleRepository.getScaleWithCode(code);
-    };
-
-    // POST - Multiple Elements
-    @PostMapping(path = "/api/getScalesWithIntervals/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Scale> getScalesWithIntervals(List<Interval> intervals){
-        return scaleRepository.getScalesWithIntervals(intervals);
-    };
-
-    @PostMapping(path = "/api/getScalesWithChords/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Scale> getScalesWithChords(List<Chord> chords){
-        return scaleRepository.getScalesWithChords(chords);
-    };
-
-    @PostMapping(path = "/api/getScalesWithIntervalsId/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Scale> getScalesWithIntervalsId(List<Long> ids){
-        return scaleRepository.getScalesWithIntervalsId(ids);
-    };
-
-    @PostMapping(path = "/api/getScalesWithChordsId/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Scale> getScalesWithChordsId(List<Long> ids){
-        return scaleRepository.getScalesWithChordsId(ids);
-    };
-
-
-
-    // GET
-    @GetMapping("/api/getScalesWithIntervalId/{id}")
-    public List<Scale> getScalesWithIntervalId(@PathVariable Long id){
-        return scaleRepository.getScalesWithIntervalId(id);
-    }
-
-    @GetMapping("/api/getScalesWithChordId/{id}")
-    public List<Scale> getScalesWithChordId(Long id){
-        return scaleRepository.getScalesWithChordId(id);
-    };
-*/
-
-
 }

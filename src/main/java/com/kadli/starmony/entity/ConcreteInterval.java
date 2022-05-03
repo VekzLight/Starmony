@@ -11,21 +11,20 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class ConcreteInterval {
 
-    @EmbeddedId
-    private ConcreteIntervalId id = new ConcreteIntervalId();
+    @Id
+    @Column(name = "id_concrete_interval")
+    private Long id_concrete_interval;
 
-    @MapsId("id_note1")
     @ManyToOne
     @JoinColumn(name = "note_id_note1")
     private Note firstNote;
 
-    @MapsId("id_note2")
     @ManyToOne
     @JoinColumn(name = "note_id_note2")
     private Note lastNote;
 
-    @MapsId("id_interval")
     @ManyToOne
     @JoinColumn(name = "interval_id_interval")
     private Interval intervalOfNotes;
+
 }

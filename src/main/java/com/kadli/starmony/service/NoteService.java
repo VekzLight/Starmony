@@ -5,4 +5,6 @@ import com.kadli.starmony.entity.Note;
 
 public interface NoteService extends CustomCrudService<Note, Long>, DtoConversions<Note, NoteDTO>{
 
+    Long getNoteWithSemitone(Long tonic, int semitones);
+
 }

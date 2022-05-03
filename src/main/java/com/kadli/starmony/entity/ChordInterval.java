@@ -13,17 +13,15 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ChordIntervals {
+public class ChordInterval {
 
     @EmbeddedId
-    private ChordIntervalsId id = new ChordIntervalsId();
+    private ChordIntervalId id = new ChordIntervalId();
 
-    @MapsId("id_chord")
     @ManyToOne
     @JoinColumn(name = "chord_id_chord")
     private Chord chordOfInterval;
 
-    @MapsId("id_interval")
     @ManyToOne
     @JoinColumn(name = "interval_id_interval")
     private Interval intervalOfChord;

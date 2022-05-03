@@ -19,12 +19,10 @@ public class ConcreteChord {
     @EmbeddedId
     private ConcreteChordId cc_id = new ConcreteChordId();
 
-    @MapsId("id_chord")
     @ManyToOne
     @JoinColumn(name = "chord_id_chord")
     private Chord concreteChord;
 
-    @MapsId("id_note")
     @ManyToOne
     @JoinColumn(name = "note_id_note")
     private Note note;

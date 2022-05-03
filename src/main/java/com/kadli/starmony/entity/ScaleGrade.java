@@ -16,18 +16,15 @@ import javax.persistence.*;
 public class ScaleGrade {
 
     @EmbeddedId
-    private ScaleGradesId id = new ScaleGradesId();
+    private ScaleGradeId id = new ScaleGradeId();
 
-    @MapsId("id_scale")
     @ManyToOne
     @JoinColumn(name = "scale_id_scale")
     private Scale scaleOfChord;
 
-    @MapsId("id_chord")
     @ManyToOne
     @JoinColumn(name = "chord_id_chord")
     private Chord chordOfScale;
 
-    @Column(name = "grade")
-    private String grade;
+
 }

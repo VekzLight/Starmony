@@ -31,6 +31,22 @@ public class IntervalServiceImp implements IntervalService {
 
 
 
+    public List<Interval> getAllManually(Interval interval){
+        Long id = interval.getId();
+        String name = interval.getName();
+        String symbol = interval.getSymbol();
+        int semitones = interval.getSemitones();
+
+        List<Interval> intervals = new ArrayList<>();
+        if(id != null) this.getById(id).ifPresent(it -> { intervals.add(it); });
+        if(name != null) this.getByAttribute("name", name).ifPresent(it -> { intervals.add(it); });
+        if(symbol != null) this.getByAttribute("symbol", symbol).ifPresent(it -> { intervals.add(it); });
+        if(semitones > 0) this.getIntervalWithSemitone(semitones).ifPresent(it -> { intervals.add(it); });
+
+        return intervals;
+    }
+
+
     // Intervalos
     // Obtener
     @Override
@@ -39,24 +55,34 @@ public class IntervalServiceImp implements IntervalService {
     }
 
     @Override
+    public List<Interval> getAll(Interval example) {
+        List<Interval> intervals = intervalRepository.findAll( Example.of(example) );
+        if( intervals.isEmpty() ) intervals = this.getAllManually(example);
+        return intervals;
+    }
+
+    @Override
+    public Optional<Interval> get(Interval example) {
+        Optional<Interval> interval = intervalRepository.findOne(Example.of(example));
+        if( !interval.isPresent() ){
+            List<Interval> intervals = this.getAllManually(example);
+            if( !intervals.isEmpty() )
+                interval = Optional.of(intervals.get(0));
+        }
+        return interval;
+    }
+
+    @Override
     public Optional<Interval> getById(Long id) {
         return intervalRepository.findById(id);
     }
 
     @Override
-    public Optional<Interval> getByName(String name) {
-        return Optional.empty();
+    public Optional<Interval> getByAttribute(String attribute, String value) {
+        return intervalRepository.findByAttribute(attribute, value);
     }
 
-    @Override
-    public Optional<Interval> getByCode(String code) {
-        return Optional.empty();
-    }
 
-    @Override
-    public Optional<Interval> getBySymbol(String symbol) {
-        return Optional.empty();
-    }
 
 
     // Guardar
@@ -64,6 +90,8 @@ public class IntervalServiceImp implements IntervalService {
     public void save(Interval entity) {
         intervalRepository.save(entity);
     }
+
+
 
 
 
@@ -79,32 +107,21 @@ public class IntervalServiceImp implements IntervalService {
     }
 
     @Override
-    public void deleteByName(String name) {
-        this.getByName(name).ifPresent((interval -> {
+    public void deleteByAttribute(String attribute, String value) {
+        this.getByAttribute(attribute, value).ifPresent((interval -> {
             this.delete(interval);
         }));
     }
 
-    @Override
-    public void deleteBySymbol(String symbol) {
-        this.getBySymbol(symbol).ifPresent((interval -> {
-            this.delete(interval);
-        }));
-    }
-
-    @Override
-    public void deleteByCode(String code) {
-        this.getByCode(code).ifPresent((interval -> {
-            this.delete(interval);
-        }));
-    }
 
 
 
     // Comprobaciones
     @Override
     public boolean exist(Interval entity) {
-        return intervalRepository.exists(Example.of(entity));
+        boolean existIt = intervalRepository.exists(Example.of(entity));
+        if(!existIt) existIt = !this.getAllManually(entity).isEmpty();
+        return existIt;
     }
 
     @Override
@@ -113,45 +130,24 @@ public class IntervalServiceImp implements IntervalService {
     }
 
     @Override
-    public boolean existByName(String name) {
-        return intervalRepository.exists(Example.of(Interval.builder().name(name).build()));
+    public boolean existByAttribute(String attribute, String value) {
+        return this.getByAttribute(attribute, value).isPresent();
     }
 
-    @Override
-    public boolean existBySymbol(String symbol) {
-        return intervalRepository.exists(Example.of(Interval.builder().symbol(symbol).build()));
-    }
-
-    @Override
-    public boolean existByCode(String code) {
-        return intervalRepository.exists(Example.of(Interval.builder().semitones(Integer.parseInt(code)).build()));
-
-    }
 
 
 
     // Actualizar
     @Override
-    public void updateNameById(Long id, String name) {
-        intervalRepository.findById(id).ifPresent(interval -> {
-            interval.setName(name);
-            intervalRepository.save(interval);
-        });
-    }
+    public void updateAttributeById(Long id, String attribute, String value) {
+        this.getById(id).ifPresent(interval -> {
+            switch (attribute){
+                case "name": interval.setName(value); break;
+                case "symbol": interval.setSymbol(value); break;
+                case "semitones": interval.setSemitones(Integer.parseInt(value)); break;
+            }
 
-    @Override
-    public void updateSymbolById(Long id, String symbol) {
-        intervalRepository.findById(id).ifPresent(interval -> {
-            interval.setSymbol(symbol);
-            intervalRepository.save(interval);
-        });
-    }
-
-    @Override
-    public void updateCodeById(Long id, String code) {
-        intervalRepository.findById(id).ifPresent(interval -> {
-            interval.setSemitones(Integer.parseInt(code));
-            intervalRepository.save(interval);
+            this.save(interval);
         });
     }
 
@@ -174,6 +170,8 @@ public class IntervalServiceImp implements IntervalService {
 
 
 
+
+
     // Intervalos de Acordes
 
     // Obtener
@@ -183,21 +181,27 @@ public class IntervalServiceImp implements IntervalService {
     }
 
 
-    // Generadores
-    private List<ChordIntervals> toChordIntervals(Chord chord, List<Interval> intervals){
-        List<ChordIntervals> chordIntervals = new ArrayList<>();
 
+
+
+    // Utilidades
+    private List<ChordInterval> toChordIntervals(Chord chord, List<Interval> intervals){
+        List<ChordInterval> chordIntervals = new ArrayList<>();
+
+        Long position = 1L;
+        Long idChordInterval = this.getLastId() + 1;
         for(Interval interval: intervals){
-            ChordIntervalsId itId = new ChordIntervalsId();
-            itId.setId_interval(interval.getId());
-            itId.setId_chord(chord.getId());
+            ChordIntervalId id = new ChordIntervalId();
+            id.setPosition_interval(position);
+            id.setId_chord_interval(idChordInterval);
 
-            ChordIntervals it = new ChordIntervals();
+            ChordInterval it = new ChordInterval();
             it.setChordOfInterval(chord);
             it.setIntervalOfChord(interval);
-            it.setId(itId);
+            it.setId(id);
 
             chordIntervals.add(it);
+            position++;
         }
 
         return chordIntervals;
@@ -208,29 +212,42 @@ public class IntervalServiceImp implements IntervalService {
         String codeString[] = chord.getCode().split("-");
         List<Interval> intervals = new ArrayList<>();
         for(String symbol:codeString){
-            System.out.println(symbol);
+            String subCode = symbol;
+            if(!symbol.contains("2b")){
+                if (symbol.contains("b")) subCode = (Integer.parseInt(subCode.split("b")[0]) - 1)+"#/" + symbol;
+                if (symbol.contains("#")) subCode = symbol + "/" + (Integer.parseInt(subCode.split("#")[0]) + 1) + "b";
+            }
 
-            intervalRepository.findByAttribute("symbol", symbol).ifPresent( interval -> {
+            intervalRepository.findByAttribute("symbol", subCode).ifPresent( (interval) -> {
                 intervals.add(interval);
             });
         }
         return intervals;
     }
 
+
+
+
+
+
+
     // Generadores
     @Override
-    public void generateIntervalsOfChordAndSave(Chord chord) {
+    public List<ChordInterval> generateIntervalsOfChordAndSave(Chord chord) {
         List<Interval> intervals = this.generateIntervalsOfChord(chord);
-        List<ChordIntervals> chordIntervals = this.toChordIntervals(chord, intervals);
+        List<ChordInterval> chordIntervals = this.toChordIntervals(chord, intervals);
         this.chordIntervalRepository.saveAll(chordIntervals);
+        return chordIntervals;
     }
 
     @Override
-    public void generateAllIntervalsOfChordsAndSave() {
+    public List<ChordInterval> generateAllIntervalsOfChordsAndSave() {
         List<Chord> chords = chordService.getAll();
+        List<ChordInterval> chordIntervals = new ArrayList<>();
         for(Chord it: chords){
-            this.generateIntervalsOfChordAndSave(it);
+            chordIntervals.addAll(this.generateIntervalsOfChordAndSave(it));
         }
+        return chordIntervals;
     }
 
 
@@ -242,6 +259,19 @@ public class IntervalServiceImp implements IntervalService {
         return intervalRepository.getIntervalWithSemitones(semitone);
     }
 
+    @Override
+    public List<Interval> getIntervalsOfNotes(List<Note> notes) {
+        List<Long> notesId = new ArrayList<>();
+        for(Note note: notes)
+            notesId.add(note.getId());
+        return intervalRepository.getIntervalsOfNotes(notesId);
+    }
+
+    @Override
+    public Long getLastId() {
+        Long id = chordIntervalRepository.getLastId();
+        return id == null ? 0 : id;
+    }
 
 
     // Conversiones

@@ -1,7 +1,6 @@
 package com.kadli.starmony.service;
 
-import com.kadli.starmony.dto.ChordDTO;
-import com.kadli.starmony.entity.Chord;
+import com.kadli.starmony.entity.ProgressionGrade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,11 +10,11 @@ public interface CustomCrudService<T, ID extends Serializable>{
 
     // Obtener
     List<T> getAll();
+    List<T> getAll(T example);
+    List<T> getAllManually(T example);
+    Optional<T> get(T example);
     Optional<T> getById(ID id);
-    Optional<T> getByName(String name);
-    Optional<T> getByCode(String code);
-    Optional<T> getBySymbol(String symbol);
-
+    Optional<T> getByAttribute(String attribute, String value);
 
     // Guardar
     void save(T entity);
@@ -23,23 +22,17 @@ public interface CustomCrudService<T, ID extends Serializable>{
     // Eliminar
     void delete(T entity);
     void deleteById(ID id);
-    void deleteByName(String name);
-    void deleteBySymbol(String symbol);
-    void deleteByCode(String code);
+    void deleteByAttribute(String attribute, String value);
 
 
     // Comprobaciones
     boolean exist(T entity);
     boolean existById(ID id);
-    boolean existByName(String name);
-    boolean existBySymbol(String entity);
-    boolean existByCode(String code);
-
+    boolean existByAttribute(String attribute, String value);
 
     // Modificaciones
 
-    void updateNameById(ID id, String name);
-    void updateSymbolById(ID id, String symbol);
-    void updateCodeById(ID id, String code);
+    void updateAttributeById(ID id, String attribute, String value);
+
 
 }

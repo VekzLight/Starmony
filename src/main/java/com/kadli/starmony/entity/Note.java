@@ -43,6 +43,7 @@ public class Note implements MusicalElement {
     @OneToMany(mappedBy = "concreteChord")
     private List<ConcreteChord> concreteChords;
 
+
     @Override
     public String getType() { return type; }
 }

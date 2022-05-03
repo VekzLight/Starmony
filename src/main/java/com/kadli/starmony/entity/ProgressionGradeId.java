@@ -4,17 +4,20 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 import java.io.Serializable;
 
 @Embeddable
 @Getter
 @Setter
 @NoArgsConstructor
-public class ConcreteScaleId implements Serializable {
+public class ProgressionGradeId implements Serializable {
 
-    @Column(name = "id_concrete_scale")
-    private Long id_concrete_scale;
+    @Column(name = "id_progression_grade")
+    private Long id_progression_grade;
 
-    @Column(name = "position_note_scale")
+    @Column(name = "position_grade")
     private int position;
+
+
 }

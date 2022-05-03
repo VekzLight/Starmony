@@ -70,7 +70,7 @@ class ScaleRepositoryTest {
     @Order(5)
     @Rollback(value = false)
     public void getScaleWithCodeTest(){
-        Scale scale = scaleRepository.getScaleWithCode("2–2–1–2–2–2–1");
+        Scale scale = scaleRepository.getScaleWithCode("2–2–1–2–2–2–1").get();
         System.out.println(scale.toString());
         Assertions.assertEquals(1, scale.getId());
     }

@@ -1,33 +1,34 @@
 package com.kadli.starmony.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.mapping.Join;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "concrete_progression")
-@Data
-@AllArgsConstructor
+@Setter
+@Getter
 @NoArgsConstructor
-@Builder
 public class ConcreteProgression {
 
     @EmbeddedId
     private ConcreteProgressionId id = new ConcreteProgressionId();
 
-    @MapsId("id_chord")
     @ManyToOne
-    @JoinColumn(name = "chord_id_chord")
-    private Chord chordOfProgression;
+    @JoinColumns({
+            @JoinColumn(name = "id_progression_grade", referencedColumnName = "id_progression_grade"),
+            @JoinColumn(name = "position_grade", referencedColumnName = "position_grade")
+    })
+    private ProgressionGrade progressionGrade;
 
-    @MapsId("id_progression")
     @ManyToOne
-    @JoinColumn(name = "progression_id_progression")
-    private Progression progressionOfChordS;
+    @JoinColumns({
+            @JoinColumn(name = "id_concrete_chord", referencedColumnName = "id_concrete_chord"),
+            @JoinColumn(name = "position_note_chord", referencedColumnName = "position_note_chord")
+    })
+    private ConcreteChord concreteChord;
 
-    @JoinColumn(name = "grade")
-    private String grade;
 }

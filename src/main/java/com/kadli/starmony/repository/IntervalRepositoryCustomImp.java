@@ -3,6 +3,7 @@ package com.kadli.starmony.repository;
 
 import com.kadli.starmony.entity.Interval;
 import com.kadli.starmony.entity.Note;
+import com.kadli.starmony.utilities.Symbols;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,8 +27,8 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
         List<Interval> intervals = entityManager.createQuery("" +
                         "FROM Interval i" +
                         " WHERE i." + attribute + " = :value", Interval.class)
-                .setParameter( "value", value).getResultList();
-        return intervals == null ? Optional.empty() : Optional.of( intervals.get(0) );
+                .setParameter( "value", value ).getResultList();
+        return intervals == null || intervals.isEmpty() ? Optional.empty() : Optional.of( intervals.get(0) );
     }
 
 
@@ -58,7 +59,7 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
                         "SELECT DISTINCT i" +
                         " FROM Interval i" +
                         " INNER JOIN i.chordIntervals c" +
-                        " WHERE c.id.id_chord = :idChord", Interval.class)
+                        " WHERE c.id = :idChord", Interval.class)
                 .setParameter("idChord", id)
                 .getResultList();
     }
@@ -69,7 +70,7 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
                         "SELECT DISTINCT i" +
                         " FROM Interval i" +
                         " INNER JOIN i.chordIntervals c" +
-                        " WHERE c.id.id_chord in (:idChord)", Interval.class)
+                        " WHERE c.id in (:idChord)", Interval.class)
                 .setParameter("idChord", ids)
                 .getResultList();
     }
@@ -106,7 +107,7 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
     @Override
     public List<Interval> getIntervalsOfScaleCodeByTonic(String scaleCode) {
         List<Interval> intervals = new ArrayList<>();
-        String codeString[] = scaleCode.split("–");
+        String codeString[] = scaleCode.split(Symbols.SYMBOL_SEPARATION_SCALE);
         int code = 0;
         for(String it:codeString){
             code += Integer.parseInt( it );
@@ -117,7 +118,7 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
 
     @Override
     public List<Interval> getIntervalsOfScaleCodeByAll(String scaleCode) {
-        return this.getIntervalsWithSemitones( Arrays.stream( scaleCode.split("–") ).map(codeString -> Integer.parseInt(codeString) ).distinct().collect(Collectors.toList()) );
+        return this.getIntervalsWithSemitones( Arrays.stream( scaleCode.split(Symbols.SYMBOL_SEPARATION_SCALE) ).map(codeString -> Integer.parseInt(codeString) ).distinct().collect(Collectors.toList()) );
     }
 
 }

@@ -11,8 +11,11 @@ import java.util.Optional;
 public interface ConcreteScaleService {
 
     // Obtener
-    Optional<ConcreteScale> getConcreteScale(Scale scale, Note tonic);
-    List<ConcreteScale> getConcreteScaleByScale(Scale scale);
+    List<ConcreteScale> getAll();
+    List<ConcreteScale> getCompleteConcreteScaleById(Long id);
+    List<ConcreteScale> getCompleteConcreteScaleWithTonic(Long idScale, Long idTonic);
+    Optional<ConcreteScale> getConcreteScaleWithTonic(Long idscale, Long idTonic);
+
 
 
     // Guardar
@@ -21,14 +24,17 @@ public interface ConcreteScaleService {
 
     // Utilidades
     Long getLastConcreteScaleId();
-
+    Long getIdConcreteScale( Long idScale, Long idNote );
 
     // Generar
     Optional<ConcreteScale> generateConcreteScale(Scale scale, Note note, Long id, int position);
     List<ConcreteScale> generateCompleteConcreteScales(Scale scale, Note tonic);
+    List<ConcreteScale> generateCompleteConcreteScalesAndSave(Scale scale, Note tonic);
     List<ConcreteScale> generateAllConcreteScalesAndSave();
+
 
 
     // Conversiones
     ConcreteScaleDTO concreteScalesToConcreteScaleDTO(List<ConcreteScale> concreteScales);
+
 }

@@ -10,12 +10,12 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ScaleGradesId implements Serializable {
+public class ScaleGradeId implements Serializable {
 
-    @Column(name = "scale_id_scale")
-    private Long id_scale;
+    @Column(name = "id_scale_grade")
+    private Long id_scale_grade;
 
-    @Column(name = "chord_id_chord")
-    private Long id_chord;
+    @Column(name = "grade")
+    private String grade;
 
 }

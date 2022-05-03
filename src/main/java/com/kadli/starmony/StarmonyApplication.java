@@ -9,5 +9,4 @@ public class StarmonyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StarmonyApplication.class, args);
 	}
-
 }

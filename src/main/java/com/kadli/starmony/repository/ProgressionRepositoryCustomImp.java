@@ -1,11 +1,11 @@
 package com.kadli.starmony.repository;
 
 import com.kadli.starmony.entity.Progression;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -16,6 +16,13 @@ public class ProgressionRepositoryCustomImp implements ProgressionRepositoryCust
 
     @Override
     public Optional<Progression> findByAttribute(String attribute, String value) {
-        return Optional.empty();
+        List<Progression> progression = entityManager.createQuery("" +
+                        "from Progression p" +
+                        " where p." + attribute + " = :value", Progression.class)
+                .setParameter("value", value)
+                .setParameter("attribute", attribute)
+                .getResultList();
+        if(progression.isEmpty()) return Optional.empty();
+        return Optional.of(progression.get(0));
     }
 }

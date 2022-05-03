@@ -18,12 +18,10 @@ public class ConcreteScale {
     @EmbeddedId
     private ConcreteScaleId id = new ConcreteScaleId();
 
-    @MapsId("id_scale")
     @ManyToOne
     @JoinColumn(name = "scale_id_scale")
     private Scale scaleOfNotes;
 
-    @MapsId("id_note")
     @ManyToOne
     @JoinColumn(name = "note_id_note")
     private Note notesOfScale;

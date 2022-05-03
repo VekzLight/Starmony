@@ -1,6 +1,5 @@
 package com.kadli.starmony.service;
 
-import com.kadli.starmony.dto.ChordDTO;
 import com.kadli.starmony.dto.NoteDTO;
 import com.kadli.starmony.entity.Chord;
 import com.kadli.starmony.entity.Note;
@@ -10,17 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service("NoteService")
-public class NoteServiceImp implements NoteService{
+public class NoteServiceImp implements NoteService {
 
     @Autowired
     private NoteRepository noteRepository;
 
     @Autowired
     private ModelMapper modelMapper;
+
+    // Utilidades
+    public List<Note> getAllManually(Note example){
+        Long id = example.getId();
+        String name = example.getName();
+        String symbol = example.getSymbol();
+
+        List<Note> notes = new ArrayList<>();
+        if(id != null) this.getById(id).ifPresent(it -> { notes.add(it); });
+        if(name != null) this.getByAttribute("name", name).ifPresent(it -> { notes.add(it); });
+        if(symbol != null) this.getByAttribute("symbol", symbol).ifPresent(it -> { notes.add(it); });
+
+        return notes;
+    }
+
+
 
 
     // Obtener
@@ -30,95 +46,113 @@ public class NoteServiceImp implements NoteService{
     }
 
     @Override
+    public List<Note> getAll(Note example) {
+        List<Note> notes = noteRepository.findAll( Example.of(example) );
+        if( notes.isEmpty() ) notes = this.getAllManually(example);
+        return notes;
+    }
+
+    @Override
+    public Optional<Note> get(Note example) {
+        Optional<Note> note = noteRepository.findOne(Example.of(example));
+        if( !note.isPresent() ){
+            List<Note> notes = this.getAllManually(example);
+            if( !notes.isEmpty() )
+                note = Optional.of(notes.get(0));
+        }
+        return note;
+    }
+
+    @Override
     public Optional<Note> getById(Long id) {
         return noteRepository.findById(id);
     }
 
     @Override
-    public Optional<Note> getByName(String name) {
-        return Optional.empty();
+    public Optional<Note> getByAttribute(String attribute, String value) {
+        Note note = new Note();
+        switch (attribute){
+            case "name": note.setName(value); break;
+            case "symbol": note.setSymbol(value); break;
+        }
+        return noteRepository.findOne(Example.of(note));
     }
 
-    @Override
-    public Optional<Note> getByCode(String code) {
-        return Optional.empty();
-    }
 
-    @Override
-    public Optional<Note> getBySymbol(String symbol) {
-        return Optional.empty();
-    }
-
+    // Guardar
     @Override
     public void save(Note entity) {
-
+        noteRepository.save(entity);
     }
 
+
+    // Eliminar
     @Override
     public void delete(Note entity) {
-
+        noteRepository.delete(entity);
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    public void deleteById(Long id) {
+        noteRepository.deleteById(id);
     }
 
     @Override
-    public void deleteByName(String name) {
-
+    public void deleteByAttribute(String attribute, String value) {
+        this.getByAttribute(attribute, value).ifPresent(note -> {
+            this.delete(note);
+        });
     }
 
-    @Override
-    public void deleteBySymbol(String symbol) {
 
-    }
 
-    @Override
-    public void deleteByCode(String code) {
 
-    }
-
+    // Comprobacion
     @Override
     public boolean exist(Note entity) {
-        return noteRepository.exists(Example.of(entity));
+        boolean existIt = noteRepository.exists(Example.of(entity));
+        if(!existIt) existIt = !this.getAllManually(entity).isEmpty();
+        return existIt;
     }
 
     @Override
-    public boolean existById(Long aLong) {
-        return false;
+    public boolean existById(Long id) {
+        return noteRepository.existsById(id);
     }
 
     @Override
-    public boolean existByName(String name) {
-        return false;
-    }
+    public boolean existByAttribute(String attribute, String value) { return this.getByAttribute(attribute, value).isPresent(); }
 
+
+
+
+    // Actualizar
     @Override
-    public boolean existBySymbol(String entity) {
-        return false;
+    public void updateAttributeById(Long id, String attribute, String value) {
+        this.getById(id).ifPresent(note -> {
+            switch (attribute){
+                case "name": note.setName(value); break;
+                case "symbol": note.setSymbol(value); break;
+            }
+            this.save(note);
+        });
     }
 
-    @Override
-    public boolean existByCode(String code) {
-        return false;
+
+
+
+    // Utilidades
+    public Long getNoteWithSemitone(Long tonic, int semitones){
+        Long id = tonic + semitones;
+        while( id > 12 ) id = id - 12;
+        return id;
     }
 
-    @Override
-    public void updateNameById(Long aLong, String name) {
 
-    }
 
-    @Override
-    public void updateSymbolById(Long aLong, String symbol) {
 
-    }
 
-    @Override
-    public void updateCodeById(Long aLong, String code) {
-
-    }
-
+    // Conversiones
     @Override
     public NoteDTO entityToDTO(Note entity) {
         return modelMapper.map(entity, NoteDTO.class);

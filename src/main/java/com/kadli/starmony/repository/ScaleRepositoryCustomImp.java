@@ -18,21 +18,11 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     private EntityManager entityManager;
 
     @Override
-    public List<Scale> getScalesWithInterval(Interval interval) {
-        return getScalesWithIntervalId(interval.getId());
-    }
-
-    @Override
     public List<Scale> getScalesWithIntervals(List<Interval> intervals) {
         List<Long> ids = new ArrayList<>();
         for(Interval it: intervals)
             ids.add(it.getId());
         return getScalesWithIntervalsId(ids);
-    }
-
-    @Override
-    public List<Scale> getScalesWithChord(Chord chord) {
-        return getScalesWithChordId(chord.getId());
     }
 
     @Override
@@ -51,7 +41,7 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
                 " inner join sg.scale s" +
                 " inner join sg.chord c" +
                 " inner join c.intervals i" +
-                " where i.id=:idp")
+                " where i.id=:idp", Scale.class)
                 .setParameter("idp",id)
                 .getResultList();
     }
@@ -59,12 +49,12 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     @Override
     public List<Scale> getScalesWithIntervalsId(List<Long> ids) {
         return entityManager.createQuery("" +
-                        "select distinct s" +
-                        " from Scale_Grades sg" +
-                        " inner join sg.scale s" +
-                        " inner join sg.chord c" +
-                        " inner join c.intervals i" +
-                        " where i.id in (:ids)")
+                        "SELECT DISTINCT s" +
+                        " FROM ScaleGrade sg" +
+                        " INNER JOIN sg.scaleOfChord s" +
+                        " INNER JOIN sg.chordOfScale c" +
+                        " INNER JOIN c.chordIntervals ci" +
+                        " WHERE ci.id.id_interval in (:ids)", Scale.class)
                 .setParameter("ids",ids)
                 .getResultList();
     }
@@ -72,10 +62,11 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     @Override
     public List<Scale> getScalesWithChordId(Long id) {
         return entityManager.createQuery("" +
-                        "select distinct s" +
-                        " from Scale_Grades sg" +
-                        " inner join sg.scale s" +
-                        " where sg.chord.id=:idp")
+                        "SELECT DISTINCT s" +
+                        " FROM ScaleGrade sg" +
+                        " INNER JOIN sg.scaleOfChord s" +
+                        " INNER JOIN sg.chordOfScale c" +
+                        " WHERE c.id = :idp", Scale.class)
                 .setParameter("idp",id)
                 .getResultList();
     }
@@ -83,25 +74,30 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     @Override
     public List<Scale> getScalesWithChordsId(List<Long> ids) {
         return entityManager.createQuery("" +
-                        "select distinct s" +
-                        " from Scale_Grades sg" +
-                        " inner join sg.scale s" +
-                        " where sg.chord.id in (:ids)")
+                        "SELECT DISTINCT s" +
+                        " FROM ScaleGrade sg" +
+                        " INNER JOIN sg.scaleOfChord s" +
+                        " INNER JOIN sg.chordOfScale c" +
+                        " WHERE c.id IN (:ids)", Scale.class)
                 .setParameter("ids",ids)
                 .getResultList();
     }
 
     @Override
-    public Scale getScaleWithCode(String code) {
-        return (Scale) entityManager.createQuery("" +
-                "from Scale s" +
-                " where s.code=:codep")
-                .setParameter("codep",code)
-                .getResultList().get(0);
+    public Optional<Scale> getScaleWithCode(String code) {
+        return Optional.of(entityManager.createQuery("" +
+                        "from Scale s" +
+                        " where s.code=:code", Scale.class)
+                .setParameter("code",code)
+                .getResultList().get(0));
     }
 
     @Override
     public Optional<Scale> findByAttribute(String attribute, String value) {
-        return Optional.empty();
+        List<Scale> scales = entityManager.createQuery("" +
+                        "FROM Scale s" +
+                        " WHERE s." + attribute + " = :value", Scale.class)
+                .setParameter( "value", value).getResultList();
+        return scales == null || scales.isEmpty() ? Optional.empty() : Optional.of( scales.get(0) );
     }
 }

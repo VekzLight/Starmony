@@ -6,12 +6,14 @@ import com.kadli.starmony.entity.Interval;
 import com.kadli.starmony.entity.Note;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ConcreteIntervalService {
 
     // Obtencion
-    ConcreteInterval getConcreteInterval(Interval interval, Note tonic, Note note);
-    List<ConcreteInterval> getConcreteIntervals(List<Interval> intervals, Note tonic, Note note);
+    List<ConcreteInterval> getAllConcreteIntervals();
+    Optional<ConcreteInterval> getConcreteIntervalById(Long id);
+    Optional<ConcreteInterval> getConcreteIntervalWithTonic(Long idInterval, Long idTonic);
 
     // Generadores
     ConcreteInterval generateConcreteInterval(Interval interval, Note tonic);
@@ -21,4 +23,7 @@ public interface ConcreteIntervalService {
     // Conversiones
     ConcreteIntervalDTO concreteIntervalToConcreteIntervalDTO(ConcreteInterval concreteInterval);
     List<ConcreteIntervalDTO> concreteIntervalsToConcreteIntervalDTOS(List<ConcreteInterval> concreteIntervals);
+
+
+
 }

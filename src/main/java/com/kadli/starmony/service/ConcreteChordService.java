@@ -1,29 +1,47 @@
 package com.kadli.starmony.service;
 
 import com.kadli.starmony.dto.ConcreteChordDTO;
-import com.kadli.starmony.entity.Chord;
-import com.kadli.starmony.entity.ConcreteChord;
-import com.kadli.starmony.entity.Note;
+import com.kadli.starmony.dto.ConcreteProgressionDTO;
+import com.kadli.starmony.dto.ConcreteScaleGradesDTO;
+import com.kadli.starmony.entity.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ConcreteChordService {
 
     // Obtener
     List<ConcreteChord> getAllConcreteChords();
-    List<ConcreteChord> getConcreteChordWithTonic(Chord chord, Note tonic);
+    List<ConcreteChord> getCompleteConcreteChordById(Long id);
+    List<ConcreteChord> getCompleteConcreteChordWithTonic(Long idChord, Long idTonic);
+
+    List<ConcreteScaleGrade> getCompleteConcreteScaleGradesByConcreteScaleId(Long idConcrete);
+
 
 
     // Generar
+    // TODO GENERAR LA ID DEL
+    List<ConcreteScaleGrade> generateConcreteGradesOfScale(List<ConcreteScale> concreteScales);
+    List<ConcreteScaleGrade> generateAndSaveConcreteGradesOfScale(List<ConcreteScale> concreteScales);
+    List<ConcreteScaleGrade> generateAndSaveAllConcreteGradesOfScale();
+
     List<ConcreteChord> generateConcreteChords(Chord chord, Note tonic);
     List<ConcreteChord> generateAndSaveConcreteChords(Chord chord, Note tonic);
     List<ConcreteChord> generateAndSaveAllConcretechords();
 
 
+
+
+
     // Utilidades
     Long getLastConcreteChordId();
-
+    Long getIdConcreteChord(Long idChord, Long idTonic);
 
     // Convesiones DTO
-    ConcreteChordDTO concreteChordToConcreteChordDTO(List<ConcreteChord> concreteChords);
+    Optional<ConcreteChordDTO> concreteChordToConcreteChordDTO(List<ConcreteChord> concreteChords);
+    Optional<ConcreteScaleGradesDTO> concreteScaleGradesToConcreteScaleGradesDTO(List<ConcreteScaleGrade> concreteScaleGrades);
+
+    Long getLastConcreteGradeScaleId();
+
+
 }

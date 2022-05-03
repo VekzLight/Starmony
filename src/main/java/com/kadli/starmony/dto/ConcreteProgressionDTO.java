@@ -1,7 +1,7 @@
 package com.kadli.starmony.dto;
 
+import com.kadli.starmony.entity.ConcreteChord;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChordIntervalDTO extends ChordDTO implements Serializable {
-    private HashMap<IntervalDTO, Integer> intervals;
+public class ConcreteProgressionDTO extends ProgressionGradeDTO implements Serializable {
+    private Long id_concrete_progression;
+    private HashMap<Integer, ConcreteChordDTO> concreteGrades;
 }

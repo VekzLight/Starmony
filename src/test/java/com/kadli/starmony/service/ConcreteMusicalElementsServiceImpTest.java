@@ -12,13 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 
 @SpringBootTest(classes = StarmonyApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ConcreteMusicalElementsServiceImpTest {
-    @Autowired
-    private ConcreteMusicalElementsService concreteMusicalElementsService;
 
     @Autowired
     private ScaleService scaleService;
@@ -29,16 +28,20 @@ class ConcreteMusicalElementsServiceImpTest {
     @Autowired
     private NoteService noteService;
 
+    @Autowired
+    private ConcreteIntervalService concreteIntervalService;
+
+    @Autowired
+    private ConcreteScaleService concreteScaleService;
 
     @Test
     @Transactional
     void generateAllIntervalsOfChordsAndSave() {
         Interval interval = intervalService.getById(2L).get();
         Note tonic = noteService.getById(1L).get();
-        Note note = noteService.getById(2L).get();
 
-        ConcreteInterval concreteInterval = concreteMusicalElementsService.getConcreteInterval(interval, tonic, note);
-        System.out.println( concreteInterval.getFirstNote().getName());
+        Optional<ConcreteInterval> concreteInterval = concreteIntervalService.getConcreteIntervalWithTonic(interval.getId(), tonic.getId());
+        System.out.println( concreteInterval.get().getFirstNote().getName());
     }
 
     @Test
@@ -47,12 +50,12 @@ class ConcreteMusicalElementsServiceImpTest {
         Scale scale = scaleService.getById(2L).get();
         Note tonic = noteService.getById(1L).get();
 
-        concreteMusicalElementsService.generateCompleteConcreteScales(scale, tonic);
+        concreteScaleService.generateCompleteConcreteScales(scale, tonic);
     }
 
     @Test
     @Transactional
     void generateAllConcreteScalesAndSave() {
-        concreteMusicalElementsService.generateAllConcreteScalesAndSave();
+        concreteScaleService.generateAllConcreteScalesAndSave();
     }
 }

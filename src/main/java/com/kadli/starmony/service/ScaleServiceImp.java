@@ -1,9 +1,8 @@
 package com.kadli.starmony.service;
 
-import com.kadli.starmony.dto.ChordDTO;
-import com.kadli.starmony.dto.ConcreteScaleDTO;
 import com.kadli.starmony.dto.ScaleDTO;
-import com.kadli.starmony.entity.ConcreteScale;
+import com.kadli.starmony.entity.Chord;
+import com.kadli.starmony.entity.Interval;
 import com.kadli.starmony.entity.Scale;
 import com.kadli.starmony.repository.ScaleRepository;
 import org.modelmapper.ModelMapper;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,9 +24,48 @@ public class ScaleServiceImp implements ScaleService{
     @Autowired
     private ModelMapper modelMapper;
 
+
+
+
+    // Utilidades
+    public List<Scale> getAllManually(Scale scale){
+        Long id = scale.getId();
+        String name = scale.getName();
+        String symbol = scale.getSymbol();
+        String code = scale.getCode();
+
+        List<Scale> scales = new ArrayList<>();
+        if(id != null)      this.getById(id).ifPresent(it -> { scales.add(it); });
+        if(name != null)    this.getByAttribute("name", name).ifPresent(it -> { scales.add(it); });
+        if(symbol != null)  this.getByAttribute("symbol", symbol).ifPresent(it -> { scales.add(it); });
+        if(code != null)    this.getByAttribute("code", code).ifPresent(it -> { scales.add(it); });
+
+        return scales;
+    }
+
+
+
+
+    // Obtener
     @Override
     public List<Scale> getAll() {
         return scaleRepository.findAll();
+    }
+
+    @Override
+    public List<Scale> getAll(Scale example) {
+        List<Scale> scales = scaleRepository.findAll( Example.of(example) );
+        if( scales.isEmpty() ) scales = this.getAllManually(example);
+        return scales;}
+
+    @Override
+    public Optional<Scale> get(Scale example) {
+        Optional<Scale> scale = scaleRepository.findOne(Example.of(example));
+        if( !scale.isPresent() ){
+            List<Scale> scales = this.getAllManually(example);
+            if( !scales.isEmpty() ) scale = Optional.of(scales.get(0));
+        }
+        return scale;
     }
 
     @Override
@@ -35,91 +74,83 @@ public class ScaleServiceImp implements ScaleService{
     }
 
     @Override
-    public Optional<Scale> getByName(String name) {
-        return Optional.empty();
+    public Optional<Scale> getByAttribute(String attribute, String value) {
+        return scaleRepository.findByAttribute(attribute, value);
     }
 
-    @Override
-    public Optional<Scale> getByCode(String code) {
-        return Optional.empty();
-    }
 
-    @Override
-    public Optional<Scale> getBySymbol(String symbol) {
-        return Optional.empty();
-    }
 
+
+    // Guardar
     @Override
     public void save(Scale entity) {
-
+        scaleRepository.save(entity);
     }
 
+
+
+
+    // Eliminar
     @Override
     public void delete(Scale entity) {
-
+        scaleRepository.delete(entity);
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    public void deleteById(Long id) {
+        scaleRepository.deleteById(id);
     }
 
     @Override
-    public void deleteByName(String name) {
-
+    public void deleteByAttribute(String attribute, String value) {
+        this.getByAttribute(attribute,value).ifPresent(scale -> {
+            scaleRepository.delete(scale);
+        });
     }
 
-    @Override
-    public void deleteBySymbol(String symbol) {
 
-    }
 
-    @Override
-    public void deleteByCode(String code) {
 
-    }
 
+    // Comprobacion
     @Override
     public boolean exist(Scale entity) {
-        return scaleRepository.exists(Example.of(entity));
+        boolean existIt = scaleRepository.exists(Example.of(entity));
+        if(!existIt) existIt = !this.getAllManually(entity).isEmpty();
+        return existIt;
     }
 
     @Override
-    public boolean existById(Long aLong) {
-        return false;
+    public boolean existById(Long id) {
+        return scaleRepository.existsById(id);
     }
 
     @Override
-    public boolean existByName(String name) {
-        return false;
+    public boolean existByAttribute(String attribute, String value) {
+        return this.getByAttribute(attribute,value).isPresent();
     }
 
+
+
+
+
+    // Actualizacion
     @Override
-    public boolean existBySymbol(String entity) {
-        return false;
-    }
-
-    @Override
-    public boolean existByCode(String code) {
-        return false;
-    }
-
-    @Override
-    public void updateNameById(Long aLong, String name) {
-
-    }
-
-    @Override
-    public void updateSymbolById(Long aLong, String symbol) {
-
-    }
-
-    @Override
-    public void updateCodeById(Long aLong, String code) {
-
+    public void updateAttributeById(Long id, String attribute, String value) {
+        this.getById(id).ifPresent(scale -> {
+            switch (attribute){
+                case "name": scale.setName(value); break;
+                case "code": scale.setCode(value); break;
+                case "symbol": scale.setSymbol(value); break;
+            }
+        });
     }
 
 
+
+
+
+    // Conversiones
     @Override
     public ScaleDTO entityToDTO(Scale entity) {
         return modelMapper.map(entity, ScaleDTO.class);
@@ -130,4 +161,14 @@ public class ScaleServiceImp implements ScaleService{
         return modelMapper.map(dto, Scale.class);
     }
 
+
+    @Override
+    public List<Scale> getScalesWithIntervals(List<Interval> intervals) {
+        return scaleRepository.getScalesWithIntervals(intervals);
+    }
+
+    @Override
+    public List<Scale> getScalesWithChords(List<Chord> chords) {
+        return scaleRepository.getScalesWithChords(chords);
+    }
 }
