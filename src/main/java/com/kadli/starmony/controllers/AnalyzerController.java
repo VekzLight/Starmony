@@ -200,16 +200,4 @@ public class AnalyzerController {
         return new ResponseEntity<>( progressionGradeDTO, HttpStatus.OK );
     };
 
-    @GetMapping("/progression/scale/probe")
-    public ResponseEntity<Optional<ProgressionScaleDTO>> probeProgressionScale(){
-        Optional<Progression> progression = progressionService.getById(1L);
-        Optional<Scale> scale = scaleService.getById(1L);
-
-        ProgressionDTO progressionDTO = progressionService.entityToDTO(progression.get());
-        ScaleDTO scaleDTO = scaleService.entityToDTO(scale.get());
-
-        ProgressionScaleDTO progressionScaleDTO = new ProgressionScaleDTO( progressionDTO, scaleDTO );
-
-        return new ResponseEntity<>( Optional.of(progressionScaleDTO), HttpStatus.OK );
-    };
 }
