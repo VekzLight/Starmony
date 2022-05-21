@@ -24,4 +24,6 @@ public interface ProgressionService extends CustomCrudService<Progression, Long>
     List<ProgressionGrade> getCompleteProgressionGradeById(Long idProgressionGrade);
 
     Long getLastId();
+
+    Long getIdProgressionGradeByScaleGrade(Long idProgression, Long idScaleGrade);
 }

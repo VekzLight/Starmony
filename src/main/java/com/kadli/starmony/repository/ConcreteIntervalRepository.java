@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,4 +21,6 @@ public interface ConcreteIntervalRepository extends JpaRepository<ConcreteInterv
     @Query("SELECT max(ci.id.id_concrete_interval) FROM ConcreteInterval ci")
     Long getMaxId();
 
+    @Query("FROM ConcreteInterval ci INNER JOIN ci.firstNote fn INNER JOIN ci.lastNote ln WHERE fn.id = :idTonic AND ln.id = :idNote")
+    List<ConcreteInterval> getConcreteIntervalWithTonicAndNote(@Param("idTonic") Long tonicId, @Param("idNote")Long idNote);
 }

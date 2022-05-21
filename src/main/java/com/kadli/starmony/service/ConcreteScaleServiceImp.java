@@ -167,7 +167,7 @@ public class ConcreteScaleServiceImp implements ConcreteScaleService{
         concreteScaleDTO.setCode( scale.getCode() );
         concreteScaleDTO.setName( scale.getName() );
         concreteScaleDTO.setSymbol( scale.getSymbol() );
-        concreteScaleDTO.setIdConcrete( concreteScales.get(0).getId().getId_concrete_scale() );
+        concreteScaleDTO.setId_concrete_scale( concreteScales.get(0).getId().getId_concrete_scale() );
 
         HashMap<Integer, NoteDTO> notes = new HashMap<>();
         for(ConcreteScale concreteScale: concreteScales){
@@ -178,6 +178,35 @@ public class ConcreteScaleServiceImp implements ConcreteScaleService{
         concreteScaleDTO.setNotes( notes );
 
         return concreteScaleDTO;
+    }
+
+    @Override
+    public List<ConcreteScaleDTO> getConcreteScalesWithTonicAndNotes(List<Long> idNotes, Long idTonic) {
+        List<Long> idConcreteScales = concreteScaleRepository.getIdConcreteScalesWithTonic(idTonic);
+        List<ConcreteScaleDTO> concreteScaleDTOS = new ArrayList<>();
+
+        for(Long idConcreteScale: idConcreteScales){
+            List<ConcreteScale> concreteScales = concreteScaleRepository.getCompleteConcreteScale(idConcreteScale);
+
+            int count = 0;
+            for(ConcreteScale concreteScale: concreteScales){
+                if( idNotes.contains(concreteScale.getNotesOfScale().getId()) ) {
+                    System.out.println( concreteScale.getNotesOfScale().getId() );
+                    count++;
+                }
+            }
+
+            if(count == idNotes.size() + 1){
+                System.out.println("Escala encontrada");
+                concreteScaleDTOS.add( this.concreteScalesToConcreteScaleDTO(concreteScales) );
+            }
+        }
+        return concreteScaleDTOS;
+    }
+
+    @Override
+    public List<Long> getIdConcreteScalesWithConcreteChords(List<Long> idConcreteChords) {
+        return concreteScaleRepository.getIdConcreteScaleWithConcreteChords(idConcreteChords);
     }
 
 }

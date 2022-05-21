@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service("ConcreteIntervalService")
 public class ConcreteIntervalServiceImp implements ConcreteIntervalService{
@@ -106,6 +107,7 @@ public class ConcreteIntervalServiceImp implements ConcreteIntervalService{
         concreteIntervalDTO.setSymbol( interval.getSymbol() );
         concreteIntervalDTO.setId( interval.getId() );
         concreteIntervalDTO.setSemitones( interval.getSemitones() );
+        concreteIntervalDTO.setId_concrete_interval( concreteInterval.getId_concrete_interval() );
         concreteIntervalDTO.setFirsNote( noteService.entityToDTO(concreteInterval.getFirstNote()) );
         concreteIntervalDTO.setLastNote( noteService.entityToDTO(concreteInterval.getLastNote()) );
 
@@ -117,6 +119,16 @@ public class ConcreteIntervalServiceImp implements ConcreteIntervalService{
         List<ConcreteIntervalDTO> concreteIntervalDTOS = new ArrayList<>();
         for(ConcreteInterval concreteInterval: concreteIntervals){
             concreteIntervalDTOS.add( this.concreteIntervalToConcreteIntervalDTO(concreteInterval) );
+        }
+        return concreteIntervalDTOS;
+    }
+
+    @Override
+    public List<ConcreteIntervalDTO> getConcreteIntervalsWithNotesAndTonic(Long tonicId, List<Long> noteDTOS) {
+        List<ConcreteIntervalDTO> concreteIntervalDTOS = new ArrayList<>();
+        for(Long idNote: noteDTOS){
+            List<ConcreteInterval> concreteIntervals = concreteIntervalRepository.getConcreteIntervalWithTonicAndNote(tonicId, idNote);
+            concreteIntervalDTOS.addAll( this.concreteIntervalsToConcreteIntervalDTOS(concreteIntervals) );
         }
         return concreteIntervalDTOS;
     }

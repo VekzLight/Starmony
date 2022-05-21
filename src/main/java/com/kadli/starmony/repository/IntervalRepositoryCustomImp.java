@@ -58,7 +58,8 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
         return entityManager.createQuery("" +
                         "SELECT DISTINCT i" +
                         " FROM Interval i" +
-                        " INNER JOIN i.chordIntervals c" +
+                        " INNER JOIN i.chordIntervals ci" +
+                        " INNER JOIN ci.chordOfInterval c" +
                         " WHERE c.id = :idChord", Interval.class)
                 .setParameter("idChord", id)
                 .getResultList();
@@ -69,7 +70,8 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
         return entityManager.createQuery("" +
                         "SELECT DISTINCT i" +
                         " FROM Interval i" +
-                        " INNER JOIN i.chordIntervals c" +
+                        " INNER JOIN i.chordIntervals ci" +
+                        " INNER JOIN ci.chordOfInterval c" +
                         " WHERE c.id in (:idChord)", Interval.class)
                 .setParameter("idChord", ids)
                 .getResultList();
@@ -83,8 +85,10 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
                         "SELECT DISTINCT i" +
                         " FROM Interval i" +
                         " INNER JOIN i.concreteIntervals ci" +
-                        " WHERE ci.id.id_note1 = :id1" +
-                        "   and ci.id.id_note2 = :id2", Interval.class)
+                        " INNER JOIN ci.firstNote fn" +
+                        " INNER JOIN ci.lastNote ln" +
+                        " WHERE fn.id = :id1" +
+                        "   and ln.id = :id2", Interval.class)
                 .setParameter("id1", note1)
                 .setParameter("id2", note2)
                 .getResultList().get(0));
@@ -96,8 +100,10 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
                         "SELECT DISTINCT i" +
                         " FROM Interval i" +
                         " INNER JOIN i.concreteIntervals ci" +
-                        " WHERE ci.id.id_note1 in (:ids)" +
-                        "   and ci.id.id_note2 in (:ids)", Interval.class)
+                        " INNER JOIN ci.firstNote fn" +
+                        " INNER JOIN ci.lastNote ln" +
+                        " WHERE fn.id in (:ids)" +
+                        "   and ln.id in (:ids)", Interval.class)
                 .setParameter("ids", ids)
                 .getResultList();
     }

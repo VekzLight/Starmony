@@ -20,4 +20,7 @@ public interface ProgressionGradeRepository extends JpaRepository<ProgressionGra
 
     @Query("FROM ProgressionGrade pg INNER JOIN pg.progressionOfProgressionGrade p INNER JOIN pg.scaleGradeOfProgression sg where p.id = :idProgression and sg.id.id_scale_grade = :idScaleGrade")
     List<ProgressionGrade> getProgressionGradesByScaleGrade(@Param("idProgression") Long idProgression,@Param("idScaleGrade") Long idScaleGrade);
+
+    @Query("SELECT pg.id.id_progression_grade FROM ProgressionGrade pg INNER JOIN pg.progressionOfProgressionGrade p INNER JOIN pg.scaleGradeOfProgression sg where p.id = :idProgression and sg.id.id_scale_grade = :idScaleGrade")
+    Long getIdProgressionGradeByProgressionAndSG(@Param("idProgression") Long idProgression,@Param("idScaleGrade") Long idScaleGrade);
 }

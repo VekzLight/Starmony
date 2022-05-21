@@ -27,4 +27,10 @@ public interface ConcreteScaleRepository extends JpaRepository<ConcreteScale, Co
 
     @Query("SELECT max(cs.id.id_concrete_scale) FROM ConcreteScale cs")
     Long getMaxId();
+
+    @Query("SELECT cs.id.id_concrete_scale FROM ConcreteScale cs INNER JOIN cs.notesOfScale n WHERE n.id = :idTonic AND cs.id.position = 1")
+    List<Long> getIdConcreteScalesWithTonic(@Param("idTonic") Long idTonic);
+
+    @Query("SELECT cs.id.id_concrete_scale FROM ConcreteScaleGrade csg INNER JOIN csg.concreteScale cs INNER JOIN csg.concreteChord cc WHERE cc.id.id_concrete_chord in (:idConcreteChords)")
+    List<Long> getIdConcreteScaleWithConcreteChords(@Param("idConcreteChords") List<Long> idConcreteChords);
 }

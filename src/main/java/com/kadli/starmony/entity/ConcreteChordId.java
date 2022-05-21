@@ -17,5 +17,5 @@ public class ConcreteChordId implements Serializable {
     private Long id_concrete_chord;
 
     @Column(name = "position_note_chord")
-    private int position;
+    private int position_note_chord;
 }

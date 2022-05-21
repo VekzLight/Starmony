@@ -5,10 +5,21 @@ import com.kadli.starmony.entity.*;
 import com.kadli.starmony.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -48,6 +59,8 @@ public class GeneratorController {
     @Autowired
     private ConcreteProgressionService concreteProgressionService;
 
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * Genera Acordes Concretos apartir de un acorde y su tonica
@@ -166,7 +179,7 @@ public class GeneratorController {
         List<ConcreteScaleGrade> concreteScaleGrades = concreteChordService.getCompleteConcreteScaleGradesByConcreteScaleId( idConcreteScale );
         if( concreteScaleGrades.isEmpty() ) return new ResponseEntity(new Message(-1,"Note Grades Not Found"), HttpStatus.NOT_FOUND);
 
-        List<ConcreteProgression> concreteProgressions = concreteProgressionService.generateConcreteProgression( progressionGrades, concreteScaleGrades );
+        List<ConcreteProgression> concreteProgressions = concreteProgressionService.generateConcreteProgression( progressionGrades, concreteScaleGrades, concreteScaleGrades.get(0).getId().getId_concrete_scale() );
         if( concreteProgressions.isEmpty())  return new ResponseEntity(new Message(-1,"No se pudo generar"), HttpStatus.NOT_FOUND);
 
         Optional<ConcreteProgressionDTO> concreteProgressionDTO = concreteProgressionService.concreteProgressionToConcreteProgressionDTO(concreteProgressions);
@@ -175,6 +188,40 @@ public class GeneratorController {
     }
 
 
+    @PostMapping(path = "/chord/concrete/ia",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Optional<ConcreteChordDTO>> getNextConcreteChord(@RequestBody Long[] ids){
+
+        Map<String, Long> map = new HashMap<>();
+        map.put("idConcreteChord", ids[0]);
+        map.put("idConcreteScale", ids[1]);
+        map.put("position", ids[2]);
+
+        List<ConcreteChord> _concreteChords = concreteChordService.getCompleteConcreteChordById(map.get("idConcreteChord"));
+        List<ConcreteScaleGrade> _concreteScaleGrades = concreteChordService.getCompleteConcreteScaleGradesByConcreteScaleId(map.get("idConcreteScale"));
+
+        String url = "http://localhost:5000/api/chord/predict/{idConcreteChord}/{idConcreteScale}/{position}";
+        String response = this.restTemplate.getForObject(url, String.class, map);
+
+        Long idConcreteChord = Long.parseLong( response.substring(1, response.length() - 1) );
+        Long cercania = Long.MAX_VALUE;
+        Long idCercano = idConcreteChord;
+        for(ConcreteScaleGrade it: _concreteScaleGrades){
+            Long idConcrete = it.getConcreteChord().getCc_id().getId_concrete_chord();
+            Long bufferCercania = Math.abs(idConcrete - idConcreteChord);
+            if (  bufferCercania < cercania){
+                cercania = bufferCercania;
+                idCercano = idConcrete;
+            } else if (idConcrete == idConcreteChord) break;
+        }
+
+
+        List<ConcreteChord> concreteChords = concreteChordService.getCompleteConcreteChordById(  idCercano );
+        if( concreteChords.isEmpty() ) return new ResponseEntity(new Message(-1,"No se pudo generar"), HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>( concreteChordService.concreteChordToConcreteChordDTO(concreteChords), HttpStatus.OK );
+    };
 
 
     /**

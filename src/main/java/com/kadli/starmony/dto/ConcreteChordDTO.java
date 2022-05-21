@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConcreteChordDTO extends ChordDTO implements Serializable {
+    private Long id_concrete_chord;
     private NoteDTO tonic;
     private List<NoteDTO> notes;
 }

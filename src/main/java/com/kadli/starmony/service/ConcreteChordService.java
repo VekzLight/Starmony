@@ -29,6 +29,8 @@ public interface ConcreteChordService {
     List<ConcreteChord> generateAndSaveConcreteChords(Chord chord, Note tonic);
     List<ConcreteChord> generateAndSaveAllConcretechords();
 
+    List<ConcreteChordDTO> getConcreteChordsWithNotesAndTonic( List<Long> idNotes, Long tonic );
+
 
 
 

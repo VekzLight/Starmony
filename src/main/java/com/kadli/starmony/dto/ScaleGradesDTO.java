@@ -12,5 +12,5 @@ import java.util.HashMap;
 @NoArgsConstructor
 public class ScaleGradesDTO extends ScaleDTO implements Serializable {
     private Long idScaleGrade;
-    private HashMap<String, ChordDTO> grades;
+    private HashMap<Integer, ChordDTO> grades;
 }

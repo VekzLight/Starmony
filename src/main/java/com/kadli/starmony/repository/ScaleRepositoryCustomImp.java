@@ -54,7 +54,8 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
                         " INNER JOIN sg.scaleOfChord s" +
                         " INNER JOIN sg.chordOfScale c" +
                         " INNER JOIN c.chordIntervals ci" +
-                        " WHERE ci.id.id_interval in (:ids)", Scale.class)
+                        " INNER JOIN ci.intervalOfChord i" +
+                        " WHERE i.id in (:ids)", Scale.class)
                 .setParameter("ids",ids)
                 .getResultList();
     }
@@ -75,8 +76,8 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     public List<Scale> getScalesWithChordsId(List<Long> ids) {
         return entityManager.createQuery("" +
                         "SELECT DISTINCT s" +
-                        " FROM ScaleGrade sg" +
-                        " INNER JOIN sg.scaleOfChord s" +
+                        " FROM Scale s" +
+                        " INNER JOIN s.scaleGrades sg" +
                         " INNER JOIN sg.chordOfScale c" +
                         " WHERE c.id IN (:ids)", Scale.class)
                 .setParameter("ids",ids)

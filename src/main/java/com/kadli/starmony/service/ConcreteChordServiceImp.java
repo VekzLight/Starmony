@@ -1,9 +1,6 @@
 package com.kadli.starmony.service;
 
-import com.kadli.starmony.dto.ChordDTO;
-import com.kadli.starmony.dto.ConcreteChordDTO;
-import com.kadli.starmony.dto.ConcreteScaleGradesDTO;
-import com.kadli.starmony.dto.NoteDTO;
+import com.kadli.starmony.dto.*;
 import com.kadli.starmony.entity.*;
 import com.kadli.starmony.repository.ConcreteChordRepository;
 import com.kadli.starmony.repository.ConcreteScaleGradeRepository;
@@ -99,7 +96,7 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
 
         for (ConcreteInterval concreteInterval : concreteIntervals) {
             ConcreteChordId concreteChordIdTonic = new ConcreteChordId();
-            concreteChordIdTonic.setPosition(1);
+            concreteChordIdTonic.setPosition_note_chord(1);
             concreteChordIdTonic.setId_concrete_chord(idConcreteChord);
 
             ConcreteChord concreteChordTonic = new ConcreteChord();
@@ -108,7 +105,7 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
             concreteChordTonic.setCc_id(concreteChordIdTonic);
 
             ConcreteChordId concreteChordId = new ConcreteChordId();
-            concreteChordId.setPosition(position);
+            concreteChordId.setPosition_note_chord(position);
             concreteChordId.setId_concrete_chord(idConcreteChord);
 
             ConcreteChord concreteChord = new ConcreteChord();
@@ -150,7 +147,24 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
         return concreteChords;
     }
 
+    @Override
+    public List<ConcreteChordDTO> getConcreteChordsWithNotesAndTonic(List<Long> idNotes, Long tonic) {
+        List<Long> ids = concreteChordRepository.getIdConcreteChordsWithTonic(tonic);
+        List<ConcreteChordDTO> concreteChordsDTO = new ArrayList<>();
+        for(Long id: ids){
+            List<ConcreteChord> concreteChordsIt = concreteChordRepository.getConcreteChordsByIdConcrete(id);
 
+            int count = 0;
+            for(ConcreteChord it: concreteChordsIt){
+                if( idNotes.contains(it.getNote().getId()) ) count++;
+            }
+
+            if(idNotes.size() == count){
+                concreteChordsDTO.add( this.concreteChordToConcreteChordDTO(concreteChordsIt).get() );
+            }
+        }
+        return concreteChordsDTO;
+    }
 
 
     @Override
@@ -177,7 +191,7 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
                 concreteScaleGradeId.setId_scale_grade( scaleGrade.getId().getId_scale_grade() );
                 concreteScaleGradeId.setGrade( scaleGrade.getId().getGrade() );
                 concreteScaleGradeId.setId_concrete_chord( concretechord.getCc_id().getId_concrete_chord() );
-                concreteScaleGradeId.setPosition_note_chord( concretechord.getCc_id().getPosition() );
+                concreteScaleGradeId.setPosition_note_chord( concretechord.getCc_id().getPosition_note_chord() );
 
                 ConcreteScaleGrade concreteScaleGrade = new ConcreteScaleGrade();
                 concreteScaleGrade.setId( concreteScaleGradeId );
@@ -243,12 +257,13 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
 
         for (ConcreteChord concreteChord : concreteChords) {
             notes.add(this.noteService.entityToDTO(concreteChord.getNote()));
-            if (concreteChord.getCc_id().getPosition() == 1) {
+            if (concreteChord.getCc_id().getPosition_note_chord() == 1) {
                 concreteChordDTO.setTonic(this.noteService.entityToDTO(concreteChord.getNote()));
                 concreteChordDTO.setCode(concreteChord.getConcreteChord().getCode());
                 concreteChordDTO.setId(concreteChord.getConcreteChord().getId());
                 concreteChordDTO.setName(concreteChord.getConcreteChord().getName());
                 concreteChordDTO.setSymbol(concreteChord.getConcreteChord().getSymbol());
+                concreteChordDTO.setId_concrete_chord( concreteChord.getCc_id().getId_concrete_chord() );
             }
         }
         concreteChordDTO.setNotes(notes);
@@ -270,16 +285,17 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
         concreteScaleGradeDTO.setCode(scale.getCode() );
 
         // Id de los grados de la escala
-        concreteScaleGradeDTO.setIdConcreteScaleGrade( concreteScaleGrade.getId().getId_concrete_scale_grade() );
+        concreteScaleGradeDTO.setId_concrete_scale_grade( concreteScaleGrade.getId().getId_concrete_scale_grade() );
         concreteScaleGradeDTO.setIdScaleGrade( concreteScaleGrade.getId().getId_scale_grade() );
 
-        HashMap<String,ConcreteChordDTO> concreteChordsDTO = new HashMap<>();
-        HashMap<String,ChordDTO> chordsDTO = new HashMap<>();
+        HashMap<Integer,ConcreteChordDTO> concreteChordsDTO = new HashMap<>();
+        HashMap<Integer,ChordDTO> chordsDTO = new HashMap<>();
 
         List<ConcreteChord> concreteChords = new ArrayList<>();
 
         Long positionActual = -1L;
         String gradeActual = "0";
+        Long idConcreteChord = -1L;
         for(ConcreteScaleGrade it:concreteScaleGrades){
             if(positionActual == -1) {
                 positionActual = it.getId().getId_concrete_chord();
@@ -287,27 +303,26 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
             }
 
             if(positionActual != it.getId().getId_concrete_chord()){
-                Optional<ConcreteChordDTO> cc = this.concreteChordToConcreteChordDTO( concreteChords );
-                if( !cc.isPresent() ) return Optional.empty();
-                concreteChordsDTO.put( gradeActual, cc.get() );
 
-                System.out.println("Entro " + cc.get().getName());
+                List<ConcreteChord> cc = this.getCompleteConcreteChordById(positionActual);
+                Optional<ConcreteChordDTO> ccDTO = this.concreteChordToConcreteChordDTO( cc );
+                if( !ccDTO.isPresent() ) return Optional.empty();
+                concreteChordsDTO.put( Symbols.GRADE_TO_POS(gradeActual), ccDTO.get() );
+
                 positionActual = it.getId().getId_concrete_chord();
                 gradeActual = it.getId().getGrade();
                 concreteChords.clear();
             }
-            concreteChords.add( it.getConcreteChord() );
-            System.out.println("fuera " + it.getConcreteChord().getCc_id().getPosition());
-
 
             Chord chord = it.getScaleGrade().getChordOfScale();
             ChordDTO chordDTO = chordService.entityToDTO( chord );
-            chordsDTO.put( it.getId().getGrade() ,chordDTO );
+            chordsDTO.put( Symbols.GRADE_TO_POS(it.getId().getGrade()) ,chordDTO );
         }
 
-        Optional<ConcreteChordDTO> cc = this.concreteChordToConcreteChordDTO( concreteChords );
-        if( !cc.isPresent() ) return Optional.empty();
-        concreteChordsDTO.put( gradeActual, cc.get() );
+        List<ConcreteChord> cc = this.getCompleteConcreteChordById(positionActual);
+        Optional<ConcreteChordDTO> ccDTO = this.concreteChordToConcreteChordDTO( cc );
+        if( !ccDTO.isPresent() ) return Optional.empty();
+        concreteChordsDTO.put( Symbols.GRADE_TO_POS(gradeActual), ccDTO.get() );
 
         concreteScaleGradeDTO.setConcreteGrades( concreteChordsDTO );
         concreteScaleGradeDTO.setGrades( chordsDTO );
@@ -320,5 +335,6 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
         Long id = concreteScaleGradeRepository.getLastId();
         return id == null ? 0 : id;
     }
+
 
 }

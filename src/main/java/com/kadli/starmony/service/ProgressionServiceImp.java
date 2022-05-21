@@ -395,4 +395,9 @@ public class ProgressionServiceImp implements ProgressionService{
         return id == null ? 0 : id;
     }
 
+    @Override
+    public Long getIdProgressionGradeByScaleGrade(Long idProgression, Long idScaleGrade) {
+        return progressionGradeRepository.getIdProgressionGradeByProgressionAndSG(idProgression, idScaleGrade);
+    }
+
 }

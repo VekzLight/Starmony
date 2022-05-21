@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service("ChordService")
 public class ChordServiceImp implements ChordService {
@@ -21,6 +22,9 @@ public class ChordServiceImp implements ChordService {
     // Repositorios de la clase
     @Autowired
     private ChordRepository chordRepository;
+
+    @Autowired
+    private ChordIntervalRepository chordIntervalRepository;
 
     @Autowired
     private ScaleGradeRepository scaleGradeRepository;
@@ -213,7 +217,9 @@ public class ChordServiceImp implements ChordService {
                 for(int j  = 0; j < 2; j++){
                     pointer++;
                     if( pointer >= codeString.length ) pointer = 0;
+                    System.out.println(codeString[pointer]);
                     semitone += Integer.parseInt( codeString[pointer] );
+                    System.out.println(semitone);
                 }
 
                 intervalService.getIntervalWithSemitone(semitone).ifPresent(interval -> {
@@ -223,7 +229,8 @@ public class ChordServiceImp implements ChordService {
 
             int finalI = i + 1;
             for(Interval interval : intervals)
-                System.out.println("interval =" + interval.getSymbol());
+                System.out.println("interval =" + interval.getSymbol() + ":"+ interval.getId());
+
             chordRepository.getChordWithIntervals(intervals).ifPresentOrElse(chord -> {
                 ScaleGradeId scaleGradeId = new ScaleGradeId();
                 scaleGradeId.setGrade( Symbols.POS_TO_GRADE(finalI) );
@@ -264,13 +271,13 @@ public class ChordServiceImp implements ChordService {
         if(scaleGrades.isEmpty()) return null;
 
         Scale scale = scaleGrades.get(0).getScaleOfChord();
-        HashMap<String, ChordDTO> grades = new HashMap<>();
+        HashMap<Integer, ChordDTO> grades = new HashMap<>();
 
         for(ScaleGrade scaleGrade:scaleGrades ){
             Chord chord = scaleGrade.getChordOfScale();
             ChordDTO chordDTO = this.entityToDTO( chord );
 
-            grades.put( scaleGrade.getId().getGrade(), chordDTO );
+            grades.put( Symbols.GRADE_TO_POS(scaleGrade.getId().getGrade()), chordDTO );
         }
 
         scaleGradesDTO.setGrades(grades);
@@ -285,7 +292,21 @@ public class ChordServiceImp implements ChordService {
 
     @Override
     public List<Chord> getChordsWithIntervals(List<Interval> intervals) {
-        return chordRepository.getChordsWithIntervals(intervals);
+        List<Long> idChordIntervals = chordIntervalRepository.getIdChordIntervalsWithIntervals(intervals.stream().map(interval -> interval.getId()).collect(Collectors.toList()));
+        List<Chord> chords = new ArrayList<>();
+        for(Long idChordInterval: idChordIntervals){
+            List<ChordInterval> chordIntervals = chordIntervalRepository.getChordIntervalsById(idChordInterval);
+
+            int count = 0;
+            for(ChordInterval chordInterval: chordIntervals){
+                if( intervals.contains( chordInterval.getIntervalOfChord() ) ) count++;
+            }
+
+            if(count == intervals.size()){
+                chords.add(chordIntervals.get(0).getChordOfInterval());
+            }
+        }
+        return chords;
     }
 
     @Override
@@ -295,9 +316,9 @@ public class ChordServiceImp implements ChordService {
 
     @Override
     public Optional<ScaleGradesDTO> scaleGradeToScaleGradeDTO(ScaleGrade grade) {
-        HashMap<String, ChordDTO> grades = new HashMap<>();
+        HashMap<Integer, ChordDTO> grades = new HashMap<>();
         Chord chord = grade.getChordOfScale();
-        grades.put( grade.getId().getGrade(), this.entityToDTO(chord));
+        grades.put( Symbols.GRADE_TO_POS(grade.getId().getGrade()), this.entityToDTO(chord));
 
         ScaleGradesDTO scaleGradesDTO = new ScaleGradesDTO();
         scaleGradesDTO.setIdScaleGrade( grade.getId().getId_scale_grade() );

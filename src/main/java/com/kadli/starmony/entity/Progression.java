@@ -1,6 +1,5 @@
 package com.kadli.starmony.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kadli.starmony.interfaces.MusicalElement;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "progression")
@@ -19,7 +17,7 @@ import java.util.List;
 public class Progression implements MusicalElement {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_progression")
     protected Long id;
 

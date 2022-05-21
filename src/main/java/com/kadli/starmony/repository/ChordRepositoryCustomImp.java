@@ -67,7 +67,8 @@ public class ChordRepositoryCustomImp implements ChordRepositoryCustom{
         String query = "SELECT DISTINCT c" +
                 " FROM Chord c" +
                 " INNER JOIN c.chordIntervals ci" +
-                " WHERE ci.id.id_interval IN (:idp)" +
+                " INNER JOIN ci.intervalOfChord i" +
+                " WHERE i.id IN (:idp)" +
                 " AND c.code LIKE ((:expressionBase)) ";
 
         if(!expressions.isEmpty()) {
@@ -159,6 +160,7 @@ public class ChordRepositoryCustomImp implements ChordRepositoryCustom{
                 .setParameter("expressionBase", expressionBase)
                 .getResultList();
         if( chord.isEmpty() ) return Optional.empty();
+        System.out.println(chord.get(0).getId());
         return Optional.of( chord.get(0) );
     }
 

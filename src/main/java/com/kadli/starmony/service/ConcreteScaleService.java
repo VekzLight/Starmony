@@ -37,4 +37,7 @@ public interface ConcreteScaleService {
     // Conversiones
     ConcreteScaleDTO concreteScalesToConcreteScaleDTO(List<ConcreteScale> concreteScales);
 
+    List<ConcreteScaleDTO> getConcreteScalesWithTonicAndNotes(List<Long> idNotes, Long idTonic);
+
+    List<Long> getIdConcreteScalesWithConcreteChords(List<Long> idConcreteChords);
 }

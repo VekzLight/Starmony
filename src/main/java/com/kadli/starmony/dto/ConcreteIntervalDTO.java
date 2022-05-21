@@ -10,6 +10,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConcreteIntervalDTO extends IntervalDTO implements Serializable {
+    private Long id_concrete_interval;
     private NoteDTO firsNote;
     private NoteDTO lastNote;
 }

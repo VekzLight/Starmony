@@ -20,7 +20,6 @@ public class ProgressionRepositoryCustomImp implements ProgressionRepositoryCust
                         "from Progression p" +
                         " where p." + attribute + " = :value", Progression.class)
                 .setParameter("value", value)
-                .setParameter("attribute", attribute)
                 .getResultList();
         if(progression.isEmpty()) return Optional.empty();
         return Optional.of(progression.get(0));

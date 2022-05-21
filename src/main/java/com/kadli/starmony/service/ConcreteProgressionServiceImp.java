@@ -42,11 +42,14 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
     @Autowired
     private ConcreteProgressionRepository concreteProgressionRepository;
 
+
     @Override
-    public List<ConcreteProgression> generateConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades) {
+    public List<ConcreteProgression> generateConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades, Long idConcreteScale) {
 
         List<ConcreteProgression> concreteProgressions = new ArrayList<>();
         HashMap<String, ConcreteChord> concreteChordHashMap = new HashMap<>();
+
+        List<ConcreteScale> concreteScales = concreteScaleService.getCompleteConcreteScaleById(idConcreteScale);
 
         for(ConcreteScaleGrade concreteScaleGrade: concreteScaleGrades)
             concreteChordHashMap.put( concreteScaleGrade.getId().getGrade(), concreteScaleGrade.getConcreteChord() );
@@ -61,6 +64,7 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
             concreteProgression.setId( concreteProgressionId );
             concreteProgression.setProgressionGrade( progressionGrade );
             concreteProgression.setConcreteChord( concreteChordHashMap.get( progressionGrade.getScaleGradeOfProgression().getId().getGrade() ) );
+            concreteProgression.setConcreteScale( concreteScales.get(0) );
 
             concreteProgressions.add( concreteProgression );
         }
@@ -69,8 +73,8 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
     }
 
     @Override
-    public List<ConcreteProgression> generateAndSaveConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades) {
-        List<ConcreteProgression> concreteProgressions = this.generateConcreteProgression(progressionGrades, concreteScaleGrades);
+    public List<ConcreteProgression> generateAndSaveConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades, Long idConcreteScale) {
+        List<ConcreteProgression> concreteProgressions = this.generateConcreteProgression(progressionGrades, concreteScaleGrades, idConcreteScale);
         for(ConcreteProgression it:concreteProgressions)
             concreteProgressionRepository.save(it);
         return concreteProgressions;
@@ -93,7 +97,7 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
                     List<ConcreteScaleGrade> concreteScaleGrades = concreteChordService.getCompleteConcreteScaleGradesByConcreteScaleId( idConcreteScale );
 
                     if(concreteScaleGrades.isEmpty()) continue;
-                    concreteProgressions.addAll(this.generateAndSaveConcreteProgression( progressionGrades, concreteScaleGrades));
+                    concreteProgressions.addAll(this.generateAndSaveConcreteProgression( progressionGrades, concreteScaleGrades, idConcreteScale));
                 }
             }
         }
@@ -147,6 +151,32 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
         concreteProgressionDTO.setConcreteGrades( concreteChordDTOHashMap );
 
         return Optional.of( concreteProgressionDTO );
+    }
+
+    @Override
+    public List<ConcreteProgression> getCompleteConcreteProgressionById(Long idProgression) {
+        return concreteProgressionRepository.getCompleteConcreteProgressionById(idProgression);
+    }
+
+    @Override
+    public List<ConcreteProgressionDTO> getCompleteConcreteProgressionsByIdScaleAndChord(List<Long> idConcreteScales, List<Long> idConcreteChords, Long idTonic) {
+        List<Long> idConcreteProgressions = concreteProgressionRepository.getIdCompleteConcreteProgressionByIdScaleAndChord(idConcreteChords, idConcreteScales);
+        List<ConcreteProgressionDTO> concreteProgressionDTOS = new ArrayList<>();
+        for(Long id: idConcreteProgressions){
+            List<ConcreteProgression> concreteProgressions = concreteProgressionRepository.getCompleteConcreteProgressionById(id);
+            boolean flag = false;
+            for(ConcreteProgression concreteProgression: concreteProgressions){
+                if(concreteProgression.getConcreteScale().getId().getPosition() == 1 && concreteProgression.getConcreteScale().getNotesOfScale().getId() == idTonic)
+                    flag = true;
+            }
+            if(flag = true) concreteProgressionDTOS.add( this.concreteProgressionToConcreteProgressionDTO(concreteProgressions).get() );
+        }
+        return concreteProgressionDTOS;
+    }
+
+    @Override
+    public List<ConcreteProgression> getCompleteConcreteProgressionsByProgressionGradeAndConcreteScale(Long idConcreteScale, Long idProgressionGrade) {
+        return concreteProgressionRepository.getCompleteConcreteProgressionByPGAndCS(idConcreteScale, idProgressionGrade);
     }
 
 }

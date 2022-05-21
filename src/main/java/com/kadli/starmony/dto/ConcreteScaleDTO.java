@@ -17,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConcreteScaleDTO extends ScaleDTO implements Serializable {
-    private Long idConcrete;
+    private Long id_concrete_scale;
     private NoteDTO tonic;
     private HashMap<Integer, NoteDTO> notes;
 }

@@ -12,7 +12,6 @@ import java.util.HashMap;
 @NoArgsConstructor
 public class ProgressionGradeDTO extends ProgressionDTO implements Serializable {
     private ScaleDTO scale;
-
     private Long id_progression_grade;
     private HashMap<Integer, ChordDTO> grades;
 }
