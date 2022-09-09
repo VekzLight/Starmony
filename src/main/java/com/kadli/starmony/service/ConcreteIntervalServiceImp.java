@@ -1,10 +1,9 @@
 package com.kadli.starmony.service;
 
 import com.kadli.starmony.dto.ConcreteIntervalDTO;
-import com.kadli.starmony.entity.ConcreteInterval;
-import com.kadli.starmony.entity.Interval;
-import com.kadli.starmony.entity.Note;
+import com.kadli.starmony.entity.*;
 import com.kadli.starmony.repository.ConcreteIntervalRepository;
+import com.kadli.starmony.repository.ConcreteScaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +18,8 @@ public class ConcreteIntervalServiceImp implements ConcreteIntervalService{
     @Autowired
     private ConcreteIntervalRepository concreteIntervalRepository;
 
+    @Autowired
+    private ConcreteScaleRepository concreteScaleRepository;
 
     @Autowired
     private NoteService noteService;
@@ -108,7 +109,7 @@ public class ConcreteIntervalServiceImp implements ConcreteIntervalService{
         concreteIntervalDTO.setId( interval.getId() );
         concreteIntervalDTO.setSemitones( interval.getSemitones() );
         concreteIntervalDTO.setId_concrete_interval( concreteInterval.getId_concrete_interval() );
-        concreteIntervalDTO.setFirsNote( noteService.entityToDTO(concreteInterval.getFirstNote()) );
+        concreteIntervalDTO.setFirstNote( noteService.entityToDTO(concreteInterval.getFirstNote()) );
         concreteIntervalDTO.setLastNote( noteService.entityToDTO(concreteInterval.getLastNote()) );
 
         return concreteIntervalDTO;
@@ -132,5 +133,20 @@ public class ConcreteIntervalServiceImp implements ConcreteIntervalService{
         }
         return concreteIntervalDTOS;
     }
+
+    @Override
+    public List<Long> getIdConcreteIntervalsOfConcreteScale(Long concreteScaleId) {
+        Scale scale = concreteScaleRepository.getScaleFromConcreteScale(concreteScaleId);
+        Long idTonic = concreteScaleRepository.getIdTonicOfConcreteScaleId(concreteScaleId);
+
+        List<Interval> intervals = intervalService.getIntervalsOfScaleByTonic(scale);
+        List<Long> intervalsIds = new ArrayList<>();
+        for(Interval interval: intervals)
+            intervalsIds.add( concreteIntervalRepository.getIdConcreteIntervalWithIntervalAndTonic(interval.getId(), idTonic) );
+
+
+        return intervalsIds;
+    }
+
 
 }

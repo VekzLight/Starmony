@@ -1,6 +1,8 @@
 package com.kadli.starmony.service;
 
 import com.kadli.starmony.entity.ProgressionGrade;
+import com.kadli.starmony.entity.Scale;
+import com.kadli.starmony.entity.ScaleInterval;
 
 import java.io.Serializable;
 import java.util.List;

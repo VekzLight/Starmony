@@ -4,6 +4,7 @@ import com.kadli.starmony.dto.*;
 import com.kadli.starmony.entity.*;
 import com.kadli.starmony.repository.ProgressionGradeRepository;
 import com.kadli.starmony.repository.ProgressionRepository;
+import com.kadli.starmony.repository.TagProgressionRepository;
 import com.kadli.starmony.utilities.Symbols;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import java.util.regex.Pattern;
 
 @Service("ProgressionService")
 public class ProgressionServiceImp implements ProgressionService{
+
+    @Autowired
+    private TagProgressionRepository tagProgressionRepository;
 
     @Autowired
     private ProgressionRepository progressionRepository;
@@ -202,12 +206,10 @@ public class ProgressionServiceImp implements ProgressionService{
         String codeGrades[] = progression.getSymbol().split(Symbols.SYMBOL_SEPARATION_PROGRESSION );
 
         List<ProgressionGrade> progressionGrades = new ArrayList<>();
-        HashMap<String, ScaleGrade> grades = new HashMap<String, ScaleGrade>();
+        HashMap<String, ScaleGrade> grades = new HashMap<>();
 
-        System.out.println( "Grades for this scale" );
         for(ScaleGrade scaleGrade: scaleGrades){
             grades.put(scaleGrade.getId().getGrade(), scaleGrade);
-            System.out.println( scaleGrade.getId().getGrade() );
         }
 
 
@@ -224,11 +226,10 @@ public class ProgressionServiceImp implements ProgressionService{
                 Matcher matcher = replace.matcher(code);
                 matcher.find();
 
-                System.out.println("Entro");
                 symbol = matcher.replaceAll("");
             }
 
-            System.out.println("Progression = " + idProgresion + " Code = " + progression.getSymbol() + " Symbolo" + symbol);
+
             ScaleGrade scaleGrade = grades.get(symbol);
 
             // No se puede generar la progression en esta escala
@@ -248,6 +249,7 @@ public class ProgressionServiceImp implements ProgressionService{
             position++;
         }
 
+        //System.out.println("Progression = " + idProgresion + " Code = " + progression.getSymbol());
         return progressionGrades;
     }
 
@@ -400,4 +402,13 @@ public class ProgressionServiceImp implements ProgressionService{
         return progressionGradeRepository.getIdProgressionGradeByProgressionAndSG(idProgression, idScaleGrade);
     }
 
+    @Override
+    public List<Long> getIdProgressionsByTag(Long idTag){
+        return tagProgressionRepository.getIdProgressionsOfIdTag(idTag);
+    }
+
+    @Override
+    public List<Progression> getAllWithLenth(int size) {
+        return progressionRepository.getAllWithLenth(size);
+    }
 }

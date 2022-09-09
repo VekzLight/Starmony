@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("ChordService")
@@ -202,58 +199,123 @@ public class ChordServiceImp implements ChordService {
         return scaleGradeRepository.getIdScaleGrade(scale.getId());
     }
 
+    private ScaleGrade chordToScaleGrade(Scale scale, Chord chord, int posGrade, Long idScaleGrade){
+        ScaleGradeId scaleGradeId = new ScaleGradeId();
+        scaleGradeId.setGrade( Symbols.POS_TO_GRADE(posGrade) );
+        scaleGradeId.setId_scale_grade( idScaleGrade );
+
+        ScaleGrade scaleGrade = new ScaleGrade();
+        scaleGrade.setChordOfScale( chord );
+        scaleGrade.setScaleOfChord( scale );
+        scaleGrade.setId( scaleGradeId );
+
+        return scaleGrade;
+    }
+
+    /**
+     *
+     * @param scale
+     * @return Map< numero notas, acordes >
+     */
     @Override
-    public List<ScaleGrade> generateGradesOfScale(Scale scale) {
-        String codeString[] = scale.getCode().split(Symbols.SYMBOL_SEPARATION_SCALE);
-        List<ScaleGrade> scaleGrades = new ArrayList<>();
+    public HashMap<Integer, List<ScaleGrade>> generateGradesOfScale(Scale scale) {
+        HashMap<Integer, List<ScaleGrade>>  scaleGrades = new HashMap<>();
+
+        List<ScaleGrade> scaleGradesTriada = new ArrayList<>();
+        List<ScaleGrade> scaleGradesSeptima = new ArrayList<>();
+        List<ScaleGrade> scaleGradesNovena = new ArrayList<>();
 
         Long idScaleGrade = this.getMaxId() + 1;
-        for(int i = 0; i < codeString.length; i++){
-            List<Interval> intervals = new ArrayList<>();
-            int semitone= 0;
-            int pointer = i - 1;
+        int[] codeStr = Arrays.stream(scale.getCode().trim().split(Symbols.SYMBOL_SEPARATION_SCALE)).mapToInt(Integer::parseInt).toArray();
 
-            for(int k = 0; k < 2; k++){
-                for(int j  = 0; j < 2; j++){
-                    pointer++;
-                    if( pointer >= codeString.length ) pointer = 0;
-                    System.out.println(codeString[pointer]);
-                    semitone += Integer.parseInt( codeString[pointer] );
-                    System.out.println(semitone);
-                }
+        int posGrade = 1;
+        for(int i = 0; i < codeStr.length; i++){
+            int index = i;
+            int semitones = codeStr[index];
+            index = index == codeStr.length - 1 ? 0 : index + 1;
+            semitones += codeStr[index];
+            Interval interval_base = intervalService.getIntervalWithSemitone(semitones).get();
 
-                intervalService.getIntervalWithSemitone(semitone).ifPresent(interval -> {
-                    intervals.add( interval );
-                });
-            }
+            index = index == codeStr.length - 1 ? 0 : index + 1;
+            semitones += codeStr[index];
 
-            int finalI = i + 1;
-            for(Interval interval : intervals)
-                System.out.println("interval =" + interval.getSymbol() + ":"+ interval.getId());
+            index = index == codeStr.length - 1 ? 0 : index + 1;
+            semitones += codeStr[index];
+            Interval interval_triada = intervalService.getIntervalWithSemitone(semitones).get();
 
-            chordRepository.getChordWithIntervals(intervals).ifPresentOrElse(chord -> {
-                ScaleGradeId scaleGradeId = new ScaleGradeId();
-                scaleGradeId.setGrade( Symbols.POS_TO_GRADE(finalI) );
-                scaleGradeId.setId_scale_grade( idScaleGrade );
+            index = index == codeStr.length - 1 ? 0 : index + 1;
+            semitones += codeStr[index];
 
-                ScaleGrade scaleGrade = new ScaleGrade();
-                scaleGrade.setChordOfScale( chord );
-                scaleGrade.setScaleOfChord( scale );
-                scaleGrade.setId( scaleGradeId );
+            index = index == codeStr.length - 1 ? 0 : index + 1;
+            semitones += codeStr[index];
+            Interval interval_septima = intervalService.getIntervalWithSemitone(semitones).get();
 
-                scaleGrades.add(scaleGrade);
-            }, () -> {
+            index = index == codeStr.length - 1 ? 0 : index + 1;
+            semitones += codeStr[index];
 
-            });
+            index = index == codeStr.length - 1 ? 0 : index + 1;
+            semitones += codeStr[index];
+            Interval interval_novena = intervalService.getIntervalWithSemitone(semitones).get();
+
+            // C E G - triada
+            // C E G B - septima
+            // C E G B D - novena
+            List<Interval> intervalBuffer = new ArrayList<>();
+            intervalBuffer.add(interval_base);
+            intervalBuffer.add(interval_triada);
+
+            List<Interval> triada = new ArrayList<>(intervalBuffer);
+
+            intervalBuffer.add(interval_septima);
+            List<Interval> septima = new ArrayList<>(intervalBuffer);
+
+            intervalBuffer.add(interval_novena);
+            List<Interval> novena = new ArrayList<>(intervalBuffer);
+
+            List<Long> idTriada     = triada.stream().map( interval-> interval.getId() ).collect(Collectors.toList());
+            List<Long> idSeptima    = septima.stream().map( interval-> interval.getId() ).collect(Collectors.toList());
+            List<Long> idNovena     = novena.stream().map( interval-> interval.getId() ).collect(Collectors.toList());
+
+            List<Long> chordsTriada = chordIntervalRepository.getChordIntervalsIdsWhereLength( 2L);
+            List<Long> chordsSeptima = chordIntervalRepository.getChordIntervalsIdsWhereLength( 3L);
+            List<Long> chordsNovena = chordIntervalRepository.getChordIntervalsIdsWhereLength( 4L);
+
+            int finalPosGrade = posGrade;
+            chordIntervalRepository.getChordWithIntervals( chordsTriada,idTriada, 2L).ifPresentOrElse(chord -> {
+                //System.out.println( finalPosGrade + " Triada: " + chord.getSymbol() );
+                scaleGradesTriada.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade) );
+            }, () -> { scaleGradesTriada.add( Symbols.scaleGrade ); /*System.out.println("Acorde desconocido");*/});
+
+
+            chordIntervalRepository.getChordWithIntervals(chordsSeptima, idSeptima, 3L ).ifPresentOrElse(chord -> {
+                //System.out.println( finalPosGrade + " Sewptima: " + chord.getSymbol() );
+                scaleGradesSeptima.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade) );
+            }, () -> { scaleGradesSeptima.add( Symbols.scaleGrade ); /*System.out.println("Acorde desconocido");*/});
+
+
+            chordIntervalRepository.getChordWithIntervals( chordsNovena, idNovena, 4L ).ifPresentOrElse(chord -> {
+                //System.out.println( finalPosGrade + " Novena: " + chord.getSymbol() );
+                scaleGradesNovena.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade) );
+            }, () -> { scaleGradesNovena.add( Symbols.scaleGrade ); /*System.out.println("Acorde desconocido");*/});
+
+            posGrade++;
         }
+
+        scaleGrades.put(3, scaleGradesTriada);
+        scaleGrades.put(4, scaleGradesSeptima);
+        scaleGrades.put(5, scaleGradesNovena);
 
         return scaleGrades;
     }
 
+
     @Override
-    public List<ScaleGrade> generateGradesOfScaleAndSave(Scale scale) {
-        List<ScaleGrade> scaleGrades = this.generateGradesOfScale( scale );
-        scaleGradeRepository.saveAll(scaleGrades);
+    public HashMap<Integer, List<ScaleGrade>> generateGradesOfScaleAndSave(Scale scale) {
+        HashMap<Integer, List<ScaleGrade>> scaleGrades = this.generateGradesOfScale( scale );
+        scaleGradeRepository.saveAll(scaleGrades.get(3));
+        scaleGradeRepository.saveAll(scaleGrades.get(4));
+        scaleGradeRepository.saveAll(scaleGrades.get(5));
+
         return scaleGrades;
     }
 
@@ -330,6 +392,16 @@ public class ChordServiceImp implements ChordService {
         scaleGradesDTO.setName(scale.getName());
         scaleGradesDTO.setSymbol(scale.getSymbol());
         return Optional.of( scaleGradesDTO );
+    }
+
+    @Override
+    public List<Long> getAllIdsScaleGrades() {
+        return scaleGradeRepository.getAllIds();
+    }
+
+    @Override
+    public List<ScaleGrade> getScaleGradeById(Long id) {
+        return scaleGradeRepository.getScaleGradeById(id);
     }
 
 }

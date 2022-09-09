@@ -14,5 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ConcreteProgressionDTO extends ProgressionGradeDTO implements Serializable {
     private Long id_concrete_progression;
+    private Long id_concrete_scale;
     private HashMap<Integer, ConcreteChordDTO> concreteGrades;
 }

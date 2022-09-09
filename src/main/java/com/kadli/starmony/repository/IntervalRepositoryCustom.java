@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface IntervalRepositoryCustom extends CustomCrudRepository<Interval, Long>{
 
+    
+    
     // Obtener Intervalos de Semitonos
     Optional<Interval> getIntervalWithSemitones(Integer semitones);
     List<Interval> getIntervalsWithSemitones(List<Integer> semitones);
@@ -23,4 +25,5 @@ public interface IntervalRepositoryCustom extends CustomCrudRepository<Interval,
     List<Interval> getIntervalsOfScaleCodeByTonic(String scaleCode);
     List<Interval> getIntervalsOfScaleCodeByAll(String scaleCode);
 
+    List<Interval> getIntervalsById(List<Long> intervalsId);
 }

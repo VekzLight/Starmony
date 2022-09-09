@@ -4,7 +4,9 @@ import com.kadli.starmony.dto.ChordDTO;
 import com.kadli.starmony.dto.ScaleGradesDTO;
 import com.kadli.starmony.entity.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface ChordService extends CustomCrudService<Chord, Long>, DtoConversions<Chord, ChordDTO>{
@@ -12,8 +14,8 @@ public interface ChordService extends CustomCrudService<Chord, Long>, DtoConvers
 
     // Generadores
     Long getIdScaleGrade(Scale scale);
-    List<ScaleGrade> generateGradesOfScale(Scale scale);
-    List<ScaleGrade> generateGradesOfScaleAndSave(Scale scale);
+    HashMap<Integer, List<ScaleGrade>> generateGradesOfScale(Scale scale);
+    HashMap<Integer, List<ScaleGrade>> generateGradesOfScaleAndSave(Scale scale);
     void generateAllGradesOfScaleAndSave();
 
 
@@ -25,4 +27,8 @@ public interface ChordService extends CustomCrudService<Chord, Long>, DtoConvers
     List<ScaleGrade> getGradesOfScale(Scale scale);
 
     Optional<ScaleGradesDTO> scaleGradeToScaleGradeDTO(ScaleGrade grade);
+
+    List<Long> getAllIdsScaleGrades();
+
+    List<ScaleGrade> getScaleGradeById(Long id);
 }

@@ -1,5 +1,9 @@
 package com.kadli.starmony.utilities;
 
+import com.kadli.starmony.entity.Chord;
+import com.kadli.starmony.entity.ScaleGrade;
+import com.kadli.starmony.entity.ScaleGradeId;
+
 public class Symbols {
     public final static String SYMBOL_SEPARATION_SCALE = "–";
     public final static String SYMBOL_SEPARATION_PROGRESSION = "-";
@@ -37,4 +41,7 @@ public class Symbols {
         }
         return pos;
     }
+
+    public final static Chord chord = Chord.builder().id(-1L).name("Desconocido").symbol("?").build();
+    public final static ScaleGrade scaleGrade = ScaleGrade.builder().exist(false).chordOfScale(chord).build();
 }

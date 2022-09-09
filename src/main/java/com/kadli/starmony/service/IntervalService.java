@@ -3,6 +3,7 @@ package com.kadli.starmony.service;
 import com.kadli.starmony.dto.IntervalDTO;
 import com.kadli.starmony.entity.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,7 @@ public interface IntervalService extends CustomCrudService<Interval, Long>, DtoC
 
     // Obtener
     List<Interval> getIntervalsOfChord(Chord chord);
-
+    List<Interval> getIntervalsById(List<Long> intervalsId);
 
 
     // Generadores
@@ -37,4 +38,6 @@ public interface IntervalService extends CustomCrudService<Interval, Long>, DtoC
     List<Interval> getIntervalsOfNotes(List<Note> notes);
 
     Long getLastId();
+
+    List<ScaleInterval> generateIntervalsOfScale(Scale scale);
 }

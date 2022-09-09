@@ -3,15 +3,13 @@ package com.kadli.starmony.service;
 import com.kadli.starmony.dto.*;
 import com.kadli.starmony.entity.*;
 import com.kadli.starmony.repository.ConcreteChordRepository;
+import com.kadli.starmony.repository.ConcreteProgressionRepository;
 import com.kadli.starmony.repository.ConcreteScaleGradeRepository;
 import com.kadli.starmony.utilities.Symbols;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("ConcreteChordService")
@@ -38,6 +36,8 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
     @Autowired
     private ConcreteScaleService concreteScaleService;
 
+    @Autowired
+    private ConcreteProgressionRepository concreteProgressionRepository;
 
     // Obtener
     @Override
@@ -63,6 +63,7 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
         if (concreteScaleGrades.isEmpty()) return new ArrayList<>();
         return concreteScaleGrades;
     }
+
 
     // Generadores
     @Override
@@ -168,7 +169,60 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
 
 
     @Override
-    public List<ConcreteScaleGrade> generateConcreteGradesOfScale(List<ConcreteScale> concreteScales) {
+    public HashMap<String, List<ConcreteScaleGrade>> generateConcreteGradesOfScales(List<ConcreteScale> concreteScales, HashMap<Integer, List<ScaleGrade>> scaleGrades) {
+        HashMap<String, List<ConcreteScaleGrade>> concreteScaleGrades = new HashMap<>();
+
+        // Ordena las notas de la escala por posicion
+        HashMap<Integer, ConcreteScale> concreteScaleHashMap = new HashMap<>();
+        for(ConcreteScale concreteScale: concreteScales){
+            concreteScaleHashMap.put( concreteScale.getId().getPosition(), concreteScale );
+        }
+
+        Note tonic = concreteScaleHashMap.get(1).getNotesOfScale();
+
+        for(Integer key:  scaleGrades.keySet()){
+            Long id = this.getLastConcreteGradeScaleId() + 1;
+            List<ConcreteScaleGrade> concreteScaleGradesBuffer = new ArrayList<>();
+            for(ScaleGrade scaleGrade: scaleGrades.get(key)){
+                if(scaleGrade.getChordOfScale().getId() != -1){
+                    int positionGrade = Symbols.GRADE_TO_POS( scaleGrade.getId().getGrade() );
+
+                    ConcreteScale concreteScale = concreteScaleHashMap.get(positionGrade);
+                    Chord chord = scaleGrade.getChordOfScale();
+                    List<ConcreteChord> concreteChordsList = this.getCompleteConcreteChordWithTonic(chord.getId(), concreteScale.getNotesOfScale().getId());
+
+                    for(ConcreteChord concretechord: concreteChordsList){
+                        ConcreteScaleGradeId concreteScaleGradeId = new ConcreteScaleGradeId();
+                        concreteScaleGradeId.setId_concrete_scale_grade( id );
+                        concreteScaleGradeId.setId_concrete_scale( concreteScale.getId().getId_concrete_scale() );
+                        concreteScaleGradeId.setPosition_note_scale( concreteScale.getId().getPosition() );
+                        concreteScaleGradeId.setId_scale_grade( scaleGrade.getId().getId_scale_grade() );
+                        concreteScaleGradeId.setGrade( scaleGrade.getId().getGrade() );
+                        concreteScaleGradeId.setId_concrete_chord( concretechord.getCc_id().getId_concrete_chord() );
+                        concreteScaleGradeId.setPosition_note_chord( concretechord.getCc_id().getPosition_note_chord() );
+
+                        ConcreteScaleGrade concreteScaleGrade = new ConcreteScaleGrade();
+                        concreteScaleGrade.setId( concreteScaleGradeId );
+                        concreteScaleGrade.setScaleGrade( scaleGrade );
+                        concreteScaleGrade.setConcreteScale( concreteScale );
+                        concreteScaleGrade.setConcreteChord(concretechord);
+
+                        concreteScaleGradesBuffer.add(concreteScaleGrade);
+                    }
+                } else {
+                    ConcreteScaleGrade concreteScaleGrade = ConcreteScaleGrade.builder().scaleGrade( Symbols.scaleGrade ).build();
+                    concreteScaleGradesBuffer.add(concreteScaleGrade);
+                }
+            }
+            concreteScaleGrades.put(key + "," + tonic.getId(), concreteScaleGradesBuffer);
+        }
+
+
+        return concreteScaleGrades;
+    }
+
+    @Override
+    public List<ConcreteScaleGrade> generateConcreteGradesOfScale(List<ConcreteScale> concreteScales, HashMap<Integer, List<ScaleGrade>> scaleGrades) {
         List<ConcreteScaleGrade> concreteScaleGrades = new ArrayList<>();
 
         HashMap<Integer, ConcreteScale> concreteScaleHashMap = new HashMap<>();
@@ -176,39 +230,41 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
             concreteScaleHashMap.put( concreteScale.getId().getPosition(), concreteScale );
 
         Long id = this.getLastConcreteGradeScaleId() + 1;
-        for(ScaleGrade scaleGrade: chordService.getGradesOfScale( concreteScales.get(0).getScaleOfNotes() ) ){
+        for(List<ScaleGrade> scaleGradesIt:  scaleGrades.values()){
+            for(ScaleGrade scaleGrade: scaleGradesIt){
+                int positionGrade = Symbols.GRADE_TO_POS( scaleGrade.getId().getGrade() );
 
-            int positionGrade = Symbols.GRADE_TO_POS( scaleGrade.getId().getGrade() );
+                ConcreteScale concreteScale = concreteScaleHashMap.get(positionGrade);
+                Chord chord = scaleGrade.getChordOfScale();
+                List<ConcreteChord> concreteChordsList = this.getCompleteConcreteChordWithTonic(chord.getId(), concreteScale.getNotesOfScale().getId());
+                for(ConcreteChord concretechord: concreteChordsList){
+                    ConcreteScaleGradeId concreteScaleGradeId = new ConcreteScaleGradeId();
+                    concreteScaleGradeId.setId_concrete_scale_grade( id );
+                    concreteScaleGradeId.setId_concrete_scale( concreteScale.getId().getId_concrete_scale() );
+                    concreteScaleGradeId.setPosition_note_scale( concreteScale.getId().getPosition() );
+                    concreteScaleGradeId.setId_scale_grade( scaleGrade.getId().getId_scale_grade() );
+                    concreteScaleGradeId.setGrade( scaleGrade.getId().getGrade() );
+                    concreteScaleGradeId.setId_concrete_chord( concretechord.getCc_id().getId_concrete_chord() );
+                    concreteScaleGradeId.setPosition_note_chord( concretechord.getCc_id().getPosition_note_chord() );
 
-            ConcreteScale concreteScale = concreteScaleHashMap.get(positionGrade);
-            Chord chord = scaleGrade.getChordOfScale();
-            List<ConcreteChord> concreteChordsList = this.getCompleteConcreteChordWithTonic(chord.getId(), concreteScale.getNotesOfScale().getId());
-            for(ConcreteChord concretechord: concreteChordsList){
-                ConcreteScaleGradeId concreteScaleGradeId = new ConcreteScaleGradeId();
-                concreteScaleGradeId.setId_concrete_scale_grade( id );
-                concreteScaleGradeId.setId_concrete_scale( concreteScale.getId().getId_concrete_scale() );
-                concreteScaleGradeId.setPosition_note_scale( concreteScale.getId().getPosition() );
-                concreteScaleGradeId.setId_scale_grade( scaleGrade.getId().getId_scale_grade() );
-                concreteScaleGradeId.setGrade( scaleGrade.getId().getGrade() );
-                concreteScaleGradeId.setId_concrete_chord( concretechord.getCc_id().getId_concrete_chord() );
-                concreteScaleGradeId.setPosition_note_chord( concretechord.getCc_id().getPosition_note_chord() );
+                    ConcreteScaleGrade concreteScaleGrade = new ConcreteScaleGrade();
+                    concreteScaleGrade.setId( concreteScaleGradeId );
+                    concreteScaleGrade.setScaleGrade( scaleGrade );
+                    concreteScaleGrade.setConcreteScale( concreteScale );
+                    concreteScaleGrade.setConcreteChord(concretechord);
 
-                ConcreteScaleGrade concreteScaleGrade = new ConcreteScaleGrade();
-                concreteScaleGrade.setId( concreteScaleGradeId );
-                concreteScaleGrade.setScaleGrade( scaleGrade );
-                concreteScaleGrade.setConcreteScale( concreteScale );
-                concreteScaleGrade.setConcreteChord(concretechord);
-
-                concreteScaleGrades.add(concreteScaleGrade);
+                    concreteScaleGrades.add(concreteScaleGrade);
+                }
             }
+
         }
 
         return concreteScaleGrades;
     }
 
     @Override
-    public List<ConcreteScaleGrade> generateAndSaveConcreteGradesOfScale(List<ConcreteScale> concreteScales) {
-        List<ConcreteScaleGrade> concreteScaleGrades = this.generateConcreteGradesOfScale(concreteScales);
+    public List<ConcreteScaleGrade> generateAndSaveConcreteGradesOfScale(List<ConcreteScale> concreteScales, HashMap<Integer, List<ScaleGrade>> scaleGrades) {
+        List<ConcreteScaleGrade> concreteScaleGrades = this.generateConcreteGradesOfScale(concreteScales, scaleGrades);
         if(concreteScaleGrades.isEmpty()) return new ArrayList<>();
         concreteScaleGradeRepository.saveAll(concreteScaleGrades);
         return concreteScaleGrades;
@@ -224,7 +280,10 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
             for(Note note: notes){
                 List<ConcreteScale> concreteScales = concreteScaleService.getCompleteConcreteScaleWithTonic( scale.getId(), note.getId());
                 if(concreteScales.isEmpty()) continue;
-                List<ConcreteScaleGrade> generated = this.generateAndSaveConcreteGradesOfScale(concreteScales);
+
+                HashMap<Integer, List<ScaleGrade>> scaleGrades = chordService.generateGradesOfScale(scale);
+
+                List<ConcreteScaleGrade> generated = this.generateAndSaveConcreteGradesOfScale(concreteScales,scaleGrades );
                 if(generated.isEmpty())
                 concreteScaleGrades.addAll( generated );
             }
@@ -245,8 +304,10 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
         return concreteChordRepository.getIdConcreteChord(idChord, idTonic);
     }
 
-
-
+    @Override
+    public List<Long> getAllIdConcreteChords() {
+        return concreteChordRepository.getAllIdConcreteChords();
+    }
 
 
     // Conversiones Concretas
@@ -285,7 +346,7 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
         concreteScaleGradeDTO.setCode(scale.getCode() );
 
         // Id de los grados de la escala
-        concreteScaleGradeDTO.setId_concrete_scale_grade( concreteScaleGrade.getId().getId_concrete_scale_grade() );
+        concreteScaleGradeDTO.setIdConcreteScaleGrade( concreteScaleGrade.getId().getId_concrete_scale_grade() );
         concreteScaleGradeDTO.setIdScaleGrade( concreteScaleGrade.getId().getId_scale_grade() );
 
         HashMap<Integer,ConcreteChordDTO> concreteChordsDTO = new HashMap<>();
@@ -334,6 +395,56 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
     public Long getLastConcreteGradeScaleId() {
         Long id = concreteScaleGradeRepository.getLastId();
         return id == null ? 0 : id;
+    }
+
+    @Override
+    public List<Long> getConcreteScaleGradeIdWithConcreteChordId(Long concreteChordId) {
+        return concreteScaleGradeRepository.getConcreteScaleGradeIdWithConcreteChordId(concreteChordId);
+    }
+
+    @Override
+    public HashMap<Long, List<Integer>> getConcreteProgressionsIdWithConcreteChordId(Long concreteChordId) {
+        List<ConcreteProgressionId> concreteProgressionCustomQueries = concreteProgressionRepository.getConcreteProgressionIdWithConcreteChordId(concreteChordId);
+
+        HashMap<Long,List<Integer>> concreteProgressionsIds = new HashMap<>();
+        for(ConcreteProgressionId set: concreteProgressionCustomQueries){
+            if(concreteProgressionsIds.containsKey( set.getId_concrete_progression())){
+                List<Integer> ids = concreteProgressionsIds.get(set.getId_concrete_progression());
+                ids.add( set.getPosition_concrete_chord() );
+                concreteProgressionsIds.put(set.getId_concrete_progression(), ids);
+            }
+            else{
+                List<Integer> ids = new ArrayList<>();
+                ids.add(set.getPosition_concrete_chord());
+                concreteProgressionsIds.put(set.getId_concrete_progression(), ids);
+            }
+        }
+        return concreteProgressionsIds;
+    }
+
+    @Override
+    public List<ConcreteScaleGrade> getCompleteConcreteScaleGradeById(Long id) {
+        return concreteScaleGradeRepository.getCompleteConcreteScaleGradeByCSGId(id);
+    }
+
+    @Override
+    public Chord getIdChordOfIdConcreteChord(Long concreteChordId) {
+        return concreteChordRepository.getChordOfConcreteChordId(concreteChordId);
+    }
+
+    @Override
+    public List<Long> getAllIdConcreteScaleGrades() {
+        return concreteScaleGradeRepository.getAllConcreteScaleGradesIds();
+    }
+
+    @Override
+    public Long getIdConcreteScaleWithScale(Long idConcreteScale) {
+        return concreteScaleGradeRepository.getConcreteScaleGradeIdWithScaleAndTonicId(idConcreteScale);
+    }
+
+    @Override
+    public List<Long> getConcreteChordsIdByConcreteScaleId(Long concreteScaleId) {
+        return concreteScaleGradeRepository.getConcreteChordsOfConcreteScale(concreteScaleId);
     }
 
 

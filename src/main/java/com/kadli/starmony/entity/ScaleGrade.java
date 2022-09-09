@@ -1,5 +1,6 @@
 package com.kadli.starmony.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,5 +27,7 @@ public class ScaleGrade {
     @JoinColumn(name = "chord_id_chord")
     private Chord chordOfScale;
 
-
+    @JsonIgnore
+    @Transient
+    private boolean exist;
 }

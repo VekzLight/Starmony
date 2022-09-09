@@ -61,6 +61,11 @@ public class ConcreteScaleServiceImp implements ConcreteScaleService{
         return concreteScaleRepository.getConcreteScale(idscale, idTonic);
     }
 
+    @Override
+    public List<Long> getAllIds() {
+        return concreteScaleRepository.getAllIds();
+    }
+
 
     /*@Override
     public List<ConcreteScale> getAllConcreteScalesByIdScale(Long id) {

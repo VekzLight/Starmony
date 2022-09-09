@@ -21,4 +21,10 @@ public interface ScaleGradeRepository extends JpaRepository<ScaleGrade, ScaleGra
 
     @Query("FROM ScaleGrade sg INNER JOIN sg.scaleOfChord s WHERE s.id = :#{#scale.id}")
     List<ScaleGrade> getGradesOfScale(@Param("scale") Scale scale);
+
+    @Query("SELECT DISTINCT sg.id.id_scale_grade FROM ScaleGrade sg")
+    List<Long> getAllIds();
+
+    @Query("FROM ScaleGrade sg WHERE sg.id.id_scale_grade = :idScaleGrade")
+    List<ScaleGrade> getScaleGradeById(@Param("idScaleGrade") Long id);
 }

@@ -26,4 +26,6 @@ public interface ConcreteIntervalService {
 
 
     List<ConcreteIntervalDTO> getConcreteIntervalsWithNotesAndTonic(Long tonicId, List<Long> noteDTOS);
+
+    List<Long> getIdConcreteIntervalsOfConcreteScale(Long concreteScaleId);
 }

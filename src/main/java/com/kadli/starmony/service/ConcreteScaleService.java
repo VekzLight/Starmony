@@ -16,6 +16,7 @@ public interface ConcreteScaleService {
     List<ConcreteScale> getCompleteConcreteScaleWithTonic(Long idScale, Long idTonic);
     Optional<ConcreteScale> getConcreteScaleWithTonic(Long idscale, Long idTonic);
 
+    List<Long> getAllIds();
 
 
     // Guardar
@@ -40,4 +41,5 @@ public interface ConcreteScaleService {
     List<ConcreteScaleDTO> getConcreteScalesWithTonicAndNotes(List<Long> idNotes, Long idTonic);
 
     List<Long> getIdConcreteScalesWithConcreteChords(List<Long> idConcreteChords);
+
 }

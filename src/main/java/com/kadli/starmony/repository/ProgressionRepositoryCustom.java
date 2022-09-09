@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProgressionRepositoryCustom extends CustomCrudRepository<Progression, Long>{
 
+    List<Progression> getAllWithLenth(int size);
 }

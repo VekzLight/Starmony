@@ -3,6 +3,7 @@ package com.kadli.starmony.service;
 import com.kadli.starmony.dto.IntervalDTO;
 import com.kadli.starmony.entity.*;
 import com.kadli.starmony.repository.*;
+import com.kadli.starmony.utilities.Symbols;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -21,6 +22,8 @@ public class IntervalServiceImp implements IntervalService {
     @Autowired
     private ChordIntervalRepository chordIntervalRepository;
 
+    @Autowired
+    private ScaleIntervalRepository scaleIntervalRepository;
 
     @Autowired
     private ChordService chordService;
@@ -180,8 +183,10 @@ public class IntervalServiceImp implements IntervalService {
         return intervalRepository.getIntervalsOfChord( chord.getId() );
     }
 
-
-
+    @Override
+    public List<Interval> getIntervalsById(List<Long> intervalsId) {
+        return intervalRepository.getIntervalsById(intervalsId);
+    }
 
 
     // Utilidades
@@ -271,6 +276,41 @@ public class IntervalServiceImp implements IntervalService {
     public Long getLastId() {
         Long id = chordIntervalRepository.getLastId();
         return id == null ? 0 : id;
+    }
+
+    private Long getLastScaleIntervalId(){
+        Long id = scaleIntervalRepository.getLastId();
+        return id == null ? 0 : id;
+    }
+
+    @Override
+    public List<ScaleInterval> generateIntervalsOfScale(Scale scale) {
+        List<ScaleInterval> scaleIntervals = new ArrayList<>();
+
+        String codeString[] = scale.getCode().split(Symbols.SYMBOL_SEPARATION_SCALE);
+
+        int position = 1;
+        Long id = this.getLastScaleIntervalId() + 1;
+        int index = 0;
+        for(int semitones = Integer.parseInt(codeString[0]); semitones <= 22; semitones += Integer.parseInt(codeString[index])){
+            Interval interval = this.getIntervalWithSemitone(semitones).get();
+
+            ScaleIntervalId scaleIntervalId = new ScaleIntervalId();
+            scaleIntervalId.setPosition_interval(position);
+            scaleIntervalId.setId_scale_interval( id );
+
+            ScaleInterval scaleInterval = new ScaleInterval();
+            scaleInterval.setIntervalOfScale(interval);
+            scaleInterval.setScaleOfInterval(scale);
+            scaleInterval.setId( scaleIntervalId );
+
+            scaleIntervals.add(scaleInterval);
+
+            index++;
+            if( index == codeString.length ) index = 0;
+        }
+
+        return scaleIntervals;
     }
 
 

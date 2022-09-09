@@ -2,7 +2,6 @@ package com.kadli.starmony.repository;
 
 
 import com.kadli.starmony.entity.Interval;
-import com.kadli.starmony.entity.Note;
 import com.kadli.starmony.utilities.Symbols;
 
 import javax.persistence.EntityManager;
@@ -125,6 +124,16 @@ public class IntervalRepositoryCustomImp implements IntervalRepositoryCustom {
     @Override
     public List<Interval> getIntervalsOfScaleCodeByAll(String scaleCode) {
         return this.getIntervalsWithSemitones( Arrays.stream( scaleCode.split(Symbols.SYMBOL_SEPARATION_SCALE) ).map(codeString -> Integer.parseInt(codeString) ).distinct().collect(Collectors.toList()) );
+    }
+
+    @Override
+    public List<Interval> getIntervalsById(List<Long> intervalsId) {
+        return entityManager.createQuery("" +
+                        "SELECT DISTINCT i" +
+                        " FROM Interval i" +
+                        " WHERE i.id in (:ids)", Interval.class)
+                .setParameter("ids", intervalsId)
+                .getResultList();
     }
 
 }

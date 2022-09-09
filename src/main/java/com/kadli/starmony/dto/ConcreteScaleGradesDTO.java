@@ -11,6 +11,6 @@ import java.util.HashMap;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConcreteScaleGradesDTO extends ScaleGradesDTO implements Serializable {
-    private Long id_concrete_scale_grade;
+    private Long idConcreteScaleGrade;
     private HashMap<Integer, ConcreteChordDTO> concreteGrades;
 }

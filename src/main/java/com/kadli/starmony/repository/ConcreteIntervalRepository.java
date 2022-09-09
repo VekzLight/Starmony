@@ -23,4 +23,13 @@ public interface ConcreteIntervalRepository extends JpaRepository<ConcreteInterv
 
     @Query("FROM ConcreteInterval ci INNER JOIN ci.firstNote fn INNER JOIN ci.lastNote ln WHERE fn.id = :idTonic AND ln.id = :idNote")
     List<ConcreteInterval> getConcreteIntervalWithTonicAndNote(@Param("idTonic") Long tonicId, @Param("idNote")Long idNote);
+
+    @Query("SELECT DISTINCT ci.id_concrete_interval" +
+            " FROM ConcreteInterval ci" +
+            " INNER JOIN ci.intervalOfNotes i" +
+            " INNER JOIN ci.firstNote fn" +
+            " INNER JOIN ci.lastNote ln" +
+            " WHERE fn.id = :idTonic" +
+            "   AND i.id = :idInterval")
+    Long getIdConcreteIntervalWithIntervalAndTonic(@Param("idInterval") Long idInterval, @Param("idTonic") Long idTonic);
 }

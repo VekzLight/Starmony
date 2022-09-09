@@ -4,7 +4,6 @@ import com.kadli.starmony.dto.ProgressionDTO;
 import com.kadli.starmony.dto.ProgressionGradeDTO;
 import com.kadli.starmony.entity.Progression;
 import com.kadli.starmony.entity.ProgressionGrade;
-import com.kadli.starmony.entity.Scale;
 import com.kadli.starmony.entity.ScaleGrade;
 
 import java.util.List;
@@ -26,4 +25,8 @@ public interface ProgressionService extends CustomCrudService<Progression, Long>
     Long getLastId();
 
     Long getIdProgressionGradeByScaleGrade(Long idProgression, Long idScaleGrade);
+
+    List<Long> getIdProgressionsByTag(Long idTag);
+
+    List<Progression> getAllWithLenth(int size);
 }

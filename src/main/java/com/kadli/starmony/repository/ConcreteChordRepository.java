@@ -1,5 +1,6 @@
 package com.kadli.starmony.repository;
 
+import com.kadli.starmony.entity.Chord;
 import com.kadli.starmony.entity.ConcreteChord;
 import com.kadli.starmony.entity.ConcreteChordId;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,10 @@ public interface ConcreteChordRepository extends JpaRepository<ConcreteChord, Co
 
     @Query("SELECT cci.id.id_concrete_chord FROM ConcreteChord cci INNER JOIN cci.note n WHERE n.id = :idTonic AND cci.id.position_note_chord = 1")
     List<Long> getIdConcreteChordsWithTonic(@Param("idTonic") Long tonic);
+
+    @Query("SELECT DISTINCT cci.id.id_concrete_chord FROM ConcreteChord cci")
+    List<Long> getAllIdConcreteChords();
+
+    @Query("SELECT cc.concreteChord FROM ConcreteChord cc WHERE cc.id.id_concrete_chord = :id")
+    Chord getChordOfConcreteChordId(@Param("id") Long concreteChordId);
 }

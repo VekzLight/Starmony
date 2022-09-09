@@ -44,12 +44,10 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
 
 
     @Override
-    public List<ConcreteProgression> generateConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades, Long idConcreteScale) {
+    public List<ConcreteProgression> generateConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades, List<ConcreteScale> concreteScales) {
 
         List<ConcreteProgression> concreteProgressions = new ArrayList<>();
         HashMap<String, ConcreteChord> concreteChordHashMap = new HashMap<>();
-
-        List<ConcreteScale> concreteScales = concreteScaleService.getCompleteConcreteScaleById(idConcreteScale);
 
         for(ConcreteScaleGrade concreteScaleGrade: concreteScaleGrades)
             concreteChordHashMap.put( concreteScaleGrade.getId().getGrade(), concreteScaleGrade.getConcreteChord() );
@@ -73,8 +71,8 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
     }
 
     @Override
-    public List<ConcreteProgression> generateAndSaveConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades, Long idConcreteScale) {
-        List<ConcreteProgression> concreteProgressions = this.generateConcreteProgression(progressionGrades, concreteScaleGrades, idConcreteScale);
+    public List<ConcreteProgression> generateAndSaveConcreteProgression(List<ProgressionGrade> progressionGrades, List<ConcreteScaleGrade> concreteScaleGrades, List<ConcreteScale> concreteScales) {
+        List<ConcreteProgression> concreteProgressions = this.generateConcreteProgression(progressionGrades, concreteScaleGrades, concreteScales);
         for(ConcreteProgression it:concreteProgressions)
             concreteProgressionRepository.save(it);
         return concreteProgressions;
@@ -94,10 +92,11 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
 
                 for(Note note: notes){
                     Long idConcreteScale = concreteScaleService.getIdConcreteScale(scale.getId(), note.getId());
+                    List<ConcreteScale> concreteScales = concreteScaleService.getCompleteConcreteScaleById(idConcreteScale);
                     List<ConcreteScaleGrade> concreteScaleGrades = concreteChordService.getCompleteConcreteScaleGradesByConcreteScaleId( idConcreteScale );
 
                     if(concreteScaleGrades.isEmpty()) continue;
-                    concreteProgressions.addAll(this.generateAndSaveConcreteProgression( progressionGrades, concreteScaleGrades, idConcreteScale));
+                    concreteProgressions.addAll(this.generateAndSaveConcreteProgression( progressionGrades, concreteScaleGrades, concreteScales));
                 }
             }
         }
@@ -116,6 +115,7 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
 
         Progression progression = concreteProgressions.get(0).getProgressionGrade().getProgressionOfProgressionGrade();
         Long id_progression_grade = concreteProgressions.get(0).getProgressionGrade().getId().getId_progression_grade();
+        Long id_concrete_scale = concreteProgressions.get(0).getConcreteScale().getId().getId_concrete_scale();
 
         Scale scale = concreteProgressions.get(0).getProgressionGrade().getScaleGradeOfProgression().getScaleOfChord();
         ScaleDTO scaleDTO = scaleService.entityToDTO(scale);
@@ -131,6 +131,7 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
 
         concreteProgressionDTO.setId_concrete_progression( id_concrete_progression );
         concreteProgressionDTO.setId_progression_grade( id_progression_grade );
+        concreteProgressionDTO.setId_concrete_scale(id_concrete_scale);
 
         HashMap<Integer, ChordDTO> chordDTOHashMap = new HashMap<>();
         HashMap<Integer, ConcreteChordDTO> concreteChordDTOHashMap = new HashMap<>();
@@ -177,6 +178,16 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
     @Override
     public List<ConcreteProgression> getCompleteConcreteProgressionsByProgressionGradeAndConcreteScale(Long idConcreteScale, Long idProgressionGrade) {
         return concreteProgressionRepository.getCompleteConcreteProgressionByPGAndCS(idConcreteScale, idProgressionGrade);
+    }
+
+    @Override
+    public List<Long> getAllIds() {
+        return concreteProgressionRepository.getAllIds();
+    }
+
+    @Override
+    public List<Long> getConcreteProgressionsIdsByConcreteScaleId(Long concreteScaleId) {
+        return concreteProgressionRepository.getConcreteProgressionsIdsByConcreteScaleId(concreteScaleId);
     }
 
 }
