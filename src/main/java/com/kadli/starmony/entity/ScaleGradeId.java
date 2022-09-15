@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Embeddable
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class ScaleGradeId implements Serializable {
 

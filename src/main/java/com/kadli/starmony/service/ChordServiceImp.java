@@ -208,6 +208,7 @@ public class ChordServiceImp implements ChordService {
         scaleGrade.setChordOfScale( chord );
         scaleGrade.setScaleOfChord( scale );
         scaleGrade.setId( scaleGradeId );
+        scaleGrade.setExist(true);
 
         return scaleGrade;
     }
@@ -218,8 +219,8 @@ public class ChordServiceImp implements ChordService {
      * @return Map< numero notas, acordes >
      */
     @Override
-    public HashMap<Integer, List<ScaleGrade>> generateGradesOfScale(Scale scale) {
-        HashMap<Integer, List<ScaleGrade>>  scaleGrades = new HashMap<>();
+    public HashMap<Long, List<ScaleGrade>> generateGradesOfScale(Scale scale) {
+        HashMap<Long, List<ScaleGrade>>  scaleGrades = new HashMap<>();
 
         List<ScaleGrade> scaleGradesTriada = new ArrayList<>();
         List<ScaleGrade> scaleGradesSeptima = new ArrayList<>();
@@ -284,34 +285,37 @@ public class ChordServiceImp implements ChordService {
             chordIntervalRepository.getChordWithIntervals( chordsTriada,idTriada, 2L).ifPresentOrElse(chord -> {
                 //System.out.println( finalPosGrade + " Triada: " + chord.getSymbol() );
                 scaleGradesTriada.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade) );
-            }, () -> { scaleGradesTriada.add( Symbols.scaleGrade ); /*System.out.println("Acorde desconocido");*/});
+            }, () -> {
+                scaleGradesTriada.add( Symbols.getScaleGradeWithGrade( Symbols.POS_TO_GRADE(finalPosGrade), idScaleGrade) );
+                /*System.out.println("Acorde desconocido");*/
+            });
 
 
             chordIntervalRepository.getChordWithIntervals(chordsSeptima, idSeptima, 3L ).ifPresentOrElse(chord -> {
                 //System.out.println( finalPosGrade + " Sewptima: " + chord.getSymbol() );
-                scaleGradesSeptima.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade) );
-            }, () -> { scaleGradesSeptima.add( Symbols.scaleGrade ); /*System.out.println("Acorde desconocido");*/});
+                scaleGradesSeptima.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade + 1) );
+            }, () -> { scaleGradesSeptima.add( Symbols.getScaleGradeWithGrade( Symbols.POS_TO_GRADE(finalPosGrade), idScaleGrade + 1 ) ); /*System.out.println("Acorde desconocido");*/});
 
 
             chordIntervalRepository.getChordWithIntervals( chordsNovena, idNovena, 4L ).ifPresentOrElse(chord -> {
                 //System.out.println( finalPosGrade + " Novena: " + chord.getSymbol() );
-                scaleGradesNovena.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade) );
-            }, () -> { scaleGradesNovena.add( Symbols.scaleGrade ); /*System.out.println("Acorde desconocido");*/});
+                scaleGradesNovena.add( this.chordToScaleGrade(scale, chord, finalPosGrade, idScaleGrade + 2) );
+            }, () -> { scaleGradesNovena.add( Symbols.getScaleGradeWithGrade( Symbols.POS_TO_GRADE(finalPosGrade), idScaleGrade + 2 ) ); /*System.out.println("Acorde desconocido");*/});
 
             posGrade++;
         }
 
-        scaleGrades.put(3, scaleGradesTriada);
-        scaleGrades.put(4, scaleGradesSeptima);
-        scaleGrades.put(5, scaleGradesNovena);
+        scaleGrades.put(idScaleGrade, scaleGradesTriada);
+        scaleGrades.put(idScaleGrade + 1, scaleGradesSeptima);
+        scaleGrades.put(idScaleGrade + 2, scaleGradesNovena);
 
         return scaleGrades;
     }
 
 
     @Override
-    public HashMap<Integer, List<ScaleGrade>> generateGradesOfScaleAndSave(Scale scale) {
-        HashMap<Integer, List<ScaleGrade>> scaleGrades = this.generateGradesOfScale( scale );
+    public HashMap<Long, List<ScaleGrade>> generateGradesOfScaleAndSave(Scale scale) {
+        HashMap<Long, List<ScaleGrade>> scaleGrades = this.generateGradesOfScale( scale );
         scaleGradeRepository.saveAll(scaleGrades.get(3));
         scaleGradeRepository.saveAll(scaleGrades.get(4));
         scaleGradeRepository.saveAll(scaleGrades.get(5));
@@ -339,15 +343,16 @@ public class ChordServiceImp implements ChordService {
             Chord chord = scaleGrade.getChordOfScale();
             ChordDTO chordDTO = this.entityToDTO( chord );
 
-            grades.put( Symbols.GRADE_TO_POS(scaleGrade.getId().getGrade()), chordDTO );
+            if(scaleGrade.getId() != null) grades.put( Symbols.GRADE_TO_POS(scaleGrade.getId().getGrade()), chordDTO );
+            else grades.put( -1, chordDTO );
         }
 
         scaleGradesDTO.setGrades(grades);
-        scaleGradesDTO.setId( scale.getId() );
-        scaleGradesDTO.setIdScaleGrade( scaleGrades.get(0).getId().getId_scale_grade() );
-        scaleGradesDTO.setCode(scale.getCode());
-        scaleGradesDTO.setName(scale.getName());
-        scaleGradesDTO.setSymbol(scale.getSymbol());
+        scaleGradesDTO.setId( scale == null ? -1 : scale.getId() );
+        scaleGradesDTO.setIdScaleGrade( scaleGrades.get(0).getId() == null ? -1 :scaleGrades.get(0).getId().getId_scale_grade() );
+        scaleGradesDTO.setCode(  scale == null ? "" : scale.getCode());
+        scaleGradesDTO.setName(  scale == null ? "" : scale.getName());
+        scaleGradesDTO.setSymbol ( scale == null ? "" : scale.getSymbol());
 
         return scaleGradesDTO;
     }

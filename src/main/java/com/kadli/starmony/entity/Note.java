@@ -28,6 +28,9 @@ public class Note implements MusicalElement {
     @Column(name = "symbol")
     protected String symbol;
 
+    @Column(name ="variant")
+    protected Boolean variant;
+
     @Transient
     protected final String type = "note";
 

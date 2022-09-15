@@ -97,7 +97,7 @@ public class ConcreteScaleServiceImp implements ConcreteScaleService{
     // Generar
     @Override
     public Optional<ConcreteScale> generateConcreteScale(Scale scale, Note note, Long id, int position) {
-        if( !scaleService.exist(scale) || !noteService.exist(note) ) return null;
+        if( !noteService.exist(note) ) return null;
 
         ConcreteScaleId concreteScaleId = new ConcreteScaleId();
         concreteScaleId.setId_concrete_scale( id );
@@ -114,23 +114,20 @@ public class ConcreteScaleServiceImp implements ConcreteScaleService{
     @Override
     public List<ConcreteScale> generateCompleteConcreteScales(Scale scale, Note tonic) {
         String codeString[] = scale.getCode().split(Symbols.SYMBOL_SEPARATION_SCALE);
-        List<ConcreteInterval> concreteIntervals = new ArrayList<>();
         List<ConcreteScale> concreteScales = new ArrayList<>();
 
-        int code = 0;
-        for(String it:codeString){
-            code += Integer.parseInt(it);
-            Optional<Note> note = noteService.getById( noteService.getNoteWithSemitone(tonic.getId(), code) );
-            Interval interval = intervalService.getIntervalWithSemitone(code).get();
-            concreteIntervals.add( concreteIntervalService.getConcreteIntervalWithTonic(interval.getId(), tonic.getId()).get() );
-        }
-
+        Long idNote = tonic.getId();
+        Long idConcreteScale = this.getLastConcreteScaleId() + 1L;
+        Note currentNote = noteService.getById(idNote).get();
         int position = 1;
-        Long id = this.getLastConcreteScaleId() + 1;
-        concreteScales.add( this.generateConcreteScale( scale, tonic, id, position).get() );
-        for(ConcreteInterval concreteInterval: concreteIntervals){
+
+        concreteScales.add( this.generateConcreteScale( scale, currentNote, idConcreteScale, position).get() );
+        for(String it:codeString){
+            idNote += Long.parseLong(it);
             position++;
-            concreteScales.add( this.generateConcreteScale( scale, concreteInterval.getLastNote(), id, position ).get() );
+            if( idNote > 12L ) idNote -= 12L;
+            currentNote = noteService.getById(idNote).get();
+            concreteScales.add( this.generateConcreteScale( scale, currentNote, idConcreteScale, position).get() );
         }
 
         return concreteScales;

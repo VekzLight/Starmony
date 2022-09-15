@@ -94,6 +94,13 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     }
 
     @Override
+    public Long getNextId() {
+        return entityManager.createQuery("" +
+                        "SELECT MAX(s.id) FROM Scale s", Long.class)
+                .getResultList().get(0);
+    }
+
+    @Override
     public Optional<Scale> findByAttribute(String attribute, String value) {
         List<Scale> scales = entityManager.createQuery("" +
                         "FROM Scale s" +

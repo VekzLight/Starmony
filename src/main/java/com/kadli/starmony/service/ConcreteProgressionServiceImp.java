@@ -104,7 +104,8 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
     }
 
     @Override
-    public Long getMaxId() {
+    public Long
+    getMaxId() {
         Long id = concreteProgressionRepository.getLastId();
         return id == null ? 0 : id;
     }

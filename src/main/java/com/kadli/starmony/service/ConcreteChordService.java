@@ -21,9 +21,9 @@ public interface ConcreteChordService {
 
     // Generar
     // TODO GENERAR LA ID DEL
-    HashMap<String, List<ConcreteScaleGrade>> generateConcreteGradesOfScales( List<ConcreteScale> concreteScales, HashMap<Integer, List<ScaleGrade>> scaleGrades );
-    List<ConcreteScaleGrade> generateConcreteGradesOfScale(List<ConcreteScale> concreteScales, HashMap<Integer, List<ScaleGrade>> scaleGrades);
-    List<ConcreteScaleGrade> generateAndSaveConcreteGradesOfScale(List<ConcreteScale> concreteScales, HashMap<Integer, List<ScaleGrade>> scaleGrades);
+    HashMap<Long, List<ConcreteScaleGrade>> generateConcreteGradesOfScales(List<ConcreteScale> concreteScales, HashMap<Long, List<ScaleGrade>> scaleGrades );
+    List<ConcreteScaleGrade> generateConcreteGradesOfScale(List<ConcreteScale> concreteScales, HashMap<Long, List<ScaleGrade>> scaleGrades);
+    List<ConcreteScaleGrade> generateAndSaveConcreteGradesOfScale(List<ConcreteScale> concreteScales, HashMap<Long, List<ScaleGrade>> scaleGrades);
     List<ConcreteScaleGrade> generateAndSaveAllConcreteGradesOfScale();
 
     List<ConcreteChord> generateConcreteChords(Chord chord, Note tonic);

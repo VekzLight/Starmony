@@ -13,4 +13,5 @@ public interface ScaleService extends CustomCrudService<Scale, Long>, DtoConvers
     List<Scale> getScalesWithIntervals(List<Interval> intervals);
     List<Scale> getScalesWithChords(List<Chord> chords);
 
+    Long getNextId();
 }

@@ -171,4 +171,9 @@ public class ScaleServiceImp implements ScaleService{
     public List<Scale> getScalesWithChords(List<Chord> chords) {
         return scaleRepository.getScalesWithChords(chords);
     }
+
+    @Override
+    public Long getNextId() {
+        return scaleRepository.getNextId() + 1;
+    }
 }

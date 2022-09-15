@@ -17,8 +17,8 @@ public class ScaleGenerated implements Serializable {
     private Scale scale;
     private HashMap<Long, List<ConcreteScale>> concreteScales;
     private List<ScaleInterval> scaleIntervals;
-    private HashMap<Integer, List<ScaleGrade>> scaleGrades;
-    private HashMap<String, List<ConcreteScaleGrade>> concreteScaleGrades;
+    private HashMap<Long, List<ScaleGrade>> scaleGrades;
+    private HashMap<Long, List<ConcreteScaleGrade>> concreteScaleGrades;
     private HashMap<Long, List<ProgressionGrade>> progressionGrades;
-    private HashMap<String, List<ConcreteProgression>> concreteProgressions;
+    private HashMap<Long, List<ConcreteProgression>> concreteProgressions;
 }

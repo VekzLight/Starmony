@@ -18,4 +18,7 @@ public interface ScaleRepositoryCustom extends CustomCrudRepository<Scale, Long>
     List<Scale> getScalesWithChordsId(List<Long> ids);
 
     Optional<Scale> getScaleWithCode(String code);
+
+
+    Long getNextId();
 }

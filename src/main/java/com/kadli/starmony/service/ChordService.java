@@ -6,7 +6,6 @@ import com.kadli.starmony.entity.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface ChordService extends CustomCrudService<Chord, Long>, DtoConversions<Chord, ChordDTO>{
@@ -14,8 +13,8 @@ public interface ChordService extends CustomCrudService<Chord, Long>, DtoConvers
 
     // Generadores
     Long getIdScaleGrade(Scale scale);
-    HashMap<Integer, List<ScaleGrade>> generateGradesOfScale(Scale scale);
-    HashMap<Integer, List<ScaleGrade>> generateGradesOfScaleAndSave(Scale scale);
+    HashMap<Long, List<ScaleGrade>> generateGradesOfScale(Scale scale);
+    HashMap<Long, List<ScaleGrade>> generateGradesOfScaleAndSave(Scale scale);
     void generateAllGradesOfScaleAndSave();
 
 
