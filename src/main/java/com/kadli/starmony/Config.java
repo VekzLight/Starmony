@@ -18,8 +18,8 @@ import java.sql.Types;
 @Configuration
 @EnableJpaRepositories(basePackages = "com.kadli.starmony.repository", repositoryImplementationPostfix = "CustomImp")
 public class Config {
-
 /*
+
     @Autowired
     Environment env;
 

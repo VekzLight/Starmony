@@ -101,6 +101,16 @@ public class ScaleRepositoryCustomImp implements ScaleRepositoryCustom{
     }
 
     @Override
+    public List<Scale> getAllByMaxLength(int max) {
+        int longCode = max + (max-1);
+        return entityManager.createQuery( "" +
+                "FROM Scale s" +
+                " WHERE LENGTH(s.code) >= :longCode" ,Scale.class)
+                .setParameter("longCode", longCode)
+                .getResultList();
+    }
+
+    @Override
     public Optional<Scale> findByAttribute(String attribute, String value) {
         List<Scale> scales = entityManager.createQuery("" +
                         "FROM Scale s" +

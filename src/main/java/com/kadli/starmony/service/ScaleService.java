@@ -1,6 +1,5 @@
 package com.kadli.starmony.service;
 
-import com.kadli.starmony.dto.ConcreteScaleDTO;
 import com.kadli.starmony.dto.ScaleDTO;
 import com.kadli.starmony.entity.Chord;
 import com.kadli.starmony.entity.Interval;
@@ -14,4 +13,6 @@ public interface ScaleService extends CustomCrudService<Scale, Long>, DtoConvers
     List<Scale> getScalesWithChords(List<Chord> chords);
 
     Long getNextId();
+
+    List<Scale> getAllByMaxLegth(int max);
 }

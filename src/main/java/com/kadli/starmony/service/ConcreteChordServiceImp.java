@@ -214,7 +214,7 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
                         concreteScaleGradesBuffer.add(concreteScaleGrade);
                     }
                 } else {
-                    concreteScaleGradesBuffer.add(Symbols.concreteScaleGrade);
+                    concreteScaleGradesBuffer.add( Symbols.concreteScaleGrade );
                 }
             }
             concreteScaleGrades.put(idConcreteScaleGrade, concreteScaleGradesBuffer);
@@ -362,8 +362,13 @@ public class ConcreteChordServiceImp implements ConcreteChordService{
         Long idConcreteChord = -1L;
         for(ConcreteScaleGrade it:concreteScaleGrades){
             if(positionActual == -1) {
-                positionActual = it.getId().getId_concrete_chord();
-                gradeActual = it.getId().getGrade();
+                if(it.getId() != null){
+                    positionActual = it.getId().getId_concrete_chord();
+                    gradeActual = it.getId().getGrade();
+                } else {
+                    positionActual = -1L;
+                    gradeActual  = "0";
+                }
             }
 
             if(it.getId() != null){

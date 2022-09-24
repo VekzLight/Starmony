@@ -5,7 +5,6 @@ import com.kadli.starmony.entity.*;
 import com.kadli.starmony.repository.TagProgressionRepository;
 import com.kadli.starmony.service.*;
 import com.kadli.starmony.utilities.Symbols;
-import org.eclipse.jetty.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/generator")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://starmony.duckdns.org:2000"})
 public class GeneratorController {
 
 
@@ -359,10 +360,18 @@ public class GeneratorController {
             concreteScales.put(note.getId(), concreteScaleService.generateCompleteConcreteScales( scale, note));
         System.out.println(concreteScales.size());
 
+        Long indexId = 0L;
         for(List<ConcreteScale> concreteScale: concreteScales.values()){
-            for(ConcreteScale it: concreteScale)
+            for(ConcreteScale it: concreteScale){
                 System.out.print(it.getNotesOfScale().getSymbol() + " - ");
+                ConcreteScaleId concreteScaleId = it.getId();
+                Long actualId = concreteScaleId.getId_concrete_scale();
+                concreteScaleId.setId_concrete_scale( actualId + indexId );
+                it.setId( concreteScaleId );
+            }
+            System.out.print( ":" + concreteScale.get(0).getId().getId_concrete_scale() + ":" );
             System.out.println("");
+            indexId++;
         } System.out.println("\n");
 
 
@@ -461,7 +470,7 @@ public class GeneratorController {
         }
 
 
-        scaleGenerated.setScale(scale);
+        scaleGenerated.setScale(scale       );
         scaleGenerated.setConcreteScales( concreteScales );
         scaleGenerated.setScaleIntervals( scaleIntervals );
         scaleGenerated.setScaleGrades( scaleGrades );
@@ -521,13 +530,29 @@ public class GeneratorController {
         return isNumeric;
     }
 
+    private boolean probeGrades(String code){
+        boolean isGreat = false;
+
+        String[] codeString = code.split(Symbols.SYMBOL_SEPARATION_PROGRESSION);
+        for( String itCode: codeString ){
+            isGreat = code.matches("^[IVX]");
+            if(!isGreat) break;
+        }
+
+        return isGreat;
+    }
+
     @GetMapping("/scale/{code}")
     public ResponseEntity<?> createNewScale(@PathVariable String code){
 
         // Convierte su codigo por uno valido
         Scale scale = Scale.builder().code( code.replaceAll("-", Symbols.SYMBOL_SEPARATION_SCALE)).build();
+        Long id = scaleService.getNextId();
+        scale.setId(id);
+        scale.setSymbol("Escala-"+id);
+        scale.setName("Escala-"+id);
 
-
+/*
         // Comprueba que existe en la base de datos
         if( scaleService.exist( scale ) ) {
             scale = scaleService.get( scale ).get();
@@ -538,7 +563,7 @@ public class GeneratorController {
             scale.setSymbol("scale-"+id);
             scale.setName("scale-"+id);
         }
-
+*/
 
         // Comprueba los campos
         if( this.probeCode(code) ) return new ResponseEntity( new Message(-1, "Codigo no valido"), HttpStatus.OK );
@@ -581,7 +606,200 @@ public class GeneratorController {
 
         scaleGeneratedDTO.setScaleIntervals( scaleGenerated.getScaleIntervals() );
 
+        scaleGeneratedDTO.setSaved( this.scaleService.exist(scale) );
+
         return new ResponseEntity<>( scaleGeneratedDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/progression/{code}")
+    public ResponseEntity<?> createNewProgression(@PathVariable String code){
+
+        // Convierte su codigo por uno valido
+        Progression progression = Progression.builder().symbol( code.replaceAll("-", Symbols.SYMBOL_SEPARATION_PROGRESSION)).build();
+        Long id = progressionService.getNextId();
+        progression.setId(id);
+        progression.setCode("Progresion-"+id);
+        progression.setName("Progresion-"+id);
+
+        // Comprueba los campos
+        if( this.probeGrades(code) ) return new ResponseEntity( new Message(-1, "Codigo no valido"), HttpStatus.OK );
+
+
+
+        // Genera informacion de la escala
+        ProgressionGenerated progressionGenerated = this.generateDataOfProgression( progression );
+
+
+        ProgressionGeneratedDTO progressionGeneratedDTO = new ProgressionGeneratedDTO();
+        progressionGeneratedDTO.setScales( progressionGenerated.getScales().stream().map(scaleService::entityToDTO).collect(Collectors.toList()) );
+
+        HashMap<Long, ProgressionGradeDTO> progressionGradeDTOHashMap = new HashMap<>();
+        for( Long key: progressionGenerated.getProgressionGrades().keySet() )
+            progressionGradeDTOHashMap.put(key, progressionService.progressionGradeToProgressionGradeDTO( progressionGenerated.getProgressionGrades().get(key) ).get()  );
+        progressionGeneratedDTO.setProgressionGrades( progressionGradeDTOHashMap );
+
+        HashMap<Long, ConcreteProgressionDTO> concreteProgressionDTOHashMap = new HashMap<>();
+        for( Long key: progressionGenerated.getConcreteProgressions().keySet() )
+            concreteProgressionDTOHashMap.put(key, concreteProgressionService.concreteProgressionToConcreteProgressionDTO( progressionGenerated.getConcreteProgressions().get(key) ).get());
+        progressionGeneratedDTO.setConcreteProgressions( concreteProgressionDTOHashMap );
+
+
+        progressionGeneratedDTO.setSaved( this.progressionService.exist(progression) );
+
+        progressionGeneratedDTO.setProgression( progressionService.entityToDTO(progression) );
+
+        return new ResponseEntity<>(progressionGeneratedDTO , HttpStatus.OK);
+    }
+
+    @GetMapping("/progression/{code}/save")
+    public ResponseEntity<?> createNewProgressionSave(@PathVariable String code){
+
+        // Convierte su codigo por uno valido
+        Progression progression = Progression.builder().symbol( code.replaceAll("-", Symbols.SYMBOL_SEPARATION_PROGRESSION)).build();
+        Long id = progressionService.getNextId();
+
+        progression.setCode("Progresion-"+id);
+        progression.setName("Progresion-"+id);
+
+        // Comprueba los campos
+        if( this.probeGrades(code) ) return new ResponseEntity( new Message(-1, "Codigo no valido"), HttpStatus.OK );
+
+
+
+        // Genera informacion de la escala
+        ProgressionGenerated progressionGenerated = this.generateDataOfProgression( progression );
+
+        progressionService.save(  progressionGenerated.getProgression() );
+
+        for(Long idProgressionGrade : progressionGenerated.getProgressionGrades().keySet()){
+            progressionService.saveAllProgressionGrades( progressionGenerated.getProgressionGrades().get(idProgressionGrade) );
+        }
+
+        for(Long key : progressionGenerated.getConcreteProgressions().keySet()){
+            concreteProgressionService.saveAllProgressionGrades( progressionGenerated.getConcreteProgressions().get(key) );
+        }
+
+        return new ResponseEntity<>(new Message(1, "Progresion Guardada") , HttpStatus.OK);
+    }
+
+    private ProgressionGenerated generateDataOfProgression(Progression progression) {
+        ProgressionGenerated progressionGenerated = new ProgressionGenerated();
+
+        HashMap<Long, List<ConcreteScaleGrade>> concreteScaleGradeHashMap = new HashMap<>();
+        HashMap<Long, List<ProgressionGrade>> progressionGradeHashMap = new HashMap<>();
+        HashMap<Long, List<ConcreteProgression>> concreteProgressionsHashMap = new HashMap<>();
+
+
+        // Buscando Escalas Compartibles
+        //System.out.print("Buscando Escalas Compartibles con "+ progression.getSymbol() +": ");
+
+        String[] codeString = progression.getSymbol().split(Symbols.SYMBOL_SEPARATION_PROGRESSION);
+        int max = Integer.MIN_VALUE;
+
+        for(String gradeAll: codeString){
+            Pattern replaceGrade = Pattern.compile("[^VIX].*");
+            Matcher matcherGrade = replaceGrade.matcher(gradeAll);
+            matcherGrade.find();
+
+            String grade = matcherGrade.replaceAll("");
+
+            int current = Symbols.GRADE_TO_POS(grade);
+            if ( current >= max ) max = current;
+        }
+
+        //System.out.println("grado maximo:" + max);
+        //Symbols.nextIdProgressionConcrete = progressionService.getLastPGId();
+        List<Scale> scales = scaleService.getAllByMaxLegth( max ).stream().filter( scale -> {
+            Symbols.nextIdProgressionConcrete++;
+            List<ProgressionGrade> progressionGrades = progressionService.getProgressionGradesFromScales( progression, scale, Symbols.nextIdProgressionConcrete );
+            if(!progressionGrades.isEmpty())
+                progressionGradeHashMap.put( Symbols.nextIdProgressionConcrete, progressionGrades );
+
+            return !progressionGrades.isEmpty();
+        }).collect(Collectors.toList());
+        System.out.println(scales.size());
+
+        for(Scale scale: scales)
+            System.out.println( scale.getName() + "\t" + scale.getCode() );
+
+
+        // Generacion de Progressiones de la Escala
+        System.out.println("Generando Progresiones de la escala: ");
+        for(Long key: progressionGradeHashMap.keySet()){
+            System.out.print(key + " : " + progressionGradeHashMap.get(key).get(0).getProgressionOfProgressionGrade().getSymbol() + " : ");
+            for( ProgressionGrade progressionGrade: progressionGradeHashMap.get(key)){
+                System.out.print(progressionGrade.getScaleGradeOfProgression().getChordOfScale().getSymbol() + "-");
+            }
+            System.out.println("");
+
+        }
+
+
+
+
+        // Obtener las escalas concretas
+        HashMap<Long, List<ConcreteScale>> concreteScales = new HashMap<>();
+        for(Scale scale: scales){
+            for(Note note: noteService.getAll()){
+                List<ConcreteScale> concreteScaleList = concreteScaleService.getCompleteConcreteScaleWithTonic(scale.getId(), note.getId());
+                concreteScales.put( concreteScaleList.get(0).getId().getId_concrete_scale(), concreteScaleList);
+            }
+        }
+
+
+        // Generacion de Grados Concretos de Escala
+        System.out.println("Generando Grados concretos de la escalas: ");
+        HashMap<Long, HashMap<String, ConcreteScaleGrade>> mapConcreteScaleGrades = new HashMap<>();
+        for(Long idConcreteScale: concreteScales.keySet()){
+            List<ConcreteScaleGrade> concreteScaleGrades = concreteChordService.getCompleteConcreteScaleGradesByConcreteScaleId( idConcreteScale );
+            HashMap<String, ConcreteScaleGrade> gradeHashMap = new HashMap<>();
+            for(ConcreteScaleGrade concreteScaleGrade: concreteScaleGrades){
+                gradeHashMap.put( concreteScaleGrade.getId().getGrade(), concreteScaleGrade );
+            }
+            mapConcreteScaleGrades.put( concreteScaleGrades.get(0).getId().getId_concrete_scale_grade(), gradeHashMap);
+        }
+
+
+
+
+
+
+        // Generacion de Progresiones concretas de la escala
+        System.out.print("Generando Progresiones concretas de la escala: ");
+
+        Long idConcreteProgression = concreteProgressionService.getMaxId();
+        for( Long idConcreteScaleGrade: mapConcreteScaleGrades.keySet() ) {
+            for (Long idProgressionGrade : progressionGradeHashMap.keySet()) {
+                List<ConcreteProgression> concreteProgressions = new ArrayList<>();
+                int position = 1;
+                idConcreteProgression++;
+                for (ProgressionGrade progressionGrade : progressionGradeHashMap.get(idProgressionGrade)) {
+                    ConcreteProgressionId concreteProgressionId = new ConcreteProgressionId();
+                    concreteProgressionId.setId_concrete_progression(idConcreteProgression);
+                    concreteProgressionId.setPosition_concrete_chord(position);
+
+                    ConcreteProgression concreteProgression = new ConcreteProgression();
+                    concreteProgression.setId(concreteProgressionId);
+                    concreteProgression.setConcreteScale(mapConcreteScaleGrades.get(idConcreteScaleGrade).get("I").getConcreteScale());
+                    concreteProgression.setProgressionGrade(progressionGrade);
+                    concreteProgression.setConcreteChord(mapConcreteScaleGrades.get(idConcreteScaleGrade).get(progressionGrade.getScaleGradeOfProgression().getId().getGrade()).getConcreteChord());
+
+                    concreteProgressions.add(concreteProgression);
+
+                    position++;
+                }
+                concreteProgressionsHashMap.put(idConcreteProgression, concreteProgressions);
+            }
+        }
+
+        progressionGenerated.setProgression(progression);
+        progressionGenerated.setProgressionGrades(progressionGradeHashMap);
+        progressionGenerated.setConcreteProgressions(concreteProgressionsHashMap);
+        progressionGenerated.setScales(scales);
+
+
+
+        return progressionGenerated;
     }
 
     @PostMapping(path = "/progression",

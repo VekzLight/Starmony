@@ -21,4 +21,6 @@ public interface ScaleRepositoryCustom extends CustomCrudRepository<Scale, Long>
 
 
     Long getNextId();
+
+    List<Scale> getAllByMaxLength(int max);
 }

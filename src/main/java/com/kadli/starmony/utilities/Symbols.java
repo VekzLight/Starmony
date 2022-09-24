@@ -1,9 +1,8 @@
 package com.kadli.starmony.utilities;
 
-import com.kadli.starmony.entity.Chord;
-import com.kadli.starmony.entity.ConcreteScaleGrade;
-import com.kadli.starmony.entity.ScaleGrade;
-import com.kadli.starmony.entity.ScaleGradeId;
+import com.kadli.starmony.entity.*;
+
+import javax.persistence.Column;
 
 public class Symbols {
     public final static String SYMBOL_SEPARATION_SCALE = "–";
@@ -47,5 +46,7 @@ public class Symbols {
 
     public final static Chord chord = Chord.builder().id(-1L).name("Desconocido").symbol("?").build();
     public final static ScaleGrade scaleGrade = ScaleGrade.builder().exist(false).chordOfScale(chord).build();
-    public final static ConcreteScaleGrade concreteScaleGrade = ConcreteScaleGrade.builder().scaleGrade(scaleGrade).build();
+    public final static ConcreteScaleGrade concreteScaleGrade = ConcreteScaleGrade.builder().exist(false).scaleGrade(scaleGrade).build();
+
+    public static Long nextIdProgressionConcrete = -1L;
 }

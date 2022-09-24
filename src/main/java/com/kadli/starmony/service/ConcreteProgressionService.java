@@ -25,4 +25,6 @@ public interface ConcreteProgressionService {
     List<Long> getAllIds();
 
     List<Long> getConcreteProgressionsIdsByConcreteScaleId(Long concreteScaleId);
+
+    void saveAllProgressionGrades(List<ConcreteProgression> concreteProgressions);
 }

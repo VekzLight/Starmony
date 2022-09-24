@@ -378,7 +378,7 @@ public class ChordServiceImp implements ChordService {
 
     @Override
     public List<ScaleGrade> getGradesOfScale(Scale scale) {
-        return scaleGradeRepository.getGradesOfScale(scale);
+        return scaleGradeRepository.getGradesOfScale(scale).stream().map( scaleGrade -> {scaleGrade.setExist(true); return scaleGrade;  } ).collect(Collectors.toList());
     }
 
     @Override

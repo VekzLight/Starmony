@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Types;
 
 @SpringBootApplication
-public class StarmonyApplication {
-
-
+public class StarmonyApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(StarmonyApplication.class, args);
 	}
-
-
 }
 

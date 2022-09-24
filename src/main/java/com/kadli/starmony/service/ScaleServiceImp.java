@@ -176,4 +176,9 @@ public class ScaleServiceImp implements ScaleService{
     public Long getNextId() {
         return scaleRepository.getNextId() + 1;
     }
+
+    @Override
+    public List<Scale> getAllByMaxLegth(int max) {
+        return scaleRepository.getAllByMaxLength(max);
+    }
 }

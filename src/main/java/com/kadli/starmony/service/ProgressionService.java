@@ -4,6 +4,7 @@ import com.kadli.starmony.dto.ProgressionDTO;
 import com.kadli.starmony.dto.ProgressionGradeDTO;
 import com.kadli.starmony.entity.Progression;
 import com.kadli.starmony.entity.ProgressionGrade;
+import com.kadli.starmony.entity.Scale;
 import com.kadli.starmony.entity.ScaleGrade;
 
 import java.util.HashMap;
@@ -32,4 +33,12 @@ public interface ProgressionService extends CustomCrudService<Progression, Long>
     List<Progression> getAllWithLenth(int size);
 
     HashMap<Long, List<ProgressionGrade>> getAllWithSymbols(List<Progression> progressions, List<ScaleGrade> scaleGrades);
+
+    Long getNextId();
+
+    List<ProgressionGrade> getProgressionGradesFromScales(Progression progression, Scale scale, Long idProgressionGrade);
+
+    Long getLastPGId();
+
+    void saveAllProgressionGrades(List<ProgressionGrade> progressionGrades);
 }

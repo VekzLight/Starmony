@@ -1,5 +1,6 @@
 package com.kadli.starmony.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,4 +40,7 @@ public class ConcreteScaleGrade {
     })
     private ConcreteChord concreteChord;
 
+    @JsonIgnore
+    @Transient
+    private Boolean exist;
 }

@@ -58,4 +58,9 @@ public class ProgressionRepositoryCustomImp implements ProgressionRepositoryCust
 
         return progressionsSelected;
     }
+
+    @Override
+    public Long getMaxId() {
+        return entityManager.createQuery("SELECT MAX(p.id) FROM Progression p", Long.class).getResultList().get(0);
+    }
 }

@@ -191,4 +191,9 @@ public class ConcreteProgressionServiceImp implements ConcreteProgressionService
         return concreteProgressionRepository.getConcreteProgressionsIdsByConcreteScaleId(concreteScaleId);
     }
 
+    @Override
+    public void saveAllProgressionGrades(List<ConcreteProgression> concreteProgressions) {
+        concreteProgressionRepository.saveAll(concreteProgressions);
+    }
+
 }

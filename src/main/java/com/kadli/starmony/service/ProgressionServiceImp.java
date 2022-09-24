@@ -481,4 +481,85 @@ public class ProgressionServiceImp implements ProgressionService{
 
         return progressionGradesHashMap;
     }
+
+    @Override
+    public Long getNextId() {
+        return progressionRepository.getMaxId() + 1L;
+    }
+
+    @Override
+    public Long getLastPGId() {
+        return progressionGradeRepository.getLastId();
+    }
+
+    @Override
+    public void saveAllProgressionGrades(List<ProgressionGrade> progressionGrades) {
+        progressionGradeRepository.saveAll(progressionGrades);
+    }
+
+    @Override
+    public List<ProgressionGrade> getProgressionGradesFromScales(Progression progression, Scale scale, Long idProgressionGrade) {
+        HashMap<String, ScaleGrade> scaleGradeHashMap = new HashMap<>();
+        for(ScaleGrade scaleGrade: chordService.getGradesOfScale(scale)) {
+            scaleGradeHashMap.put(scaleGrade.getId().getGrade(), scaleGrade);
+            //System.out.println(scaleGrade.getId().getGrade());
+        }
+
+
+        List<ProgressionGrade> resp = new ArrayList<>();
+        String codeGrades[] = progression.getSymbol().split(Symbols.SYMBOL_SEPARATION_PROGRESSION);
+
+
+        int position = 0;
+        HashMap<Integer, ScaleGrade> integerScaleGradeHashMap = new HashMap<>();
+
+        boolean isMatch = false;
+
+        for (String code : codeGrades) {
+            String symbol = code;
+
+            Pattern replace = Pattern.compile("[VIX]");
+            Matcher matcher = replace.matcher(code);
+            matcher.find();
+
+            symbol = matcher.replaceAll("");
+            //System.out.println(symbol);
+
+            Pattern replaceGrade = Pattern.compile("[^VIX].*");
+            Matcher matcherGrade = replaceGrade.matcher(code);
+            matcherGrade.find();
+
+            String grade = matcherGrade.replaceAll("");
+
+            ScaleGrade currentScaleGrade = scaleGradeHashMap.get( grade == "" ? code : grade );
+
+            //System.out.println(  currentScaleGrade.getChordOfScale().getSymbol() + ":"+ (symbol.equalsIgnoreCase("") ? "Maj" : symbol) );
+            if(currentScaleGrade != null){
+                if( currentScaleGrade.getChordOfScale().getSymbol().equalsIgnoreCase( symbol == "" ? "Maj" : symbol  ) ){
+                    if( currentScaleGrade.isExist() ){
+                        position++;
+                        integerScaleGradeHashMap.put(position, currentScaleGrade);
+                        System.out.println(position + ":" + currentScaleGrade.getId().getGrade());
+                        isMatch = true;
+                    }
+                } else { isMatch = false;  break;  }
+            } else { isMatch = false;  break;  }
+
+        }
+
+        if(isMatch)
+            for( Integer key: integerScaleGradeHashMap.keySet() ){
+                ProgressionGradeId progressionGradeId = new ProgressionGradeId();
+                progressionGradeId.setId_progression_grade(idProgressionGrade);
+                progressionGradeId.setPosition( key );
+
+                ProgressionGrade progressionGrade = new ProgressionGrade();
+                progressionGrade.setId( progressionGradeId );
+                progressionGrade.setProgressionOfProgressionGrade(progression);
+                progressionGrade.setScaleGradeOfProgression( integerScaleGradeHashMap.get(key) );
+
+                resp.add( progressionGrade );
+            }
+        return resp;
+    }
 }
