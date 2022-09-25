@@ -28,16 +28,24 @@ public class Note implements MusicalElement {
     @Column(name = "symbol")
     protected String symbol;
 
+    @Column(name ="variant")
+    protected Boolean variant;
+
     @Transient
     protected final String type = "note";
 
     @JsonIgnore
-    @OneToMany(mappedBy = "interval_notes")
+    @OneToMany(mappedBy = "intervalOfNotes")
     protected List<ConcreteInterval> concreteIntervals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "scale_note")
+    @OneToMany(mappedBy = "scaleOfNotes")
     protected List<ConcreteScale> concreteScales;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "concreteChord")
+    private List<ConcreteChord> concreteChords;
+
 
     @Override
     public String getType() { return type; }

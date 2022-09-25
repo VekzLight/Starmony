@@ -1,25 +1,23 @@
 package com.kadli.starmony.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Builder
 public class ConcreteProgressionId implements Serializable {
 
-    @Column(name = "chord_id_chord")
-    private Long id_chord;
+    @Column(name = "id_concrete_progression")
+    private Long id_concrete_progression;
 
-    @Column(name = "progression_id_progression")
-    private Long id_progression;
+    @Column(name = "position_concrete_chord")
+    private int position_concrete_chord;
 
 }

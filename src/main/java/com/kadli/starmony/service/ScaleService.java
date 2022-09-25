@@ -1,13 +1,18 @@
 package com.kadli.starmony.service;
 
+import com.kadli.starmony.dto.ScaleDTO;
+import com.kadli.starmony.entity.Chord;
+import com.kadli.starmony.entity.Interval;
 import com.kadli.starmony.entity.Scale;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ScaleService {
+public interface ScaleService extends CustomCrudService<Scale, Long>, DtoConversions<Scale, ScaleDTO>{
 
-    List<Scale> getScales();
-    Optional<Scale> getScale(Long id);
+    List<Scale> getScalesWithIntervals(List<Interval> intervals);
+    List<Scale> getScalesWithChords(List<Chord> chords);
+
+    Long getNextId();
+
+    List<Scale> getAllByMaxLegth(int max);
 }

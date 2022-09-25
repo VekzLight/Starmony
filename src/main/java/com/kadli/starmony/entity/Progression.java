@@ -17,6 +17,7 @@ import javax.persistence.*;
 public class Progression implements MusicalElement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_progression")
     protected Long id;
 

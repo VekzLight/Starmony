@@ -1,25 +1,23 @@
 package com.kadli.starmony.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Builder
-public class ScaleGradesId implements Serializable {
+public class TagScaleId implements Serializable {
+
+    @Column(name = "tag_id_tag")
+    private Long id_tag;
 
     @Column(name = "scale_id_scale")
     private Long id_scale;
-
-    @Column(name = "chord_id_chord")
-    private Long id_chord;
 
 }

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "intervals")
+@Table(name = "_interval")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,12 +33,12 @@ public class Interval implements MusicalElement {
     protected final String type = "interval";
 
     @JsonIgnore
-    @OneToMany(mappedBy = "interval_notes")
+    @OneToMany(mappedBy = "intervalOfNotes")
     protected List<ConcreteInterval> concreteIntervals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "chord_interval")
-    protected List<ConcreteChord> concreteChords;
+    @OneToMany(mappedBy = "intervalOfChord")
+    protected List<ChordInterval> chordIntervals;
 
     @Override
     public String getType() { return type; }

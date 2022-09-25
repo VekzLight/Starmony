@@ -20,27 +20,32 @@ public class Chord implements MusicalElement {
 
     @Id
     @Column(name = "id_chord")
-    protected Long id;
+    private Long id;
 
     @Column(name = "name")
-    protected String name;
+    private String name;
 
     @Column(name = "symbol")
-    protected String symbol;
+    private String symbol;
 
     @Column(name = "code")
-    protected String code;
+    private String code;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "chord_interval")
-    protected List<ConcreteChord> concreteChords;
+    @OneToMany(mappedBy = "chordOfInterval")
+    private List<ChordInterval> chordIntervals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "scale_chord")
-    protected List<ScaleGrades> scaleGrades;
+    @OneToMany(mappedBy = "scaleOfChord")
+    private List<ScaleGrade> scaleGrades;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "concreteChord")
+    private List<ConcreteChord> concreteChords;
+
 
     @Transient
-    protected final String type = "chord";
+    private final String type = "chord";
 
     public String getType() { return type; }
 }

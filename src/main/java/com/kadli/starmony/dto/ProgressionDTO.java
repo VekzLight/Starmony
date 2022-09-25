@@ -1,16 +1,20 @@
 package com.kadli.starmony.dto;
 
-import com.kadli.starmony.entity.Chord;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.List;
 
-public class ProgressionDTO {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ProgressionDTO implements Serializable {
     protected Long id;
     protected String name;
     protected String symbol;
     protected String code;
-    private List<Chord> chords;
-    private List<String> tonality;
 }

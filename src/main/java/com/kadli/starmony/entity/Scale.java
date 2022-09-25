@@ -16,6 +16,7 @@ import java.util.List;
 public class Scale implements MusicalElement {
 
     @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @Column(name = "id_scale")
     protected Long id;
 
@@ -32,11 +33,11 @@ public class Scale implements MusicalElement {
     protected final String type = "scale";
 
     @JsonIgnore
-    @OneToMany(mappedBy = "scale_chord")
-    protected List<ScaleGrades> scaleGrades;
+    @OneToMany(mappedBy = "scaleOfChord")
+    protected List<ScaleGrade> scaleGrades;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "scale_note")
+    @OneToMany(mappedBy = "scaleOfNotes")
     protected List<ConcreteScale> concreteScales;
 
     @Override
