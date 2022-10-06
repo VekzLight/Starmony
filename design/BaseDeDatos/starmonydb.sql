@@ -23,7 +23,7 @@ USE `starmonydb`;
 
 DROP TABLE IF EXISTS `chord`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `chord` (
   `id_chord` int NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `chord` (
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `symbol` (`symbol`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +54,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `concrete_chord`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `concrete_chord` (
   `interval_id_interval` int NOT NULL,
   `chord_id_chord` int NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE `concrete_chord` (
   KEY `fk_interval_has_chord_interval1_idx` (`interval_id_interval`),
   CONSTRAINT `fk_interval_has_chord_chord1` FOREIGN KEY (`chord_id_chord`) REFERENCES `chord` (`id_chord`),
   CONSTRAINT `fk_interval_has_chord_interval1` FOREIGN KEY (`interval_id_interval`) REFERENCES `interval` (`id_interval`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `concrete_interval`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `concrete_interval` (
   `interval_id_interval` int NOT NULL,
   `note_id_note1` int NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `concrete_interval` (
   CONSTRAINT `fk_notes_has_interval_interval1` FOREIGN KEY (`interval_id_interval`) REFERENCES `interval` (`id_interval`),
   CONSTRAINT `fk_notes_has_interval_note1` FOREIGN KEY (`note_id_note1`) REFERENCES `note` (`id_note`),
   CONSTRAINT `fk_notes_has_interval_note2` FOREIGN KEY (`note_id_note2`) REFERENCES `note` (`id_note`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `concrete_progression`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `concrete_progression` (
   `chord_id_chord` int NOT NULL,
   `progression_id_progression` int NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE `concrete_progression` (
   KEY `fk_chord_has_progression_chord1_idx` (`chord_id_chord`),
   CONSTRAINT `fk_chord_has_progression_chord1` FOREIGN KEY (`chord_id_chord`) REFERENCES `chord` (`id_chord`),
   CONSTRAINT `fk_chord_has_progression_progression1` FOREIGN KEY (`progression_id_progression`) REFERENCES `progression` (`id_progression`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `concrete_scale`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `concrete_scale` (
   `note_id_note` int NOT NULL,
   `scale_id_scale` int NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE `concrete_scale` (
   KEY `fk_note_has_scale_note1_idx` (`note_id_note`),
   CONSTRAINT `fk_note_has_scale_note1` FOREIGN KEY (`note_id_note`) REFERENCES `note` (`id_note`),
   CONSTRAINT `fk_note_has_scale_scale1` FOREIGN KEY (`scale_id_scale`) REFERENCES `scale` (`id_scale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `interval`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `interval` (
   `id_interval` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
@@ -177,7 +177,7 @@ CREATE TABLE `interval` (
   PRIMARY KEY (`id_interval`),
   UNIQUE KEY `id_interval_UNIQUE` (`id_interval`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +196,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `note`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `note` (
   `id_note` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
@@ -205,7 +205,7 @@ CREATE TABLE `note` (
   UNIQUE KEY `id_notes_UNIQUE` (`id_note`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `symbol_UNIQUE` (`symbol`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `profile` (
   `id_profile` int NOT NULL AUTO_INCREMENT,
   `fecha_nacimiento` date NOT NULL,
@@ -233,7 +233,7 @@ CREATE TABLE `profile` (
   UNIQUE KEY `id_profile_UNIQUE` (`id_profile`),
   KEY `fk_profile_state1_idx` (`state_id_state`),
   CONSTRAINT `fk_profile_state1` FOREIGN KEY (`state_id_state`) REFERENCES `state` (`id_state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +251,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `progression`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `progression` (
   `id_progression` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -262,7 +262,7 @@ CREATE TABLE `progression` (
   UNIQUE KEY `code_UNIQUE` (`code`),
   UNIQUE KEY `symbol` (`symbol`),
   UNIQUE KEY `symbol_2` (`symbol`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +281,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `scale`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `scale` (
   `id_scale` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
@@ -291,7 +291,7 @@ CREATE TABLE `scale` (
   UNIQUE KEY `code_UNIQUE` (`code`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `id_scale_UNIQUE` (`id_scale`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +310,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `scale_grade`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `scale_grade` (
   `chord_id_chord` int NOT NULL,
   `scale_id_scale` int NOT NULL,
@@ -320,7 +320,7 @@ CREATE TABLE `scale_grade` (
   KEY `fk_chord_has_scale_chord1_idx` (`chord_id_chord`),
   CONSTRAINT `fk_chord_has_scale_chord1` FOREIGN KEY (`chord_id_chord`) REFERENCES `chord` (`id_chord`),
   CONSTRAINT `fk_chord_has_scale_scale1` FOREIGN KEY (`scale_id_scale`) REFERENCES `scale` (`id_scale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,14 +339,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `state`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `state` (
   `id_state` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id_state`),
   UNIQUE KEY `id_state_UNIQUE` (`id_state`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,7 +364,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `status` (
   `id_status` int NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
@@ -372,7 +372,7 @@ CREATE TABLE `status` (
   PRIMARY KEY (`id_status`),
   UNIQUE KEY `id_status_UNIQUE` (`id_status`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -390,7 +390,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tag` (
   `id_tag` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
@@ -399,7 +399,7 @@ CREATE TABLE `tag` (
   PRIMARY KEY (`id_tag`),
   UNIQUE KEY `id_tag_UNIQUE` (`id_tag`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -417,7 +417,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tag_chord`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tag_chord` (
   `chord_id_chord` int NOT NULL,
   `tag_id_tag` int NOT NULL,
@@ -426,7 +426,7 @@ CREATE TABLE `tag_chord` (
   KEY `fk_chord_has_tag_chord1_idx` (`chord_id_chord`),
   CONSTRAINT `fk_chord_has_tag_chord1` FOREIGN KEY (`chord_id_chord`) REFERENCES `chord` (`id_chord`),
   CONSTRAINT `fk_chord_has_tag_tag1` FOREIGN KEY (`tag_id_tag`) REFERENCES `tag` (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,7 +444,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tag_interval`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tag_interval` (
   `interval_id_interval` int NOT NULL,
   `tag_id_tag` int NOT NULL,
@@ -453,7 +453,7 @@ CREATE TABLE `tag_interval` (
   KEY `fk_interval_has_tag_interval1_idx` (`interval_id_interval`),
   CONSTRAINT `fk_interval_has_tag_interval1` FOREIGN KEY (`interval_id_interval`) REFERENCES `interval` (`id_interval`),
   CONSTRAINT `fk_interval_has_tag_tag1` FOREIGN KEY (`tag_id_tag`) REFERENCES `tag` (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,7 +471,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tag_preference`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tag_preference` (
   `profile_id_profile` int NOT NULL,
   `tag_id_tag` int NOT NULL,
@@ -481,7 +481,7 @@ CREATE TABLE `tag_preference` (
   KEY `fk_profile_has_tag_profile1_idx` (`profile_id_profile`),
   CONSTRAINT `fk_profile_has_tag_profile1` FOREIGN KEY (`profile_id_profile`) REFERENCES `profile` (`id_profile`),
   CONSTRAINT `fk_profile_has_tag_tag1` FOREIGN KEY (`tag_id_tag`) REFERENCES `tag` (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,7 +499,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tag_progression`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tag_progression` (
   `progression_id_progression` int NOT NULL,
   `tag_id_tag` int NOT NULL,
@@ -508,7 +508,7 @@ CREATE TABLE `tag_progression` (
   KEY `fk_progression_has_tag_progression1_idx` (`progression_id_progression`),
   CONSTRAINT `fk_progression_has_tag_progression1` FOREIGN KEY (`progression_id_progression`) REFERENCES `progression` (`id_progression`),
   CONSTRAINT `fk_progression_has_tag_tag1` FOREIGN KEY (`tag_id_tag`) REFERENCES `tag` (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -526,7 +526,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tag_scale`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tag_scale` (
   `scale_id_scale` int NOT NULL,
   `tag_id_tag` int NOT NULL,
@@ -535,7 +535,7 @@ CREATE TABLE `tag_scale` (
   KEY `fk_scale_has_tag_scale1_idx` (`scale_id_scale`),
   CONSTRAINT `fk_scale_has_tag_scale1` FOREIGN KEY (`scale_id_scale`) REFERENCES `scale` (`id_scale`),
   CONSTRAINT `fk_scale_has_tag_tag1` FOREIGN KEY (`tag_id_tag`) REFERENCES `tag` (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -553,7 +553,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id_user` int NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
@@ -563,7 +563,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `id_user_UNIQUE` (`id_user`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -581,7 +581,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_has_chord`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user_has_chord` (
   `user_id_user` int NOT NULL,
   `chord_id_chord` int NOT NULL,
@@ -590,7 +590,7 @@ CREATE TABLE `user_has_chord` (
   KEY `fk_user_has_chord_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_user_has_chord_chord1` FOREIGN KEY (`chord_id_chord`) REFERENCES `chord` (`id_chord`),
   CONSTRAINT `fk_user_has_chord_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -608,7 +608,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_has_interval`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user_has_interval` (
   `user_id_user` int NOT NULL,
   `interval_id_interval` int NOT NULL,
@@ -617,7 +617,7 @@ CREATE TABLE `user_has_interval` (
   KEY `fk_user_has_interval_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_user_has_interval_interval1` FOREIGN KEY (`interval_id_interval`) REFERENCES `interval` (`id_interval`),
   CONSTRAINT `fk_user_has_interval_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -635,7 +635,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_has_profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user_has_profile` (
   `user_id_user` int NOT NULL,
   `profile_id_profile` int NOT NULL,
@@ -644,7 +644,7 @@ CREATE TABLE `user_has_profile` (
   KEY `fk_user_has_profile_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_user_has_profile_profile1` FOREIGN KEY (`profile_id_profile`) REFERENCES `profile` (`id_profile`),
   CONSTRAINT `fk_user_has_profile_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -662,7 +662,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_has_progression`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user_has_progression` (
   `user_id_user` int NOT NULL,
   `progression_id_progression` int NOT NULL,
@@ -671,7 +671,7 @@ CREATE TABLE `user_has_progression` (
   KEY `fk_user_has_progression_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_user_has_progression_progression1` FOREIGN KEY (`progression_id_progression`) REFERENCES `progression` (`id_progression`),
   CONSTRAINT `fk_user_has_progression_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -689,7 +689,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_has_scale`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user_has_scale` (
   `user_id_user` int NOT NULL,
   `scale_id_scale` int NOT NULL,
@@ -698,7 +698,7 @@ CREATE TABLE `user_has_scale` (
   KEY `fk_user_has_scale_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_user_has_scale_scale1` FOREIGN KEY (`scale_id_scale`) REFERENCES `scale` (`id_scale`),
   CONSTRAINT `fk_user_has_scale_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -716,7 +716,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_has_status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user_has_status` (
   `user_id_user` int NOT NULL,
   `status_id_status` int NOT NULL,
@@ -726,7 +726,7 @@ CREATE TABLE `user_has_status` (
   KEY `fk_user_has_status1_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_user_has_status1_status1` FOREIGN KEY (`status_id_status`) REFERENCES `status` (`id_status`),
   CONSTRAINT `fk_user_has_status1_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
