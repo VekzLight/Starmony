@@ -15,7 +15,7 @@ import java.util.List;
 
 
 
-@CrossOrigin(origins = {"http://localhost:4200", "http://starmony.duckdns.org:2000"})
+@CrossOrigin(origins = {"http://172.28.138.241:4200", "http://starmony.duckdns.org:2000"})
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
