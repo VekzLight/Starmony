@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/generator")
-@CrossOrigin(origins = {"http://localhost:4200", "http://starmony.duckdns.org:2000"})
+@CrossOrigin(origins = {"http://172.28.138.241:4200", "http://starmony.duckdns.org:2000"})
 public class GeneratorController {
 
 
