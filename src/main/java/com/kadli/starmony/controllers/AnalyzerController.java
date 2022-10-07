@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-@CrossOrigin(origins = {"http://localhost:4200", "http://starmony.duckdns.org:2000"})
+@CrossOrigin(origins = {"http://172.28.138.241:4200", "http://starmony.duckdns.org:2000"})
 @RestController
 @RequestMapping("/api/analyzer")
 public class AnalyzerController {
